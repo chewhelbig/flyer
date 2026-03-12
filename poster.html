@@ -65,8 +65,9 @@
     width: 100%; margin-bottom: 14px;
     border: 1px solid #c8d9cc; border-radius: 2px;
     overflow: hidden; background: #eaf0ec;
+    height: 160px;
   }
-  .map-wrap svg { display: block; width: 100%; }
+  .map-wrap iframe { display: block; width: 100%; height: 100%; border: none; }
 
   .address-block {
     background: #f0e8c8; border-left: 3px solid #3d6b50;
@@ -292,102 +293,14 @@
       I am delighted to share that my practice is relocating to <strong>Tiong Bahru</strong> — one of Singapore's most beloved neighbourhoods. A quieter, more <strong>grounded</strong> space; a more <strong>sustainable</strong> way of working. I look forward to welcoming you there.
     </p>
 
-    <!-- ══ INLINE SVG MAP — real street layout ══ -->
+    <!-- ══ GOOGLE MAPS EMBED ══ -->
     <div class="map-wrap">
-      <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#e8f0eb"/>
-            <stop offset="100%" stop-color="#deeae2"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Background -->
-        <rect width="340" height="160" fill="url(#mapBg)"/>
-
-        <!-- Block fills -->
-        <rect x="0"   y="0"   width="58"  height="54"  fill="#c4d8cc" opacity="0.55" rx="1"/>
-        <rect x="68"  y="0"   width="38"  height="54"  fill="#c4d8cc" opacity="0.55" rx="1"/>
-        <rect x="116" y="0"   width="70"  height="54"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
-        <rect x="0"   y="64"  width="58"  height="44"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
-        <rect x="68"  y="64"  width="38"  height="44"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
-        <rect x="116" y="64"  width="70"  height="44"  fill="#c4d8cc" opacity="0.45" rx="1"/>
-        <rect x="196" y="0"   width="144" height="70"  fill="#c4d8cc" opacity="0.4"  rx="1"/>
-        <rect x="196" y="80"  width="144" height="80"  fill="#c4d8cc" opacity="0.4"  rx="1"/>
-        <rect x="0"   y="118" width="186" height="42"  fill="#c4d8cc" opacity="0.45" rx="1"/>
-
-        <!-- Tiong Bahru Road (main horizontal, ~y=55) -->
-        <rect x="0" y="55" width="186" height="10" fill="#fff" opacity="0.92"/>
-        <text x="4" y="62.5" font-family="Georgia,serif" font-size="5.5" fill="#4a6858" font-style="italic">Tiong Bahru Road</text>
-
-        <!-- Seng Poh Road (vertical, x≈186) -->
-        <rect x="186" y="0" width="10" height="160" fill="#fff" opacity="0.92"/>
-        <text x="188" y="50" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,188,50)">Seng Poh Road</text>
-
-        <!-- Tiong Poh Road (horizontal ~y=86) -->
-        <rect x="0" y="86" width="186" height="8" fill="#fff" opacity="0.88"/>
-        <text x="4" y="92.5" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic">Tiong Poh Road</text>
-
-        <!-- Eng Watt Street (horizontal ~y=118) -->
-        <rect x="0" y="118" width="186" height="8" fill="#fff" opacity="0.88"/>
-        <text x="4" y="124.5" font-family="Georgia,serif" font-size="5.5" fill="#4a6858" font-style="italic">Eng Watt Street</text>
-
-        <!-- Eng Hoon St (vertical ~x=58) -->
-        <rect x="58" y="0" width="8" height="118" fill="#fff" opacity="0.82"/>
-        <text x="60" y="30" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,60,30)">Eng Hoon St</text>
-
-        <!-- Yong Siak St (vertical ~x=106) -->
-        <rect x="106" y="0" width="8" height="118" fill="#fff" opacity="0.82"/>
-        <text x="108" y="28" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,108,28)">Yong Siak St</text>
-
-        <!-- Tiong Bahru Market -->
-        <rect x="196" y="90" width="44" height="28" fill="#b8d4c4" rx="2" opacity="0.8"/>
-        <text x="218" y="100" font-family="Georgia,serif" font-size="5.5" fill="#2d5040" text-anchor="middle" font-weight="bold">TB Market</text>
-        <text x="218" y="108" font-family="Georgia,serif" font-size="5" fill="#3d6b50" text-anchor="middle">&amp; Food Centre</text>
-
-        <!-- EW17 MRT (red circle) -->
-        <circle cx="252" cy="32" r="8" fill="#d94f2e" opacity="0.9"/>
-        <text x="252" y="35.5" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle" font-weight="bold">M</text>
-        <text x="264" y="29"   font-family="Georgia,serif" font-size="5.5" fill="#2d5040">EW17</text>
-        <text x="264" y="35.5" font-family="Georgia,serif" font-size="5"   fill="#5a7060">Tiong Bahru</text>
-
-        <!-- TE16 Havelock MRT (purple) -->
-        <circle cx="318" cy="44" r="7" fill="#8b2f7a" opacity="0.85"/>
-        <text x="318" y="47.5" font-family="Arial,sans-serif" font-size="6.5" fill="white" text-anchor="middle" font-weight="bold">M</text>
-        <text x="304" y="56" font-family="Georgia,serif" font-size="5" fill="#2d5040">TE16 Havelock</text>
-
-        <!-- ★ OFFICE — 73 Eng Watt St (pin at x≈85, y=122) -->
-        <!-- Outer glow ring -->
-        <circle cx="85" cy="122" r="11" fill="#3d6b50" opacity="0.2"/>
-        <!-- Pin body -->
-        <path d="M85 113 C81.5 113 79 115.5 79 118.5 C79 122.5 85 129 85 129 C85 129 91 122.5 91 118.5 C91 115.5 88.5 113 85 113Z" fill="#3d6b50"/>
-        <circle cx="85" cy="118.5" r="2.5" fill="white"/>
-        <!-- Label bubble -->
-        <rect x="94" y="114" width="56" height="16" fill="#3d6b50" rx="2"/>
-        <polygon points="94,122 90,118 90,126" fill="#3d6b50"/>
-        <text x="122" y="121" font-family="Georgia,serif" font-size="6.5" fill="white" text-anchor="middle" font-weight="bold">73 Eng Watt St</text>
-        <text x="122" y="128" font-family="Georgia,serif" font-size="5" fill="#a8c8b8" text-anchor="middle">Singapore 160073</text>
-
-        <!-- Compass -->
-        <g transform="translate(316,136)">
-          <circle r="11" fill="white" opacity="0.75" stroke="#b0c8b8" stroke-width="0.8"/>
-          <text x="0" y="-4" font-family="Arial,sans-serif" font-size="7.5" fill="#3d6b50" text-anchor="middle" font-weight="bold">N</text>
-          <line x1="0" y1="-9" x2="0" y2="-1" stroke="#3d6b50" stroke-width="1.5"/>
-          <line x1="0" y1="1"  x2="0" y2="8"  stroke="#8a9e90" stroke-width="1"/>
-          <line x1="-8" y1="0" x2="8" y2="0"  stroke="#8a9e90" stroke-width="1"/>
-        </g>
-
-        <!-- Scale bar -->
-        <line x1="10" y1="153" x2="60" y2="153" stroke="#5a7060" stroke-width="1.2"/>
-        <line x1="10" y1="150" x2="10" y2="156" stroke="#5a7060" stroke-width="1"/>
-        <line x1="60" y1="150" x2="60" y2="156" stroke="#5a7060" stroke-width="1"/>
-        <text x="35" y="158" font-family="Georgia,serif" font-size="5" fill="#5a7060" text-anchor="middle">~250 m</text>
-
-        <!-- Border -->
-        <rect x="0.5" y="0.5" width="339" height="159" fill="none" stroke="#b0c8b8" stroke-width="1"/>
-      </svg>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.8!2d103.83220!3d1.28352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1bcfe3b3b3b3%3A0x1!2s73+Eng+Watt+St%2C+Singapore+160073!5e0!3m2!1sen!2ssg!4v1699000000000!5m2!1sen!2ssg"
+        width="100%" height="160" style="border:none;display:block;filter:saturate(0.8);"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-
     <!-- Address -->
     <div class="address-block">
       <div class="address-label">New Address</div>
