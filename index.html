@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Office Move Announcement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d8d2c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'DM Sans', Georgia, sans-serif;
+  }
+
+  .poster {
+    width: 148mm;
+    min-height: 210mm;
+    background: #fdf6e3;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  }
+
+  .top-band { background: #3d6b50; height: 5px; width: 100%; }
+
+  .botanical {
+    position: absolute; top: 5px; right: 0;
+    width: 100px; height: 100px;
+    opacity: 0.1; z-index: 1; pointer-events: none;
+  }
+
+  .illus-strip { width: 100%; height: 88px; display: block; position: relative; z-index: 2; }
+
+  .content { padding: 20px 26px 20px; position: relative; z-index: 2; }
+
+  .main-header {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 21px; font-weight: 600; line-height: 1.2;
+    color: #1e2e23; margin-bottom: 14px;
+  }
+  .main-header em { font-style: italic; color: #3d6b50; }
+
+  .date-block {
+    background: #3d6b50; color: #fff;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 7px 14px; margin-bottom: 16px; border-radius: 2px;
+  }
+  .date-block .label { font-size: 7px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.72; }
+  .date-block .date { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 600; }
+
+  .message {
+    font-size: 9px; line-height: 1.75; color: #3d3730;
+    margin-bottom: 18px; font-weight: 300; max-width: 95%;
+  }
+  .message strong { color: #1e2e23; font-weight: 500; }
+
+  .map-wrap {
+    width: 100%; margin-bottom: 14px;
+    border: 1px solid #c8d9cc; border-radius: 2px;
+    overflow: hidden; background: #eaf0ec;
+  }
+  .map-wrap svg { display: block; width: 100%; }
+
+  .address-block {
+    background: #f0e8c8; border-left: 3px solid #3d6b50;
+    padding: 10px 14px; margin-bottom: 16px;
+  }
+  .address-label {
+    font-size: 7px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #7a9e88; font-weight: 500; margin-bottom: 4px;
+  }
+  .address-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12px; color: #1e2e23; line-height: 1.5;
+  }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+
+  .info-card { background: #f0e8c8; padding: 9px 11px; border-radius: 2px; }
+
+  .ic-label {
+    font-size: 6.5px; letter-spacing: 2px; text-transform: uppercase;
+    color: #7a9e88; font-weight: 500; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .ic-content { font-size: 8px; color: #3d3730; line-height: 1.65; font-weight: 300; }
+
+  .item { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 2px; }
+
+  .dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #3d6b50; margin-top: 4px; flex-shrink: 0;
+  }
+
+  .sustain-note {
+    background: linear-gradient(135deg, #3d6b50 0%, #2d5040 100%);
+    padding: 11px 14px; display: flex; align-items: center; gap: 11px;
+  }
+  .sustain-text { font-size: 8px; color: rgba(255,255,255,0.9); line-height: 1.65; font-weight: 300; }
+  .sustain-text strong { color: #fff; font-weight: 500; display: block; font-size: 9px; margin-bottom: 2px; }
+
+  .footer {
+    padding: 10px 26px 13px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-top: 1px solid #e0dbd4;
+  }
+  .footer-brand { font-family: 'Playfair Display', Georgia, serif; font-size: 10px; color: #3d6b50; font-style: italic; }
+  .footer-note { font-size: 7px; color: #b0a898; letter-spacing: 0.4px; }
+
+  .bottom-band { background: #3d6b50; height: 4px; width: 100%; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="top-band"></div>
+
+  <!-- Botanical corner -->
+  <svg class="botanical" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M180 10 Q140 80 80 100 Q100 60 180 10Z" fill="#3d6b50"/>
+    <path d="M200 30 Q150 90 90 120 Q110 70 200 30Z" fill="#3d6b50"/>
+    <path d="M160 0 Q130 70 60 90 Q80 50 160 0Z" fill="#3d6b50"/>
+    <path d="M200 60 Q160 110 100 140 Q120 90 200 60Z" fill="#3d6b50"/>
+  </svg>
+
+  <!-- ══ ILLUSTRATION — Tiong Bahru SIT Streamline Moderne streetscape ══ -->
+  <svg class="illus-strip" viewBox="0 0 560 88" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#a8cfc0"/>
+        <stop offset="100%" stop-color="#c8e0d4"/>
+      </linearGradient>
+      <linearGradient id="gOverlay" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="55%" stop-color="rgba(20,40,28,0)"/>
+        <stop offset="100%" stop-color="rgba(20,40,28,0.42)"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Sky -->
+    <rect width="560" height="88" fill="url(#gSky)"/>
+    <!-- Clouds -->
+    <ellipse cx="80"  cy="17" rx="28" ry="7"  fill="white" opacity="0.28"/>
+    <ellipse cx="102" cy="13" rx="20" ry="6"  fill="white" opacity="0.22"/>
+    <ellipse cx="420" cy="15" rx="32" ry="7"  fill="white" opacity="0.25"/>
+    <ellipse cx="446" cy="11" rx="22" ry="6"  fill="white" opacity="0.2"/>
+
+    <!-- Distant high-rise -->
+    <rect x="232" y="22" width="32" height="50" fill="#b4ccbc" rx="1"/>
+    <rect x="268" y="28" width="26" height="44" fill="#acbfb6" rx="1"/>
+    <rect x="234" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.65"/>
+    <rect x="242" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="250" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.6"/>
+    <rect x="234" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="242" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.55"/>
+    <rect x="250" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="272" y="32" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.6"/>
+    <rect x="280" y="32" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.65"/>
+    <rect x="272" y="40" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+
+    <!-- FAR-LEFT SIT BLOCK -->
+    <rect x="0" y="40" width="72" height="48" fill="#ddd3b4"/>
+    <rect x="0" y="35" width="72" height="8"  fill="#cfc4a2" rx="0.5"/>
+    <rect x="8"  y="30" width="12" height="8" fill="#cfc4a2" rx="1"/>
+    <rect x="26" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="46" y="30" width="12" height="8" fill="#cfc4a2" rx="1"/>
+    <rect x="0" y="52" width="72" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="0" y="62" width="72" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="6"  y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="20" y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="34" y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="48" y="42" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.75"/>
+    <rect x="60" y="42" width="8"  height="8" fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="4"  y="66" width="20" height="22" fill="#c8ba94" rx="0.5"/>
+    <rect x="28" y="66" width="20" height="22" fill="#c0b28c" rx="0.5"/>
+    <rect x="50" y="66" width="18" height="22" fill="#c8ba94" rx="0.5"/>
+    <path d="M4 66 Q14 60 24 66"  fill="none" stroke="#bfb28c" stroke-width="1.2"/>
+    <path d="M28 66 Q38 60 48 66" fill="none" stroke="#bfb28c" stroke-width="1.2"/>
+    <path d="M50 66 Q59 60 68 66" fill="none" stroke="#bfb28c" stroke-width="1.2"/>
+
+    <!-- CENTRE-LEFT SIT BLOCK (hero, tallest) -->
+    <rect x="80" y="30" width="82" height="58" fill="#ede3c4"/>
+    <rect x="80" y="25" width="82" height="8"  fill="#e0d4b0" rx="0.5"/>
+    <rect x="90"  y="19" width="14" height="9"  fill="#e0d4b0" rx="2"/>
+    <rect x="112" y="17" width="18" height="11" fill="#d8c8a0" rx="2"/>
+    <rect x="140" y="19" width="14" height="9"  fill="#e0d4b0" rx="2"/>
+    <rect x="80" y="44" width="82" height="2" fill="#c4b488" opacity="0.7"/>
+    <rect x="80" y="56" width="82" height="2" fill="#c4b488" opacity="0.7"/>
+    <rect x="86"  y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="101" y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="116" y="32" width="11" height="10" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="131" y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="148" y="32" width="9"  height="10" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="86"  y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="101" y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="116" y="47" width="11" height="7"  fill="#7cb4a8" rx="0.5" opacity="0.7"/>
+    <rect x="131" y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="84"  y="66" width="22" height="22" fill="#c8b890" rx="0.5"/>
+    <rect x="110" y="66" width="22" height="22" fill="#c0b088" rx="0.5"/>
+    <rect x="136" y="66" width="22" height="22" fill="#c8b890" rx="0.5"/>
+    <path d="M84 66 Q95 59 106 66"  fill="none" stroke="#c4b488" stroke-width="1.3"/>
+    <path d="M110 66 Q121 59 132 66" fill="none" stroke="#c4b488" stroke-width="1.3"/>
+    <path d="M136 66 Q147 59 158 66" fill="none" stroke="#c4b488" stroke-width="1.3"/>
+
+    <!-- RIGHT SIT BLOCK -->
+    <rect x="320" y="36" width="90" height="52" fill="#e8dfc0"/>
+    <rect x="320" y="31" width="90" height="8"  fill="#dcd0ac" rx="0.5"/>
+    <rect x="330" y="25" width="12" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="350" y="23" width="16" height="11" fill="#d4c4a0" rx="1.5"/>
+    <rect x="374" y="25" width="12" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="394" y="25" width="10" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="320" y="48" width="90" height="2" fill="#c0b08a" opacity="0.65"/>
+    <rect x="320" y="58" width="90" height="2" fill="#c0b08a" opacity="0.65"/>
+    <rect x="326" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="340" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="354" y="38" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="368" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="382" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="396" y="38" width="8"  height="8" fill="#7cb4a8" rx="0.5" opacity="0.7"/>
+    <rect x="324" y="66" width="22" height="22" fill="#c4b48c" rx="0.5"/>
+    <rect x="350" y="66" width="22" height="22" fill="#bcac84" rx="0.5"/>
+    <rect x="376" y="66" width="20" height="22" fill="#c4b48c" rx="0.5"/>
+    <path d="M324 66 Q335 59 346 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
+    <path d="M350 66 Q361 59 372 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
+    <path d="M376 66 Q386 59 396 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
+
+    <!-- FAR-RIGHT BLOCK -->
+    <rect x="420" y="40" width="140" height="48" fill="#ddd3b4"/>
+    <rect x="420" y="35" width="140" height="7"  fill="#cfc4a2"/>
+    <rect x="430" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="452" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="480" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="508" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="536" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="420" y="52" width="140" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="420" y="61" width="140" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="426" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="440" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="454" y="40" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.75"/>
+    <rect x="468" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="482" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="496" y="40" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="510" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="524" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="424" y="66" width="22" height="22" fill="#c8ba94"/>
+    <rect x="450" y="66" width="22" height="22" fill="#c0b28c"/>
+    <rect x="476" y="66" width="22" height="22" fill="#c8ba94"/>
+    <rect x="502" y="66" width="22" height="22" fill="#c0b28c"/>
+    <rect x="528" y="66" width="28" height="22" fill="#c8ba94"/>
+    <path d="M424 66 Q435 59 446 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M450 66 Q461 59 472 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M476 66 Q487 59 498 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M502 66 Q513 59 524 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+
+    <!-- Trees between blocks -->
+    <ellipse cx="170" cy="56" rx="12" ry="16" fill="#5a8c68" opacity="0.7"/>
+    <ellipse cx="176" cy="50" rx="9"  ry="13" fill="#4a7c58" opacity="0.65"/>
+    <rect x="171" y="70" width="3" height="8" fill="#3a5838" opacity="0.5"/>
+    <ellipse cx="308" cy="58" rx="10" ry="14" fill="#5a8c68" opacity="0.65"/>
+    <ellipse cx="314" cy="53" rx="8"  ry="12" fill="#4a7c58" opacity="0.6"/>
+    <rect x="309" y="70" width="3" height="7" fill="#3a5838" opacity="0.5"/>
+
+    <!-- Pavement & road -->
+    <rect x="0" y="76" width="560" height="12" fill="#8c9e94"/>
+    <line x1="0" y1="77" x2="560" y2="77" stroke="#6a7e74" stroke-width="0.5"/>
+
+    <!-- Dark overlay gradient at bottom for label readability -->
+    <rect width="560" height="88" fill="url(#gOverlay)"/>
+
+    <!-- Estate label -->
+    <text x="10" y="85" font-family="Georgia,serif" font-size="6" fill="rgba(255,255,255,0.65)" letter-spacing="2.5">TIONG BAHRU ESTATE · ART DECO CONSERVATION AREA</text>
+  </svg>
+
+  <!-- ══ CONTENT ══ -->
+  <div class="content">
+    <div class="main-header">My practice is moving<br>to <em>Tiong Bahru</em></div>
+
+    <div class="date-block">
+      <div>
+        <div class="label">Effective from</div>
+        <div class="date">1 July 2026</div>
+      </div>
+    </div>
+
+    <p class="message">
+      I am delighted to share that my practice is relocating to <strong>Tiong Bahru</strong> — one of Singapore's most beloved neighbourhoods. A quieter, more <strong>grounded</strong> space; a more <strong>sustainable</strong> way of working. I look forward to welcoming you there.
+    </p>
+
+    <!-- ══ INLINE SVG MAP — real street layout ══ -->
+    <div class="map-wrap">
+      <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8f0eb"/>
+            <stop offset="100%" stop-color="#deeae2"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Background -->
+        <rect width="340" height="160" fill="url(#mapBg)"/>
+
+        <!-- Block fills -->
+        <rect x="0"   y="0"   width="58"  height="54"  fill="#c4d8cc" opacity="0.55" rx="1"/>
+        <rect x="68"  y="0"   width="38"  height="54"  fill="#c4d8cc" opacity="0.55" rx="1"/>
+        <rect x="116" y="0"   width="70"  height="54"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
+        <rect x="0"   y="64"  width="58"  height="44"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
+        <rect x="68"  y="64"  width="38"  height="44"  fill="#c4d8cc" opacity="0.5"  rx="1"/>
+        <rect x="116" y="64"  width="70"  height="44"  fill="#c4d8cc" opacity="0.45" rx="1"/>
+        <rect x="196" y="0"   width="144" height="70"  fill="#c4d8cc" opacity="0.4"  rx="1"/>
+        <rect x="196" y="80"  width="144" height="80"  fill="#c4d8cc" opacity="0.4"  rx="1"/>
+        <rect x="0"   y="118" width="186" height="42"  fill="#c4d8cc" opacity="0.45" rx="1"/>
+
+        <!-- Tiong Bahru Road (main horizontal, ~y=55) -->
+        <rect x="0" y="55" width="186" height="10" fill="#fff" opacity="0.92"/>
+        <text x="4" y="62.5" font-family="Georgia,serif" font-size="5.5" fill="#4a6858" font-style="italic">Tiong Bahru Road</text>
+
+        <!-- Seng Poh Road (vertical, x≈186) -->
+        <rect x="186" y="0" width="10" height="160" fill="#fff" opacity="0.92"/>
+        <text x="188" y="50" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,188,50)">Seng Poh Road</text>
+
+        <!-- Tiong Poh Road (horizontal ~y=86) -->
+        <rect x="0" y="86" width="186" height="8" fill="#fff" opacity="0.88"/>
+        <text x="4" y="92.5" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic">Tiong Poh Road</text>
+
+        <!-- Eng Watt Street (horizontal ~y=118) -->
+        <rect x="0" y="118" width="186" height="8" fill="#fff" opacity="0.88"/>
+        <text x="4" y="124.5" font-family="Georgia,serif" font-size="5.5" fill="#4a6858" font-style="italic">Eng Watt Street</text>
+
+        <!-- Eng Hoon St (vertical ~x=58) -->
+        <rect x="58" y="0" width="8" height="118" fill="#fff" opacity="0.82"/>
+        <text x="60" y="30" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,60,30)">Eng Hoon St</text>
+
+        <!-- Yong Siak St (vertical ~x=106) -->
+        <rect x="106" y="0" width="8" height="118" fill="#fff" opacity="0.82"/>
+        <text x="108" y="28" font-family="Georgia,serif" font-size="5" fill="#4a6858" font-style="italic" transform="rotate(90,108,28)">Yong Siak St</text>
+
+        <!-- Tiong Bahru Market -->
+        <rect x="196" y="90" width="44" height="28" fill="#b8d4c4" rx="2" opacity="0.8"/>
+        <text x="218" y="100" font-family="Georgia,serif" font-size="5.5" fill="#2d5040" text-anchor="middle" font-weight="bold">TB Market</text>
+        <text x="218" y="108" font-family="Georgia,serif" font-size="5" fill="#3d6b50" text-anchor="middle">&amp; Food Centre</text>
+
+        <!-- EW17 MRT (red circle) -->
+        <circle cx="252" cy="32" r="8" fill="#d94f2e" opacity="0.9"/>
+        <text x="252" y="35.5" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle" font-weight="bold">M</text>
+        <text x="264" y="29"   font-family="Georgia,serif" font-size="5.5" fill="#2d5040">EW17</text>
+        <text x="264" y="35.5" font-family="Georgia,serif" font-size="5"   fill="#5a7060">Tiong Bahru</text>
+
+        <!-- TE16 Havelock MRT (purple) -->
+        <circle cx="318" cy="44" r="7" fill="#8b2f7a" opacity="0.85"/>
+        <text x="318" y="47.5" font-family="Arial,sans-serif" font-size="6.5" fill="white" text-anchor="middle" font-weight="bold">M</text>
+        <text x="304" y="56" font-family="Georgia,serif" font-size="5" fill="#2d5040">TE16 Havelock</text>
+
+        <!-- ★ OFFICE — 73 Eng Watt St (pin at x≈85, y=122) -->
+        <!-- Outer glow ring -->
+        <circle cx="85" cy="122" r="11" fill="#3d6b50" opacity="0.2"/>
+        <!-- Pin body -->
+        <path d="M85 113 C81.5 113 79 115.5 79 118.5 C79 122.5 85 129 85 129 C85 129 91 122.5 91 118.5 C91 115.5 88.5 113 85 113Z" fill="#3d6b50"/>
+        <circle cx="85" cy="118.5" r="2.5" fill="white"/>
+        <!-- Label bubble -->
+        <rect x="94" y="114" width="56" height="16" fill="#3d6b50" rx="2"/>
+        <polygon points="94,122 90,118 90,126" fill="#3d6b50"/>
+        <text x="122" y="121" font-family="Georgia,serif" font-size="6.5" fill="white" text-anchor="middle" font-weight="bold">73 Eng Watt St</text>
+        <text x="122" y="128" font-family="Georgia,serif" font-size="5" fill="#a8c8b8" text-anchor="middle">Singapore 160073</text>
+
+        <!-- Compass -->
+        <g transform="translate(316,136)">
+          <circle r="11" fill="white" opacity="0.75" stroke="#b0c8b8" stroke-width="0.8"/>
+          <text x="0" y="-4" font-family="Arial,sans-serif" font-size="7.5" fill="#3d6b50" text-anchor="middle" font-weight="bold">N</text>
+          <line x1="0" y1="-9" x2="0" y2="-1" stroke="#3d6b50" stroke-width="1.5"/>
+          <line x1="0" y1="1"  x2="0" y2="8"  stroke="#8a9e90" stroke-width="1"/>
+          <line x1="-8" y1="0" x2="8" y2="0"  stroke="#8a9e90" stroke-width="1"/>
+        </g>
+
+        <!-- Scale bar -->
+        <line x1="10" y1="153" x2="60" y2="153" stroke="#5a7060" stroke-width="1.2"/>
+        <line x1="10" y1="150" x2="10" y2="156" stroke="#5a7060" stroke-width="1"/>
+        <line x1="60" y1="150" x2="60" y2="156" stroke="#5a7060" stroke-width="1"/>
+        <text x="35" y="158" font-family="Georgia,serif" font-size="5" fill="#5a7060" text-anchor="middle">~250 m</text>
+
+        <!-- Border -->
+        <rect x="0.5" y="0.5" width="339" height="159" fill="none" stroke="#b0c8b8" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <!-- Address -->
+    <div class="address-block">
+      <div class="address-label">New Address</div>
+      <div class="address-text">73 Eng Watt Street<br>Tiong Bahru Estate, Singapore 160073</div>
+    </div>
+
+    <!-- Info grid -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          MRT &amp; Buses
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Tiong Bahru MRT (EW17) · 8 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Havelock MRT (TE16) · 10 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Bus 5, 16, 33, 63, 75, 122, 123, 175, 195, 195A, 851, 970</span></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Parking
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Ample outdoor parking in the estate</span></div>
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Market car park</span></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          Cafés Nearby
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Merci Marcel · Eng Hoon St</span></div>
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Bakery · Eng Hoon St</span></div>
+          <div class="item"><div class="dot"></div><span>Toast Box · Seng Poh Road</span></div>
+          <div class="item"><div class="dot"></div><span>An Chiang · Tiong Poh Road</span></div>
+          <div class="item"><div class="dot"></div><span>Plain Vanilla · Yong Siak St</span></div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Markets
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Market · 3 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Hawker centre · Level 2</span></div>
+          <div class="item"><div class="dot"></div><span>Wet market · Level 1</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sustainability -->
+    <div class="sustain-note">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" style="flex-shrink:0">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+      </svg>
+      <div class="sustain-text">
+        <strong>A more sustainable practice</strong>
+        No more commercial overhead — a smaller footprint, a greener choice, and a quieter space more in keeping with the spirit of therapeutic work.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">psychotherapist.sg</div>
+    <div class="footer-note">Questions? Do reach out before July.</div>
+  </div>
+
+  <div class="bottom-band"></div>
+</div>
+</body>
+</html>
