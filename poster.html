@@ -3,613 +3,381 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nikhelbig.at — Content Audit Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<title>Office Move Announcement</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
-:root {
-  --bg: #0f1114;
-  --surface: #1a1d23;
-  --surface2: #22262e;
-  --border: #2d323b;
-  --text: #e0e2e7;
-  --text-dim: #8b909e;
-  --accent: #5b8def;
-  --green: #4ade80;
-  --yellow: #fbbf24;
-  --red: #f87171;
-  --orange: #fb923c;
-  --purple: #a78bfa;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  padding: 2rem;
-}
+  body {
+    background: #d8d2c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'DM Sans', Georgia, sans-serif;
+  }
 
-h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.2rem;
-  margin-bottom: 0.3rem;
-  letter-spacing: -0.02em;
-}
+  .poster {
+    width: 148mm;
+    min-height: 210mm;
+    background: #fdf6e3;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  }
 
-.subtitle {
-  color: var(--text-dim);
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
+  .top-band { background: #3d6b50; height: 5px; width: 100%; }
 
-/* Stats bar */
-.stats-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
+  .botanical {
+    position: absolute; top: 5px; right: 0;
+    width: 100px; height: 100px;
+    opacity: 0.1; z-index: 1; pointer-events: none;
+  }
 
-.stat-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  min-width: 140px;
-  flex: 1;
-}
+  .illus-strip { width: 100%; height: 88px; display: block; position: relative; z-index: 2; }
 
-.stat-card .number {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2rem;
-  line-height: 1;
-}
+  .content { padding: 20px 26px 20px; position: relative; z-index: 2; }
 
-.stat-card .label {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 0.3rem;
-}
+  .main-header {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 21px; font-weight: 600; line-height: 1.2;
+    color: #1e2e23; margin-bottom: 14px;
+  }
+  .main-header em { font-style: italic; color: #3d6b50; }
 
-.stat-card.good .number { color: var(--green); }
-.stat-card.needs-work .number { color: var(--yellow); }
-.stat-card.thin .number { color: var(--orange); }
-.stat-card.delete .number { color: var(--red); }
-.stat-card.total .number { color: var(--accent); }
+  .date-block {
+    background: #3d6b50; color: #fff;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 7px 14px; margin-bottom: 16px; border-radius: 2px;
+  }
+  .date-block .label { font-size: 7px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.72; }
+  .date-block .date { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 600; }
 
-/* Filter controls */
-.controls {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+  .message {
+    font-size: 9px; line-height: 1.75; color: #3d3730;
+    margin-bottom: 18px; font-weight: 300; max-width: 95%;
+  }
+  .message strong { color: #1e2e23; font-weight: 500; }
 
-.controls button {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.15s;
-}
+  .map-wrap {
+    width: 100%; margin-bottom: 14px;
+    border: 1px solid #c8d9cc; border-radius: 2px;
+    overflow: hidden; background: #eaf0ec;
+    height: 160px;
+  }
+  .map-wrap iframe { display: block; width: 100%; height: 100%; border: none; }
 
-.controls button:hover { background: var(--surface2); }
-.controls button.active { border-color: var(--accent); color: var(--accent); background: rgba(91,141,239,0.1); }
+  .address-block {
+    background: #f0e8c8; border-left: 3px solid #3d6b50;
+    padding: 10px 14px; margin-bottom: 16px;
+  }
+  .address-label {
+    font-size: 7px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #7a9e88; font-weight: 500; margin-bottom: 4px;
+  }
+  .address-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12px; color: #1e2e23; line-height: 1.5;
+  }
 
-.search-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  width: 250px;
-  outline: none;
-}
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
 
-.search-box:focus { border-color: var(--accent); }
+  .info-card { background: #f0e8c8; padding: 9px 11px; border-radius: 2px; }
 
-/* Legend */
-.legend {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  flex-wrap: wrap;
-}
+  .ic-label {
+    font-size: 6.5px; letter-spacing: 2px; text-transform: uppercase;
+    color: #7a9e88; font-weight: 500; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 4px;
+  }
 
-.legend span {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
+  .ic-content { font-size: 8px; color: #3d3730; line-height: 1.65; font-weight: 300; }
 
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
+  .item { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 2px; }
 
-/* Article cards */
-.category-group {
-  margin-bottom: 2.5rem;
-}
+  .dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #3d6b50; margin-top: 4px; flex-shrink: 0;
+  }
 
-.category-header {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.3rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
+  .sustain-note {
+    background: linear-gradient(135deg, #3d6b50 0%, #2d5040 100%);
+    padding: 11px 14px; display: flex; align-items: center; gap: 11px;
+  }
+  .sustain-text { font-size: 8px; color: rgba(255,255,255,0.9); line-height: 1.65; font-weight: 300; }
+  .sustain-text strong { color: #fff; font-weight: 500; display: block; font-size: 9px; margin-bottom: 2px; }
 
-.category-count {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-}
+  .footer {
+    padding: 10px 26px 13px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-top: 1px solid #e0dbd4;
+  }
+  .footer-brand { font-family: 'Playfair Display', Georgia, serif; font-size: 10px; color: #3d6b50; font-style: italic; }
+  .footer-note { font-size: 7px; color: #b0a898; letter-spacing: 0.4px; }
 
-.article-card {
-  display: grid;
-  grid-template-columns: 100px 1fr auto;
-  gap: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 0.6rem;
-  align-items: center;
-  transition: border-color 0.15s;
-}
-
-.article-card:hover { border-color: var(--accent); }
-
-.article-card.status-good { border-left: 3px solid var(--green); }
-.article-card.status-improve { border-left: 3px solid var(--yellow); }
-.article-card.status-thin { border-left: 3px solid var(--orange); }
-.article-card.status-delete { border-left: 3px solid var(--red); }
-
-.article-thumb {
-  width: 100px;
-  height: 68px;
-  border-radius: 5px;
-  object-fit: cover;
-  background: var(--surface2);
-}
-
-.article-thumb.no-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  color: var(--text-dim);
-  text-align: center;
-  padding: 0.3rem;
-}
-
-.article-info { min-width: 0; }
-
-.article-title {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.25rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.article-title a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.article-title a:hover { color: var(--accent); text-decoration: underline; }
-
-.article-meta {
-  font-size: 0.75rem;
-  color: var(--text-dim);
-}
-
-.article-assessment {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  margin-top: 0.3rem;
-  line-height: 1.4;
-}
-
-.article-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  align-items: flex-end;
-  min-width: 100px;
-}
-
-.badge {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.badge-good { background: rgba(74,222,128,0.15); color: var(--green); }
-.badge-improve { background: rgba(251,191,36,0.15); color: var(--yellow); }
-.badge-thin { background: rgba(251,146,60,0.15); color: var(--orange); }
-.badge-delete { background: rgba(248,113,113,0.15); color: var(--red); }
-.badge-video { background: rgba(167,139,250,0.15); color: var(--purple); }
-.badge-quote { background: rgba(167,139,250,0.15); color: var(--purple); }
-
-.hidden { display: none !important; }
-
-@media (max-width: 700px) {
-  body { padding: 1rem; }
-  .article-card { grid-template-columns: 70px 1fr; }
-  .article-badges { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
-  .stats-bar { gap: 0.5rem; }
-  .stat-card { min-width: 100px; padding: 0.7rem 1rem; }
-}
+  .bottom-band { background: #3d6b50; height: 4px; width: 100%; }
 </style>
 </head>
 <body>
+<div class="poster">
+  <div class="top-band"></div>
 
-<h1>Content Audit Dashboard</h1>
-<p class="subtitle">nikhelbig.at → Hugo migration · Quality review of all articles with preview images, content assessment, and action recommendations</p>
+  <!-- Botanical corner -->
+  <svg class="botanical" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M180 10 Q140 80 80 100 Q100 60 180 10Z" fill="#3d6b50"/>
+    <path d="M200 30 Q150 90 90 120 Q110 70 200 30Z" fill="#3d6b50"/>
+    <path d="M160 0 Q130 70 60 90 Q80 50 160 0Z" fill="#3d6b50"/>
+    <path d="M200 60 Q160 110 100 140 Q120 90 200 60Z" fill="#3d6b50"/>
+  </svg>
 
-<div class="stats-bar">
-  <div class="stat-card total"><div class="number" id="count-total">0</div><div class="label">Total Articles</div></div>
-  <div class="stat-card good"><div class="number" id="count-good">0</div><div class="label">Good / Keep</div></div>
-  <div class="stat-card needs-work"><div class="number" id="count-improve">0</div><div class="label">Needs Improving</div></div>
-  <div class="stat-card thin"><div class="number" id="count-thin">0</div><div class="label">Thin / Stub</div></div>
-  <div class="stat-card delete"><div class="number" id="count-delete">0</div><div class="label">Delete</div></div>
-</div>
+  <!-- ══ ILLUSTRATION — Tiong Bahru SIT Streamline Moderne streetscape ══ -->
+  <svg class="illus-strip" viewBox="0 0 560 88" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#a8cfc0"/>
+        <stop offset="100%" stop-color="#c8e0d4"/>
+      </linearGradient>
+      <linearGradient id="gOverlay" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="55%" stop-color="rgba(20,40,28,0)"/>
+        <stop offset="100%" stop-color="rgba(20,40,28,0.42)"/>
+      </linearGradient>
+    </defs>
 
-<div class="legend">
-  <span><span class="legend-dot" style="background:var(--green)"></span> Good — substantial, original content</span>
-  <span><span class="legend-dot" style="background:var(--yellow)"></span> Improve — has value but needs expansion</span>
-  <span><span class="legend-dot" style="background:var(--orange)"></span> Thin — stub/sketch, expand or merge</span>
-  <span><span class="legend-dot" style="background:var(--red)"></span> Delete — "how to" / video-only / quote-only</span>
-  <span><span class="legend-dot" style="background:var(--purple)"></span> Video / Quote dependent</span>
-</div>
+    <!-- Sky -->
+    <rect width="560" height="88" fill="url(#gSky)"/>
+    <!-- Clouds -->
+    <ellipse cx="80"  cy="17" rx="28" ry="7"  fill="white" opacity="0.28"/>
+    <ellipse cx="102" cy="13" rx="20" ry="6"  fill="white" opacity="0.22"/>
+    <ellipse cx="420" cy="15" rx="32" ry="7"  fill="white" opacity="0.25"/>
+    <ellipse cx="446" cy="11" rx="22" ry="6"  fill="white" opacity="0.2"/>
 
-<div class="controls">
-  <button class="active" data-filter="all">All</button>
-  <button data-filter="good">Good</button>
-  <button data-filter="improve">Needs Work</button>
-  <button data-filter="thin">Thin / Stub</button>
-  <button data-filter="delete">Delete</button>
-  <input type="text" class="search-box" placeholder="Search titles…" id="searchBox">
-</div>
+    <!-- Distant high-rise -->
+    <rect x="232" y="22" width="32" height="50" fill="#b4ccbc" rx="1"/>
+    <rect x="268" y="28" width="26" height="44" fill="#acbfb6" rx="1"/>
+    <rect x="234" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.65"/>
+    <rect x="242" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="250" y="26" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.6"/>
+    <rect x="234" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="242" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.55"/>
+    <rect x="250" y="34" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
+    <rect x="272" y="32" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.6"/>
+    <rect x="280" y="32" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.65"/>
+    <rect x="272" y="40" width="5" height="5" fill="#88a89e" rx="0.5" opacity="0.7"/>
 
-<div id="content-area"></div>
+    <!-- FAR-LEFT SIT BLOCK -->
+    <rect x="0" y="40" width="72" height="48" fill="#ddd3b4"/>
+    <rect x="0" y="35" width="72" height="8"  fill="#cfc4a2" rx="0.5"/>
+    <rect x="8"  y="30" width="12" height="8" fill="#cfc4a2" rx="1"/>
+    <rect x="26" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="46" y="30" width="12" height="8" fill="#cfc4a2" rx="1"/>
+    <rect x="0" y="52" width="72" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="0" y="62" width="72" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="6"  y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="20" y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="34" y="42" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="48" y="42" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.75"/>
+    <rect x="60" y="42" width="8"  height="8" fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="4"  y="66" width="20" height="22" fill="#c8ba94" rx="0.5"/>
+    <rect x="28" y="66" width="20" height="22" fill="#c0b28c" rx="0.5"/>
+    <rect x="50" y="66" width="18" height="22" fill="#c8ba94" rx="0.5"/>
+    <path d="M4 66 Q14 60 24 66"  fill="none" stroke="#bfb28c" stroke-width="1.2"/>
+    <path d="M28 66 Q38 60 48 66" fill="none" stroke="#bfb28c" stroke-width="1.2"/>
+    <path d="M50 66 Q59 60 68 66" fill="none" stroke="#bfb28c" stroke-width="1.2"/>
 
-<script>
-const ARTICLES = [
-  // ===== ADDICTION =====
-  { title: "Treatment of Compulsive Sexual Behaviour Disorder (CSBD): A Gestalt Therapy approach", url: "https://nikhelbig.at/treatment-of-compulsive-sexual-behaviour-disorder-csbd-a-gestalt-therapy-approach/", category: "Addiction", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2024/10/man_portrait_in_distress_in_the_style_of_expressionism_bold_bru_1-1024x1024.jpg", assessment: "Substantial clinical article applying Gestalt therapy to CSBD. Original contribution." },
-  { title: "Compulsive Sexual Behaviour Disorder in Psychotherapy", url: "https://nikhelbig.at/compulsive-sexual-behaviour-disorder/", category: "Addiction", status: "improve", type: "", img: "https://nikhelbig.at/wp-content/uploads/2024/10/man_portrait_in_distress_in_the_style_of_expressionism_bold_bru_1-1024x1024.jpg", assessment: "Companion piece to above. Could be merged or expanded with more clinical detail." },
-  { title: "Nicotine Addiction: the bio-psycho-social viewpoint of the smoking habit", url: "https://nikhelbig.at/nicotine-addiction-the-bio-psycho-social-viewpoint-of-the-smoking-habit/", category: "Addiction", status: "improve", type: "", img: "", assessment: "Bio-psycho-social framework is solid but article may need more depth and personal clinical perspective." },
+    <!-- CENTRE-LEFT SIT BLOCK (hero, tallest) -->
+    <rect x="80" y="30" width="82" height="58" fill="#ede3c4"/>
+    <rect x="80" y="25" width="82" height="8"  fill="#e0d4b0" rx="0.5"/>
+    <rect x="90"  y="19" width="14" height="9"  fill="#e0d4b0" rx="2"/>
+    <rect x="112" y="17" width="18" height="11" fill="#d8c8a0" rx="2"/>
+    <rect x="140" y="19" width="14" height="9"  fill="#e0d4b0" rx="2"/>
+    <rect x="80" y="44" width="82" height="2" fill="#c4b488" opacity="0.7"/>
+    <rect x="80" y="56" width="82" height="2" fill="#c4b488" opacity="0.7"/>
+    <rect x="86"  y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="101" y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="116" y="32" width="11" height="10" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="131" y="32" width="11" height="10" fill="#88bcb0" rx="0.5" opacity="0.85"/>
+    <rect x="148" y="32" width="9"  height="10" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="86"  y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="101" y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="116" y="47" width="11" height="7"  fill="#7cb4a8" rx="0.5" opacity="0.7"/>
+    <rect x="131" y="47" width="11" height="7"  fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="84"  y="66" width="22" height="22" fill="#c8b890" rx="0.5"/>
+    <rect x="110" y="66" width="22" height="22" fill="#c0b088" rx="0.5"/>
+    <rect x="136" y="66" width="22" height="22" fill="#c8b890" rx="0.5"/>
+    <path d="M84 66 Q95 59 106 66"  fill="none" stroke="#c4b488" stroke-width="1.3"/>
+    <path d="M110 66 Q121 59 132 66" fill="none" stroke="#c4b488" stroke-width="1.3"/>
+    <path d="M136 66 Q147 59 158 66" fill="none" stroke="#c4b488" stroke-width="1.3"/>
 
-  // ===== ART =====
-  { title: "Naranjo: Dein Inneres Kind in Kindergeschichten", url: "https://nikhelbig.at/naranjo-dein-inneres-kind-in-kindergeschichten/", category: "Art", status: "improve", type: "", img: "https://nikhelbig.at/wp-content/uploads/2024/11/books_in_the_style_of_expressionism_2.jpg", assessment: "German-language version. Consider whether bilingual content serves the audience or creates confusion." },
-  { title: "Your Inner Child in Children's Stories", url: "https://nikhelbig.at/your-inner-child-in-childrens-stories/", category: "Art", status: "improve", type: "", img: "https://nikhelbig.at/wp-content/uploads/2024/11/books_in_the_style_of_expressionism_2.jpg", assessment: "English version of above. Keep this one, merge any unique content from the German version." },
-  { title: "Art in Psychosocial Care", url: "https://nikhelbig.at/art-in-psychosocial-care/", category: "Art", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2023/01/art_therapy_session_in_the_style_of_watercolor_1.jpg", assessment: "Good thematic article on art's role in therapeutic contexts." },
-  { title: "Psychoanalysis and Segantini Art", url: "https://nikhelbig.at/psychoanalysis-and-segantini-art/", category: "Art", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2023/01/giovanni_segantini_alps_1.jpg", assessment: "Unique interdisciplinary piece connecting art history with psychoanalysis. Distinctive." },
+    <!-- RIGHT SIT BLOCK -->
+    <rect x="320" y="36" width="90" height="52" fill="#e8dfc0"/>
+    <rect x="320" y="31" width="90" height="8"  fill="#dcd0ac" rx="0.5"/>
+    <rect x="330" y="25" width="12" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="350" y="23" width="16" height="11" fill="#d4c4a0" rx="1.5"/>
+    <rect x="374" y="25" width="12" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="394" y="25" width="10" height="9"  fill="#dcd0ac" rx="1.5"/>
+    <rect x="320" y="48" width="90" height="2" fill="#c0b08a" opacity="0.65"/>
+    <rect x="320" y="58" width="90" height="2" fill="#c0b08a" opacity="0.65"/>
+    <rect x="326" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="340" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="354" y="38" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="368" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="382" y="38" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="396" y="38" width="8"  height="8" fill="#7cb4a8" rx="0.5" opacity="0.7"/>
+    <rect x="324" y="66" width="22" height="22" fill="#c4b48c" rx="0.5"/>
+    <rect x="350" y="66" width="22" height="22" fill="#bcac84" rx="0.5"/>
+    <rect x="376" y="66" width="20" height="22" fill="#c4b48c" rx="0.5"/>
+    <path d="M324 66 Q335 59 346 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
+    <path d="M350 66 Q361 59 372 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
+    <path d="M376 66 Q386 59 396 66" fill="none" stroke="#c0b088" stroke-width="1.2"/>
 
-  // ===== ARTICLES ON PSYCHOTHERAPY =====
-  { title: "How Gestalt Therapy Revolutionizes Our Understanding of Psychopathology", url: "https://nikhelbig.at/how-gestalt-therapy-revolutionizes-our-understanding-of-psychopathology/", category: "Articles on Psychotherapy", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2025/09/gestalt_therapy_field_theory_abstract_1.jpg", assessment: "Flagship article. Substantial, well-referenced scholarly work. Centerpiece content." },
-  { title: "Psychodynamic Diagnostic Process: McWilliams", url: "https://nikhelbig.at/psychodynamic-diagnostic-process-mcwilliams/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Duplicate topic — see also 'The Psychodynamic Diagnostic Process: Nancy McWilliams' in Practice category. Merge into one definitive article." },
-  { title: "Assigned Gender Is Not an Introject: A Gestalt-Theoretic Defense", url: "https://nikhelbig.at/gender-dysphoria-as-a-creative-adjustment-a-gestalt-and-psychoanalytic-perspective/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Original theoretical contribution. Well-argued Gestalt perspective on gender. Keep." },
-  { title: "Hermeneutic circle of understanding", url: "https://nikhelbig.at/hermeneutic-circle-of-understanding/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Philosophical foundation piece. Could be expanded with more clinical application examples." },
-  { title: "A mental health horror story — is there truth to this fiction?", url: "https://nikhelbig.at/a-mental-health-horror-story-is-there-truth-to-this-fiction/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Engaging narrative format exploring systemic mental health issues. Unique voice." },
-  { title: "Breuer & Freud's pioneering concept of the psychotherapeutic alliance", url: "https://nikhelbig.at/breuer-freuds-pioneering-concept-of-the-psychotherapeutic-alliance/", category: "Articles on Psychotherapy", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2022/12/freud_office_1.jpg", assessment: "Solid historical foundation piece. Well-referenced." },
-  { title: "Power Differences in the Psychotherapeutic Alliance", url: "https://nikhelbig.at/power-differences-in-the-psychotherapeutic-alliance/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Important clinical topic with original perspective." },
-  { title: "Reich's Case Examples: Process vs. content in the psychotherapeutic dialogue", url: "https://nikhelbig.at/reichs-case-examples-process-vs-content-in-the-psychotherapeutic-dialogue/", category: "Articles on Psychotherapy", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2022/12/freud_office_1.jpg", assessment: "Strong clinical writing with case examples. Core content." },
-  { title: "Freud and the here-and-now in the therapeutic alliance", url: "https://nikhelbig.at/freud-and-the-here-and-now-in-the-therapeutic-alliance/", category: "Articles on Psychotherapy", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2022/12/freud_office_1.jpg", assessment: "Well-developed bridge between Freudian theory and present-focused therapy." },
-  { title: "Envy… and Gratitude", url: "https://nikhelbig.at/envy/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Interesting topic (Klein/Carveth). May need expansion from notes to full article." },
-  { title: "The Importance of Self-awareness & Phenomenological Attitude for Practitioners", url: "https://nikhelbig.at/the-importance-of-therapists-self-awareness-phenomenological-attitude/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Key practice-oriented article. Solid content." },
-  { title: "A EMDR Methodology for Working with Trauma", url: "https://nikhelbig.at/emdr-methodology/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Useful overview but may be too brief. Expand with clinical integration perspective." },
-  { title: "Couples Therapy: Helping children cope with parents' separation and divorce", url: "https://nikhelbig.at/couples-therapy-to-help-children-cope-with-parents-separation-and-divorce/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Practical, client-facing content. Good for SEO and public audience." },
-  { title: "Symptoms of Anxiety and Panic Disorders in the Context of the World We Live in", url: "https://nikhelbig.at/symptoms-of-anxiety-and-panic-disorders-in-the-context-of-the-world-we-live-in/", category: "Articles on Psychotherapy", status: "good", type: "", img: "", assessment: "Contextualizes clinical symptoms in modern life. Good public-facing article." },
-  { title: "Coming off Psychiatric Medications", url: "https://nikhelbig.at/coming-off-psychiatric-medications/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Sensitive topic. Needs careful review for accuracy and responsible framing." },
-  { title: "Going through Crisis, Dealing with Crisis", url: "https://nikhelbig.at/going-through-crisis-dealing-with-crisis/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Practical topic. Could be expanded with more structured guidance." },
-  { title: "How emotional writing can improve your mood — and health", url: "https://nikhelbig.at/how-emotional-writing-can-improve-your-mood-and-health/", category: "Articles on Psychotherapy", status: "delete", type: "how-to", img: "", assessment: "DELETE — 'How to' self-help article. Doesn't align with professional clinical voice." },
-  { title: "Panic disorder and loneliness", url: "https://nikhelbig.at/panic-disorder-and-loneliness/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "", assessment: "Interesting intersection. May be a thin stub needing expansion." },
-  { title: "Surviving the Corporate Work Environment Mentally", url: "https://nikhelbig.at/surviving-the-work-environment-mentally/", category: "Articles on Psychotherapy", status: "delete", type: "how-to", img: "", assessment: "DELETE — Generic 'how to survive' self-help framing. Doesn't fit clinical/academic voice." },
-  { title: "Sigmund Freud: On Dreams in Psychotherapy", url: "https://nikhelbig.at/sigmund-freud-on-dreams-in-psychotherapy/", category: "Articles on Psychotherapy", status: "improve", type: "", img: "https://nikhelbig.at/wp-content/uploads/2022/12/freud_office_1.jpg", assessment: "Foundational topic. May need expansion beyond summary." },
-  { title: "Otto Kernberg: Transference Analysis in Psychotherapy", url: "https://nikhelbig.at/otto-kernberg-transference-analysis-in-psychotherapy/", category: "Articles on Psychotherapy", status: "improve", type: "video", img: "", assessment: "Based on lecture/video. Needs more original commentary and clinical integration." },
+    <!-- FAR-RIGHT BLOCK -->
+    <rect x="420" y="40" width="140" height="48" fill="#ddd3b4"/>
+    <rect x="420" y="35" width="140" height="7"  fill="#cfc4a2"/>
+    <rect x="430" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="452" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="480" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="508" y="28" width="14" height="10" fill="#c5b898" rx="1"/>
+    <rect x="536" y="30" width="12" height="8"  fill="#cfc4a2" rx="1"/>
+    <rect x="420" y="52" width="140" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="420" y="61" width="140" height="2" fill="#bfb28c" opacity="0.6"/>
+    <rect x="426" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="440" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="454" y="40" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.75"/>
+    <rect x="468" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.8"/>
+    <rect x="482" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="496" y="40" width="10" height="8" fill="#7cb4a8" rx="0.5" opacity="0.8"/>
+    <rect x="510" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.7"/>
+    <rect x="524" y="40" width="10" height="8" fill="#88bcb0" rx="0.5" opacity="0.75"/>
+    <rect x="424" y="66" width="22" height="22" fill="#c8ba94"/>
+    <rect x="450" y="66" width="22" height="22" fill="#c0b28c"/>
+    <rect x="476" y="66" width="22" height="22" fill="#c8ba94"/>
+    <rect x="502" y="66" width="22" height="22" fill="#c0b28c"/>
+    <rect x="528" y="66" width="28" height="22" fill="#c8ba94"/>
+    <path d="M424 66 Q435 59 446 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M450 66 Q461 59 472 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M476 66 Q487 59 498 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
+    <path d="M502 66 Q513 59 524 66" fill="none" stroke="#bfb28c" stroke-width="1.1"/>
 
-  // ===== ARTICLES ON PSYCHOTHERAPY PRACTICE =====
-  { title: "Levinas' 'Face of the Other'", url: "https://nikhelbig.at/levinas-face-of-the-other/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Strong philosophical foundation piece. Core to relational practice framework." },
-  { title: "The Psychotherapeutic Journey Towards a Mature Psyche: Melanie Klein", url: "https://nikhelbig.at/the-psychotherapeutic-journey-towards-a-mature-psyche-melanie-kleins-psychoanalytic-theory/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Substantial Kleinian theory article. Well-developed." },
-  { title: "Early Conceptualisation of Gestalt Therapy's Understanding of Introjection", url: "https://nikhelbig.at/early-conceptualisation-of-gestalt-therapys-concept-of-introjection/", category: "Psychotherapy Practice", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2023/01/gestalt_therapy_concept_1.jpg", assessment: "Original theoretical contribution. Strong." },
-  { title: "Self-Criticism: Adam Phillips", url: "https://nikhelbig.at/self-criticism-adam-phillips/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Lecture-based notes. Could be expanded with more personal clinical reflection." },
-  { title: "Bassat: Linking Immunology with Psychoanalytical Psychotherapy", url: "https://nikhelbig.at/bassat-linking-immunology-with-psychoanalytical-psychotherapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Unique interdisciplinary article. Draws on your biochemistry background. Distinctive." },
-  { title: "The Psychodynamic Diagnostic Process: Nancy McWilliams", url: "https://nikhelbig.at/the-psychodynamic-diagnostic-process-nancy-mcwilliams/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Duplicate with 'Psychodynamic Diagnostic Process: McWilliams' above. Merge into one." },
-  { title: "How does Psychotherapy Work? General Systems Theory and Synchronization", url: "https://nikhelbig.at/how-does-psychotherapy-work-general-systems-theory-and-synchronization/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Theoretical piece bridging systems theory and practice. Good." },
-  { title: "The change moments in psychotherapeutic practice", url: "https://nikhelbig.at/the-magical-moments-moments-in-practice/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Captures lived clinical experience. Authentic voice." },
-  { title: "Empathy and Buber's I-thou contact", url: "https://nikhelbig.at/what-empathy-may-not-be-in-therapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Philosophical depth applied to clinical empathy. Strong." },
-  { title: "What's behind the transforming power of dialogue?", url: "https://nikhelbig.at/whats-behind-the-transforming-power-of-dialogue/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Core to your therapeutic philosophy. Keep." },
-  { title: "Healing through dialogue is an eminently hermeneutical phenomenon indeed", url: "https://nikhelbig.at/healing-through-dialogue-is-an-eminently-hermeneutical-phenomenon-indeed/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Hermeneutic approach to therapeutic dialogue. Scholarly." },
-  { title: "Unconscious feelings and countertransference within the Therapeutic Alliance", url: "https://nikhelbig.at/unconscious-feelings-and-countertransference-within-the-therapeutic-alliance/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Clinical depth. Well-referenced." },
-  { title: "What lies within the therapist-client alliance in Psychotherapy?", url: "https://nikhelbig.at/what-lies-within-the-therapist-client-alliance-in-psychotherapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Core topic. Substantial." },
-  { title: "Contact & inter-subjectivity: the definition of the self in the therapeutic relationship", url: "https://nikhelbig.at/contact-inter-subjectivity-the-definition-of-the-self-in-the-therapeutic-relationship/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Theoretical foundation piece. Important." },
-  { title: "Levels in a psychotherapeutic relationship", url: "https://nikhelbig.at/levels-in-a-psychotherapeutic-relationship/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Potentially thin. Check if this is a stub or full article." },
-  { title: "Psychotherapy: The Active Ingredient Is The Transpersonal Therapeutic Relationship", url: "https://nikhelbig.at/psychotherapy-the-active-ingredient-is-the-transpersonal-therapeutic-relationship/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Strong thesis article. Core content." },
-  { title: "What do Gestalt Therapists do?", url: "https://nikhelbig.at/what-do-gestalt-therapists-do/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Accessible explainer. Good for public audience and SEO." },
-  { title: "A Sense of an Ending", url: "https://nikhelbig.at/a-sense-of-an-ending/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Evocative title. Check if substantial or a brief reflection." },
-  { title: "Why body-awareness is integral to the psychotherapeutic process", url: "https://nikhelbig.at/why-body-awareness-is-integral-to-the-psychotherapeutic-process/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Somatic dimension of therapy. Important and distinctive." },
-  { title: "Obesity in adults and its possible link to experiences of childhood abuse", url: "https://nikhelbig.at/obesity-in-adults-and-its-possible-link-to-experiences-of-childhood-abuse/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Connects to your biochemistry background. Interdisciplinary strength." },
-  { title: "Short Definitions of Relatedness and Relationship", url: "https://nikhelbig.at/petzold-short-definitions-of-relatedness-in-relationship/", category: "Psychotherapy Practice", status: "thin", type: "", img: "", assessment: "THIN — Likely a brief glossary/definitions page. Merge into a larger article or expand." },
-  { title: "Endings: Termination of therapy", url: "https://nikhelbig.at/effective-termination-of-therapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Important practical topic. Useful for both practitioners and clients." },
-  { title: "Is psychotherapy for me?", url: "https://nikhelbig.at/is-psychotherapy-for-me/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Client-facing FAQ. Good for SEO and accessibility." },
-  { title: "How a therapist can tell the progress of the patient", url: "https://nikhelbig.at/how-a-therapist-can-tell-the-progress-of-the-patient/", category: "Psychotherapy Practice", status: "delete", type: "how-to", img: "", assessment: "DELETE — 'How to' framing. Rewrite as a clinical perspective piece or remove." },
-  { title: "What does 'healing' mean in Psychotherapy?", url: "https://nikhelbig.at/what-does-healing-mean-in-psychotherapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Foundational philosophical/clinical question. Core content." },
-  { title: "Anorexia & Eating Disorders in Children: What Parents and Family can do", url: "https://nikhelbig.at/anorexia-eating-disorders-in-children-what-parents-and-family-can-do/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Practical family-oriented content. Good public-facing article." },
-  { title: "Dreams and Dreamwork in Psychotherapy", url: "https://nikhelbig.at/dreams-and-dream-work-in-psychotherapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Clinical technique piece. Solid." },
-  { title: "Different Facets of Countertransference", url: "https://nikhelbig.at/different-facets-of-countertransference/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Important clinical concept. Well-developed." },
-  { title: "Hoarding Disorder", url: "https://nikhelbig.at/hoarding-disorder/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Check depth. May be a brief overview needing expansion." },
-  { title: "Psychotherapy for Cardiac Patients?", url: "https://nikhelbig.at/why-psychotherapy-for-cardiac-patients/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Interdisciplinary — connects to your biochemistry background. Distinctive." },
-  { title: "Humiliation, Shame and Violence", url: "https://nikhelbig.at/humiliation-shame-and-violence/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Deep clinical/cultural topic. Strong." },
-  { title: "The Neuroscience of Language Explains How and Why Psychotherapy Cures", url: "https://nikhelbig.at/the-neuroscience-of-language-explains-how-and-why-psychotherapy-cures/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Bridge between neuroscience and practice. Your interdisciplinary strength." },
-  { title: "Kernberg: Working with the Antisocial and Malignant Narcissistic PD Spectrum", url: "https://nikhelbig.at/kernberg-working-with-the-narcissistic-personality-disorder-spectrum/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Clinical application of Kernberg. Substantial." },
-  { title: "Psychotherapy is about Uncovering Truths of the Self", url: "https://nikhelbig.at/psychotherapy-is-about-uncovering-truths-of-the-self/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Philosophical reflection. May be thin — check and expand." },
-  { title: "Symptom Relief in Psychotherapy", url: "https://nikhelbig.at/symptom-relief-in-psychotherapy/", category: "Psychotherapy Practice", status: "improve", type: "", img: "", assessment: "Practical topic. May need more depth." },
-  { title: "What can Psychotherapy do for you?", url: "https://nikhelbig.at/what-can-going-for-psychotherapy-do-for-you/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Client-facing. Good for website landing." },
-  { title: "Former patients' conceptions of successful psychotherapy", url: "https://nikhelbig.at/former-patients-conceptions-of-successful-psychotherapy/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Research-based. Adds evidence perspective." },
-  { title: "Psychotherapy expertise in Singapore: A qualitative investigation", url: "https://nikhelbig.at/psychotherapy-expertise-in-singapore-a-qualitative-investigation/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Location-specific research. Unique and relevant to your Singapore practice." },
-  { title: "Projective Identification", url: "https://nikhelbig.at/projective-identification/", category: "Psychotherapy Practice", status: "improve", type: "video", img: "", assessment: "Lecture-based. Needs more original commentary beyond video summary." },
-  { title: "Who is Psychotherapy for?", url: "https://nikhelbig.at/who-is-psychotherapy-for/", category: "Psychotherapy Practice", status: "good", type: "", img: "", assessment: "Client-facing FAQ. Accessible." },
+    <!-- Trees between blocks -->
+    <ellipse cx="170" cy="56" rx="12" ry="16" fill="#5a8c68" opacity="0.7"/>
+    <ellipse cx="176" cy="50" rx="9"  ry="13" fill="#4a7c58" opacity="0.65"/>
+    <rect x="171" y="70" width="3" height="8" fill="#3a5838" opacity="0.5"/>
+    <ellipse cx="308" cy="58" rx="10" ry="14" fill="#5a8c68" opacity="0.65"/>
+    <ellipse cx="314" cy="53" rx="8"  ry="12" fill="#4a7c58" opacity="0.6"/>
+    <rect x="309" y="70" width="3" height="7" fill="#3a5838" opacity="0.5"/>
 
-  // ===== CHILDHOOD TRAUMA =====
-  { title: "Gabor Maté explains Sensitivity, Creativity and Pain: dialogue with Sia", url: "https://nikhelbig.at/gabor-mate-explains-sensitivity-creativity-and-pain-in-a-traumatizing-culture-dialogue-with-sia/", category: "Childhood Trauma", status: "thin", type: "video", img: "", assessment: "THIN — Video summary. Needs substantial original commentary or delete." },
-  { title: "Trauma: Symptoms of Dissociation and Treatment", url: "https://nikhelbig.at/trauma-why-we-dissociate/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Clinical content on dissociation. Solid." },
-  { title: "Psychological Trauma: Types and Symptoms", url: "https://nikhelbig.at/psychological-trauma-types-and-symptoms/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Overview article. Good reference piece." },
-  { title: "Complex Trauma: 12 basic concepts of somatic experiencing", url: "https://nikhelbig.at/complex-trauma-12-basic-concepts-of-somatic-experiencing-in-healing-trauma/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Structured somatic approach. Valuable." },
-  { title: "Self Harm & Emotional Pain", url: "https://nikhelbig.at/self-harm-emotional-pain/", category: "Childhood Trauma", status: "improve", type: "", img: "", assessment: "Sensitive topic. Needs careful clinical framing and depth." },
-  { title: "The differences between traumatic memories and non-traumatic memories", url: "https://nikhelbig.at/the-differences-between-traumatic-memories-and-non-traumatic-memories/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Neuroscience-informed. Good educational content." },
-  { title: "Langberg: Understanding Complex Childhood Trauma and Treatment", url: "https://nikhelbig.at/langberg-understanding-complex-trauma-and-treatment/", category: "Childhood Trauma", status: "improve", type: "video", img: "", assessment: "Lecture summary. Needs more original commentary." },
-  { title: "Watch 'Complex Trauma: Dr. Bessel van der Kolk' on YouTube", url: "https://nikhelbig.at/watch-complex-trauma-developmental-neurobiological-impact-with-dr-bessel-van-der-kolk-on-youtube/", category: "Childhood Trauma", status: "delete", type: "video", img: "", assessment: "DELETE — Title literally says 'Watch on YouTube'. Video link only, minimal original content." },
-  { title: "CPTSD: Complex Posttraumatic Stress Disorder and Child Abuse", url: "https://nikhelbig.at/cptsd-complex-posttraumatic-stress-disorder-and-child-abuse/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Important clinical overview. Keep." },
-  { title: "Differentiating Symptoms of PTSD from Trauma-Associated Narcissistic Symptoms", url: "https://nikhelbig.at/differentiating-symptoms-of-ptsd-from-trauma-associated-narcissistic-symptoms/", category: "Childhood Trauma", status: "good", type: "", img: "", assessment: "Diagnostic differentiation. Clinically valuable." },
-  { title: "Adverse Childhood Experiences (ACEs)", url: "https://nikhelbig.at/adverse-childhood-experiences-aces/", category: "Childhood Trauma", status: "improve", type: "", img: "", assessment: "Important topic but may be a thin summary. Expand with clinical perspective." },
+    <!-- Pavement & road -->
+    <rect x="0" y="76" width="560" height="12" fill="#8c9e94"/>
+    <line x1="0" y1="77" x2="560" y2="77" stroke="#6a7e74" stroke-width="0.5"/>
 
-  // ===== CULTURAL & HISTORICAL =====
-  { title: "Francesetti: Gestalt Therapy, an Engine of Change", url: "https://nikhelbig.at/francesetti-gestalt-therapy-an-engine-of-change/", category: "Cultural & Historical", status: "good", type: "", img: "", assessment: "Key Gestalt therapy thought leader. Solid article." },
-  { title: "Ellenberger: THE PATHOGENIC SECRET AND ITS THERAPEUTICS", url: "https://nikhelbig.at/ellenberger-the-pathogenic-secret-and-its-therapeutics/", category: "Cultural & Historical", status: "good", type: "", img: "", assessment: "Historical scholarship. Distinctive content." },
-  { title: "Fruehauf: Wang Fengyi's Emotional Healing in Traditional Chinese Medicine", url: "https://nikhelbig.at/fruehauf-wang-fengyis-emotional-healing-in-traditional-chinese-medicine/", category: "Cultural & Historical", status: "good", type: "", img: "", assessment: "Cross-cultural healing. Unique content reflecting your multicultural perspective." },
-  { title: "Psychotherapy Case Studies of the 18th Century", url: "https://nikhelbig.at/das-magazin-zur-erfahrungsseelenkunde-psychotherapy-case-studies-of-the-18th-century/", category: "Cultural & Historical", status: "good", type: "", img: "", assessment: "Fascinating historical piece. Distinctive scholarly contribution." },
-  { title: "Pinel 1754-1826 on Treatment of Illness from 'Moral Causes'", url: "https://nikhelbig.at/pinel-1754-1826-on-treatment-of-illness-from-moral-causes/", category: "Cultural & Historical", status: "good", type: "", img: "", assessment: "Historical foundation. Well-placed in context." },
+    <!-- Dark overlay gradient at bottom for label readability -->
+    <rect width="560" height="88" fill="url(#gOverlay)"/>
 
-  // ===== DIAGNOSIS =====
-  { title: "Differentiation between the Healthy Process of Grief and Depression", url: "https://nikhelbig.at/differentiation-between-the-healthy-process-of-grief-and-depression/", category: "Diagnosis", status: "good", type: "", img: "https://nikhelbig.at/wp-content/uploads/2022/12/woman_crying_in_expressionism_1.jpg", assessment: "Clinically useful differentiation. Good reference article." },
-  { title: "Mental Illness: DSM definition of what is mental disorder and what isn't", url: "https://nikhelbig.at/mental-illness-dsm-definition-of-what-is-mental-disorder-and-what-isnt/", category: "Diagnosis", status: "good", type: "", img: "", assessment: "Critical examination of DSM. Solid." },
-  { title: "Difference between Hoarding and Normative Collecting Behaviors", url: "https://nikhelbig.at/difference-between-hoarding-and-normative-collecting-behaviors/", category: "Diagnosis", status: "improve", type: "", img: "", assessment: "Niche diagnostic distinction. May need more depth." },
-  { title: "Narrative Impoverishment in Schizophrenia: Lysaker & Lysaker", url: "https://nikhelbig.at/narrative-impoverishment-in-schizophrenia-lysaker-lysaker/", category: "Diagnosis", status: "improve", type: "", img: "", assessment: "Specialized topic. Check depth — may be a brief summary." },
-  { title: "What is Psychosomatics?", url: "https://nikhelbig.at/what-is-psychosomatics/", category: "Diagnosis", status: "improve", type: "", img: "", assessment: "Foundational concept. May need expansion from a stub." },
-  { title: "Adjustment Disorders: Causes and Symptoms", url: "https://nikhelbig.at/adjustment-disorders-causes-and-symptoms/", category: "Diagnosis", status: "improve", type: "", img: "", assessment: "Clinical overview. Check if substantial enough." },
-  { title: "What is Dissociation?", url: "https://nikhelbig.at/what-does-dissociation-in-psychotherapy-mean/", category: "Diagnosis", status: "good", type: "", img: "", assessment: "Important educational piece. Accessible." },
-  { title: "How to Ask a Patient about Childhood Trauma History: Dr. Bessel van der Kolk", url: "https://nikhelbig.at/how-to-ask-a-patient-about-childhood-trauma-history-advice-from-dr-bessel-van-der-kolk/", category: "Diagnosis", status: "delete", type: "how-to", img: "", assessment: "DELETE — 'How to' framing + primarily a lecture summary with timestamps. Rewrite as 'Clinical Interview Techniques for Trauma History' or remove." },
-  { title: "How do we classify mental diseases?", url: "https://nikhelbig.at/classification-of-diseases-icd10/", category: "Diagnosis", status: "improve", type: "", img: "", assessment: "ICD-10 overview. May be dated — check if needs ICD-11 update." },
+    <!-- Estate label -->
+    <text x="10" y="85" font-family="Georgia,serif" font-size="6" fill="rgba(255,255,255,0.65)" letter-spacing="2.5">TIONG BAHRU ESTATE · ART DECO CONSERVATION AREA</text>
+  </svg>
 
-  // ===== FAMILY, COUPLES & SYSTEMIC =====
-  { title: "How a Gestalt Approach to Couples Therapy Compares with EFT, Gottman, IFS, and Esther Perel", url: "https://nikhelbig.at/how-a-gestalt-approach-to-couples-therapy-compares-with-eft-the-gottman-method-ifs-and-esther-perel/", category: "Family & Couples", status: "good", type: "", img: "", assessment: "FLAGSHIP — Comprehensive comparison. Ties to your Routledge book. Top-tier content." },
-  { title: "Couples Therapy: Marriage Counseling Approach", url: "https://nikhelbig.at/couples-therapy-marriage-counseling-approach/", category: "Family & Couples", status: "good", type: "", img: "", assessment: "Practical couples work overview. Good." },
-  { title: "Scapegoating in Groups and Families", url: "https://nikhelbig.at/scapegoating-in-groups-and-families/", category: "Family & Couples", status: "good", type: "", img: "", assessment: "Systemic perspective. Well-developed." },
-  { title: "Brief Therapy Interview Strategies", url: "https://nikhelbig.at/brief-therapy-interview-strategies/", category: "Family & Couples", status: "improve", type: "", img: "", assessment: "Practical but may be thin. Check and expand." },
-  { title: "Kabat-Zinn Quote on Responsibility of Parents", url: "https://nikhelbig.at/kabat-zinn-quote-on-responsibility-of-parents/", category: "Family & Couples", status: "delete", type: "quote", img: "", assessment: "DELETE — Just a quoted excerpt from an article. No original content." },
+  <!-- ══ CONTENT ══ -->
+  <div class="content">
+    <div class="main-header">My practice is moving<br>to <em>Tiong Bahru</em></div>
 
-  // ===== GENERAL PSYCHOLOGY =====
-  { title: "Gestalt Therapy: A Tapestry Woven from Psychoanalysis, Gestalt Psychology, and Field Theory", url: "https://nikhelbig.at/gestalt-therapy-a-tapestry-woven-from-psychoanalysis-gestalt-psychology-and-field-theory/", category: "General Psychology", status: "good", type: "", img: "", assessment: "Comprehensive overview. Flagship educational content." },
-  { title: "Kurt Goldstein's Influence on Fritz Perls Gestalt Therapy", url: "https://nikhelbig.at/kurt-goldsteins-influence-on-fritz-perls-gestalt-therapy/", category: "General Psychology", status: "good", type: "", img: "", assessment: "Historical intellectual lineage. Scholarly." },
-  { title: "Maté: Denial of own emotional needs and its connection to chronic illness", url: "https://nikhelbig.at/mate-mental-health-affect-on-the-body/", category: "General Psychology", status: "improve", type: "video", img: "", assessment: "Gabor Maté lecture summary. Needs more original commentary." },
-  { title: "Methodology in the Study of Psychology", url: "https://nikhelbig.at/methodology-in-the-study-of-psychology/", category: "General Psychology", status: "thin", type: "", img: "", assessment: "THIN — Likely a brief academic note. Expand or merge with epistemology content." },
-  { title: "Optical and Auditory Illusions", url: "https://nikhelbig.at/optical-and-auditory-illusions/", category: "General Psychology", status: "thin", type: "", img: "", assessment: "THIN — Perceptual psychology demo. Brief content, possibly just media embeds." },
-  { title: "Transcultural Orientation of Psychology", url: "https://nikhelbig.at/transcultural-orientation-of-psychology/", category: "General Psychology", status: "improve", type: "", img: "", assessment: "Important topic reflecting your multicultural practice. May need expansion." },
-  { title: "Experiences of Grief after a Loss of a Loved Person", url: "https://nikhelbig.at/experiences-of-grief-after-a-loss-of-a-loved-person/", category: "General Psychology", status: "improve", type: "", img: "", assessment: "Universal topic. Check depth and expand if needed." },
+    <div class="date-block">
+      <div>
+        <div class="label">Effective from</div>
+        <div class="date">1 July 2026</div>
+      </div>
+    </div>
 
-  // ===== GESTALT THERAPY =====
-  { title: "Creative Indifference: A Meteorological Metaphor", url: "https://nikhelbig.at/creative-indifference-a-meteorological-metaphor-for-understanding-lifes-polarities/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Original metaphor. Creative and scholarly. Strong." },
-  { title: "Key Ideas in Daoist Philosophy that Coincides with Gestalt Therapy", url: "https://nikhelbig.at/key-ideas-in-daoist-philosophy-that-coincides-with-gestalt-therapy/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Cross-cultural philosophy. Unique and distinctive. Your multicultural voice." },
-  { title: "Alienation: Philosophical Roots and Therapeutic Implications", url: "https://nikhelbig.at/alienation-philosophical-roots-and-therapeutic-implications-for-the-gestalt-therapist/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Philosophical depth applied to practice. Strong." },
-  { title: "Wilhelm Reich's Influence on Gestalt Therapy", url: "https://nikhelbig.at/wilhelm-reichs-influence-on-gestalt-therapy/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Historical lineage article. Solid scholarly piece." },
-  { title: "Erving Polster (1922-2024): Gestalt Therapy", url: "https://nikhelbig.at/erving-polster-1922-2024-gestalt-therapys-mentor/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Tribute/biographical piece. Timely and respectful." },
-  { title: "Karen Horney's Influence on Fritz Perls & Gestalt Therapy", url: "https://nikhelbig.at/karen-horney/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Intellectual history. Well-placed." },
-  { title: "Integration through Experimentation in Gestalt Therapy", url: "https://nikhelbig.at/integration-through-experimentation-in-gestalt-therapy-origins-and-theory/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Core Gestalt methodology. Solid." },
-  { title: "Gestalt Therapy: The Paradoxical Theory of Change", url: "https://nikhelbig.at/gestalt-therapy-the-paradoxical-theory-of-change/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Foundational Gestalt concept. Essential." },
-  { title: "Fritz Perls: What is Gestalt? 1970 Video", url: "https://nikhelbig.at/fritz-perls-what-is-gestalt-1970-video/", category: "Gestalt Therapy", status: "thin", type: "video", img: "https://nikhelbig.at/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg", assessment: "THIN — Brief paragraph introducing a video. Needs substantial expansion or merge." },
-  { title: "The Fertile Void, Creative Indifference & Gestalt Psychotherapy", url: "https://nikhelbig.at/amendt-lyon-creative-indifference-gestalt-psychotherapy/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Theoretical depth. Ties to your Friedlaender publication." },
-  { title: "Notes on Field Theory in Gestalt Therapy", url: "https://nikhelbig.at/notes-on-field-theory-in-gestalt-therapy/", category: "Gestalt Therapy", status: "thin", type: "", img: "", assessment: "THIN — Title says 'Notes'. Expand into a full article on field theory." },
-  { title: "Diagnosis of Obsessive-Compulsive Personality from the Gestalt Perspective", url: "https://nikhelbig.at/diagnosis-of-obsessive-compulsive-personality-from-the-gestalt-therapy-perspective/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Clinical application of Gestalt to specific diagnosis. Distinctive." },
-  { title: "Resnick: Gestalt Therapy Principles in Today's Context", url: "https://nikhelbig.at/resnick-gestalt-therapy-in-todays-context/", category: "Gestalt Therapy", status: "improve", type: "", img: "", assessment: "Summary of Resnick's work. Needs more original perspective." },
-  { title: "Gestalt Therapy is about Action and not Simply Talk", url: "https://nikhelbig.at/gestalt-therapy-is-about-action-and-not-simply-talk/", category: "Gestalt Therapy", status: "improve", type: "", img: "", assessment: "Good title and thesis. Check if fully developed." },
-  { title: "Levels of Gestalt Therapy Treatment Methods", url: "https://nikhelbig.at/how-gestalt-therapy-sessions-with-a-client-progress-with-time/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Practical clinical progression. Useful for practitioners." },
-  { title: "Integrating Kernberg's Model of Personality Organization with Gestalt Therapy", url: "https://nikhelbig.at/integrating-kernbergs-model-of-personality-organization-with-gestalt-therapy/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Original theoretical integration. Distinctive contribution." },
-  { title: "Illustration: The Dialogical Self and Contact Cycle", url: "https://nikhelbig.at/illustration-the-dialogical-self-and-contact-cycle/", category: "Gestalt Therapy", status: "thin", type: "", img: "", assessment: "THIN — Likely an illustration with minimal text. Expand or merge." },
-  { title: "Fritz Perls: Quotes on Therapy in Groups", url: "https://nikhelbig.at/fritz-perls-quotes-on-therapy-in-groups/", category: "Gestalt Therapy", status: "delete", type: "quote", img: "", assessment: "DELETE — Primarily a quotes collection. No substantial original content." },
-  { title: "Gestalt Theory: 5 Phases of Therapeutic Change", url: "https://nikhelbig.at/gestalt-theory-5-phases-of-change/", category: "Gestalt Therapy", status: "good", type: "", img: "", assessment: "Structured theoretical framework. Clear and useful." },
-  { title: "Fritz Perls: Working with Dreams in Gestalt Therapy", url: "https://nikhelbig.at/fritz-perls-working-with-dreams-in-gestalt-therapy/", category: "Gestalt Therapy", status: "improve", type: "", img: "", assessment: "Dreamwork in Gestalt. Check depth — may overlap with general dreams article." },
-  { title: "How Bobby McFerrin explains Gestalt Theory", url: "https://nikhelbig.at/ho-bobby-mcferrin-explains-gestalt-theory-with-this-act/", category: "Gestalt Therapy", status: "good", type: "video", img: "https://nikhelbig.at/wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg", assessment: "Creative application of Gestalt principles. Video + substantial original commentary. Good." },
+    <p class="message">
+      I am delighted to share that my practice is relocating to <strong>Tiong Bahru</strong> — one of Singapore's most beloved neighbourhoods. A quieter, more <strong>grounded</strong> space; a more <strong>sustainable</strong> way of working. I look forward to welcoming you there.
+    </p>
 
-  // ===== GESTALT THERAPY BOOKS =====
-  { title: "Gestalt Therapy: Perls, Hefferline and Goodman (1951)", url: "https://nikhelbig.at/gestalt-therapy-perls-hefferline-and-goodman-1951/", category: "Gestalt Therapy Books", status: "good", type: "", img: "", assessment: "Foundational text review. Important." },
-  { title: "Gestalt Therapy Verbatim (Perls, 1969): Book Review", url: "https://nikhelbig.at/gestalt-therapy-verbatim-perls-1969-book-review/", category: "Gestalt Therapy Books", status: "good", type: "", img: "", assessment: "Classic text review. Good scholarly content." },
+    <!-- ══ GOOGLE MAPS EMBED ══ -->
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d498.8!2d103.83220!3d1.28352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1bcfe3b3b3b3%3A0x1!2s73+Eng+Watt+St%2C+Singapore+160073!5e0!3m2!1sen!2ssg!4v1699000000000!5m2!1sen!2ssg"
+        width="100%" height="160" style="border:none;display:block;filter:saturate(0.8);"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <!-- Address -->
+    <div class="address-block">
+      <div class="address-label">New Address</div>
+      <div class="address-text">73 Eng Watt Street<br>Tiong Bahru Estate, Singapore 160073</div>
+    </div>
 
-  // ===== LECTURES =====
-  { title: "Glen Gabbard: 'The Difficult Patient'", url: "https://nikhelbig.at/glen-gabbard-the-difficult-patient/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Lecture summary. Needs more original clinical reflection." },
-  { title: "Notes: Sapolsky on Chaos and Reductionism", url: "https://nikhelbig.at/notes-sapolsky-on-chaos-and-reductionism/", category: "Lectures", status: "thin", type: "video", img: "", assessment: "THIN — 'Notes' from a lecture. Brief summary needing expansion." },
-  { title: "Sapolsky: The Biological and Psychological Link to Major Depression", url: "https://nikhelbig.at/watch-stanfords-sapolsky-on-depression-in-u-s-full-lecture-on-youtube/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Lecture summary. URL still says 'watch on youtube'. Add original commentary." },
-  { title: "Christopher Bollas on Mental Pain", url: "https://nikhelbig.at/christopher-bollas-on-mental-pain/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Bollas lecture notes. Expand with clinical integration." },
-  { title: "Bollas: Psycho-Pharmaceutical use, like war, can impair empathic feelings", url: "https://nikhelbig.at/bollas-psycho-pharmaceuticals-use-like-war-kill-empathy/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Provocative thesis from Bollas. Needs more original commentary." },
-  { title: "Otto Kernberg: On Narcissism", url: "https://nikhelbig.at/otto-kernberg-on-narcissism/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Lecture summary. Add clinical perspective and examples." },
-  { title: "Heinz Kohut: Selfobject", url: "https://nikhelbig.at/kohut-selfobject/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Key psychoanalytic concept. May be thin — expand." },
-  { title: "Jane Tangney: the Difference between Shame and Guilt", url: "https://nikhelbig.at/jane-tangney-the-difference-between-shame-and-guilt/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Useful distinction. Needs more depth beyond lecture summary." },
-  { title: "Daniel Schiff PhD: Contemporary Reichian Therapy", url: "https://nikhelbig.at/daniel-schiff-phd-contemporary-reichian-therapy/", category: "Lectures", status: "improve", type: "video", img: "", assessment: "Lecture summary. Expand with your Reichian perspective." },
-
-  // ===== THESES & PUBLICATIONS =====
-  { title: "Book: A Gestalt Approach to Couples Therapy", url: "https://nikhelbig.at/book-a-gestalt-approach-to-couples-therapy/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "YOUR BOOK. Flagship publication page. Essential." },
-  { title: "Exploring researchers' self-reflection in interviews with trauma survivors", url: "https://nikhelbig.at/exploring-the-importance-of-researchers-self-reflection-and-personal-engagement-in-interviews-with-trauma-survivors/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published research. Important academic portfolio." },
-  { title: "Childhood Sketches: Understanding and Treating Childhood Trauma", url: "https://nikhelbig.at/childhood-sketches-understanding-and-treating-childhood-trauma/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Publication. Keep." },
-  { title: "Therapeutic Autoethnography", url: "https://nikhelbig.at/upcoming-in-2023-phd-thesis/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "PhD thesis methodology. Core academic identity." },
-  { title: "Geštalt Zbornik 9: Understanding Salomo Friedlaender's Creative Indifference", url: "https://nikhelbig.at/gestalt-zbornik-9-writing-evocative-case-studies/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published contribution. Keep." },
-  { title: "EUJPC 1 (16): A psychotherapist's lived experience with an asylum seeker", url: "https://nikhelbig.at/the-british-gestalt-journal-311-writing-evocative-case-studies/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published journal article. Key autoethnographic work." },
-  { title: "The British Gestalt Journal 31(1): Writing evocative case studies", url: "https://nikhelbig.at/publication/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published methodology paper. Keep." },
-  { title: "The British Gestalt Journal 28(2): Dialogue analysis of a filmed Gestalt therapy session", url: "https://nikhelbig.at/the-british-gestalt-journal-282-dialogue-analysis-of-a-filmed-gestalt-therapy-session/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published research. HELDA method. Core." },
-  { title: "Analyzing a Gestalt Psychotherapy Session Using HELDA", url: "https://nikhelbig.at/helda/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Your signature analytical method. Essential." },
-  { title: "The Psychotherapeutic Alliance and Change", url: "https://nikhelbig.at/the-psychotherapeutic-alliance-and-change-a-discussion-on-the-healing-aspects-in-a-psychotherapeutic-relationship/", category: "Theses & Publications", status: "good", type: "", img: "", assessment: "Published thesis work. Core academic content." },
-
-  // ===== NEUROSCIENCE =====
-  { title: "Neuroscience: Psychotherapy is more Lasting than Psychiatric Drugs for Depression", url: "https://nikhelbig.at/neuroscience-studies-showing-the-treatment-of-depression-with-interpersonal-psychotherapy-to-provide-more-lasting-effect-than-pharmacology/", category: "Neuroscience", status: "good", type: "", img: "", assessment: "Evidence-based advocacy for psychotherapy. Strong." },
-  { title: "Why there is no single drug for Fear, Specific Phobia, Social Anxiety and PTSD", url: "https://nikhelbig.at/neuroimaging-of-fear-specific-phobia-social-anxiety-and-ptsd/", category: "Neuroscience", status: "good", type: "", img: "", assessment: "Neuroimaging-informed argument. Solid." },
-  { title: "Neuroscience: Basic Emotions", url: "https://nikhelbig.at/neuroscience-basic-emotions/", category: "Neuroscience", status: "improve", type: "", img: "", assessment: "Overview of emotion neuroscience. May be thin." },
-  { title: "Notes: Neuroscience Models of Schizophrenia", url: "https://nikhelbig.at/notes-neuroscience-models-of-schizophrenia/", category: "Neuroscience", status: "thin", type: "", img: "", assessment: "THIN — 'Notes' prefix indicates sketch. Expand or merge." },
-  { title: "Neuroscience: Why we cannot explain psychopathology based only on genes", url: "https://nikhelbig.at/neuroscience-why-we-cannot-explain-psychopathology-cannot-be-based-only-on-genes/", category: "Neuroscience", status: "good", type: "", img: "", assessment: "Important anti-reductionist argument. Solid." },
-  { title: "Neuroscience: Brain Centers and Function", url: "https://nikhelbig.at/neuroscience-brain-centers-and-function/", category: "Neuroscience", status: "thin", type: "", img: "", assessment: "THIN — Likely a brief reference/overview. Merge or expand." },
-  { title: "Mental States: from the Neuroscientists' Viewpoint", url: "https://nikhelbig.at/mental-states-from-the-neuroscientists-viewpoint/", category: "Neuroscience", status: "improve", type: "", img: "", assessment: "Bridging neuroscience and phenomenology. Check depth." },
-  { title: "Carhart-Harris: Neuroscience and Freudian Concepts", url: "https://nikhelbig.at/carhart-harris-neuroscience-and-freudian-concepts/", category: "Neuroscience", status: "improve", type: "", img: "", assessment: "Fascinating topic. May need expansion from notes." },
-  { title: "Presentation: Psychedelics and Psychotherapy", url: "https://nikhelbig.at/presentation-psychedelics-and-psychotherapy/", category: "Neuroscience", status: "thin", type: "", img: "", assessment: "THIN — 'Presentation' prefix suggests slide summary. Needs full article treatment." },
-  { title: "Notes: A Study Using Psychotherapy and fMRI Neuroimaging", url: "https://nikhelbig.at/notes-a-study-using-psychotherapy-and-fmri-neuroimaging/", category: "Neuroscience", status: "thin", type: "", img: "", assessment: "THIN — Study notes. Expand into a full article or merge." },
-
-  // ===== PERSONALITY =====
-  { title: "Naranjo: The Great Composers and the Enneagram", url: "https://nikhelbig.at/naranjo-the-great-composers-and-the-enneagram/", category: "Personality", status: "good", type: "", img: "", assessment: "Creative interdisciplinary piece. Music + psychology. Distinctive." },
-  { title: "Enneagram Graphic by Nik Helbig", url: "https://nikhelbig.at/enneagramgraphic/", category: "Personality", status: "thin", type: "", img: "", assessment: "THIN — Likely just an image/graphic. Expand with explanation or merge." },
-
-  // ===== PSYCHOANALYSIS =====
-  { title: "Decoding Envy: Carveth", url: "https://nikhelbig.at/decoding-envy-carveth/", category: "Psychoanalysis", status: "improve", type: "video", img: "", assessment: "Carveth lecture summary. Add more original perspective." },
-  { title: "Carveth: Psychoanalytic Perspective of Anxiety", url: "https://nikhelbig.at/carveth-anxiety/", category: "Psychoanalysis", status: "improve", type: "video", img: "", assessment: "Lecture notes. Expand with clinical integration." },
-  { title: "Carveth: Transference & Countertransference", url: "https://nikhelbig.at/carveth-transference-countertransference/", category: "Psychoanalysis", status: "improve", type: "video", img: "", assessment: "Lecture summary. Needs original commentary." },
-  { title: "Freud and Fiction: The Psychological Thinking about Literature", url: "https://nikhelbig.at/freud-and-fiction-the-psychological-thinking-about-literature/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Interdisciplinary. Literature + psychoanalysis. Distinctive." },
-  { title: "Kernberg Model of Narcissistic Personality Disorder", url: "https://nikhelbig.at/kernberg-model-of-naricissistic-personality-disorder/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Key diagnostic/theoretical model. Well-referenced." },
-  { title: "The Manic Need to Control: Kleinian Theory", url: "https://nikhelbig.at/manic-triad/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Kleinian theory application. Solid." },
-  { title: "The Paranoid-Schizoid Position", url: "https://nikhelbig.at/the-paranoid-schizoid-position/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Core Kleinian concept. Important." },
-  { title: "Mourning and Making Reparation through Art", url: "https://nikhelbig.at/segal-on-klein-mourning/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Segal/Klein applied to art. Interdisciplinary. Beautiful." },
-  { title: "Bollas: Transformational Object", url: "https://nikhelbig.at/bollas-transformational-object/", category: "Psychoanalysis", status: "improve", type: "", img: "", assessment: "Key Bollas concept. Check depth — may need expansion." },
-  { title: "Personality vs Personality Disorders", url: "https://nikhelbig.at/normal-personality-vs-personality-disorders/", category: "Psychoanalysis", status: "good", type: "", img: "", assessment: "Useful clinical differentiation. Accessible." },
-
-  // ===== CULTURAL ANTHROPOLOGY =====
-  { title: "The Dark Side of Morality: Group Polarization", url: "https://nikhelbig.at/the-dark-side-of-morality-group-polarization/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Social psychology applied to culture. Strong." },
-  { title: "Making Contact with Culture: A Psychotherapist's View", url: "https://nikhelbig.at/2165-2/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Personal multicultural perspective. Your distinctive voice." },
-  { title: "Nationalism and National Identity: Liberating and Destructive Aspects", url: "https://nikhelbig.at/nationalism-and-national-identity-liberating-and-destructive-aspects/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Cultural analysis with psychological lens. Strong." },
-  { title: "Conformity and Obedience: Slippery Slope to Dehumanization", url: "https://nikhelbig.at/conformity-and-obedience-slippery-slope-to-dehumanization-of-the-other/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Important social psychology piece. Well-developed." },
-  { title: "The Function of Religion in Mental Health Today", url: "https://nikhelbig.at/the-function-of-religion-in-mental-health-today/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Culturally sensitive topic. Good." },
-  { title: "Privacy as Personal Control", url: "https://nikhelbig.at/privacy-as-personal-control/", category: "Cultural Anthropology", status: "improve", type: "", img: "", assessment: "Interesting angle. May be thin — check and expand." },
-  { title: "Unraveling the Interplay of Culture, Civilization, and Social Structure: Shame and Othering", url: "https://nikhelbig.at/unraveling-the-interplay-of-culture-civilization-and-social-structure-understanding-shame-and-othering/", category: "Cultural Anthropology", status: "good", type: "", img: "", assessment: "Comprehensive cultural analysis. Strong." },
-
-  // ===== SUICIDE =====
-  { title: "Young & Lester: Gestalt Therapy Approaches to Crisis Intervention with Suicidal Patients", url: "https://nikhelbig.at/young-lester-gestalt-therapy-approaches-to-crisis-intervention-with-suicidal-patients/", category: "Suicide Crisis Intervention", status: "good", type: "", img: "", assessment: "Important clinical content. Keep." },
-
-  // ===== THERAPY BOOKS =====
-  { title: "Notes: The Other as Extended Self vs. I-Thou. Bakhtin and Buber.", url: "https://nikhelbig.at/notes-the-other-as-extended-self/", category: "Therapy Books", status: "thin", type: "", img: "", assessment: "THIN — Reading notes. Expand into a full comparative essay or keep as stub for later." },
-  { title: "Bion: The Function of Myths in Groups", url: "https://nikhelbig.at/bion-group/", category: "Therapy Books", status: "improve", type: "", img: "", assessment: "Bion group theory. Check depth and expand." },
-  { title: "Notes: Bakhtin's Polyphonic Novel and the Dialogical Self", url: "https://nikhelbig.at/bakhtins-polyphonic-novel-and-the-dialogical-self/", category: "Therapy Books", status: "thin", type: "", img: "", assessment: "THIN — Reading notes. Expand or merge with Bakhtin/Buber piece above." },
-  { title: "Book Review: Wilhelm Reich's Character Analysis", url: "https://nikhelbig.at/book-review-wilhelm-reichs-character-analysis/", category: "Therapy Books", status: "good", type: "", img: "", assessment: "Substantive book review. Keep." },
-
-  // ===== GROUP THERAPY =====
-  { title: "Fritz Perls: Quotes on Therapy in Groups", url: "https://nikhelbig.at/fritz-perls-quotes-on-therapy-in-groups/", category: "Group Therapy", status: "delete", type: "quote", img: "", assessment: "DELETE — Already listed under Gestalt. Quote collection with no original content." },
-];
-
-// Render
-function render(filter = 'all', search = '') {
-  const area = document.getElementById('content-area');
-  area.innerHTML = '';
-
-  let filtered = ARTICLES;
-  if (filter !== 'all') filtered = filtered.filter(a => a.status === filter);
-  if (search) {
-    const q = search.toLowerCase();
-    filtered = filtered.filter(a => a.title.toLowerCase().includes(q) || a.category.toLowerCase().includes(q) || a.assessment.toLowerCase().includes(q));
-  }
-
-  // Group by category
-  const groups = {};
-  filtered.forEach(a => {
-    if (!groups[a.category]) groups[a.category] = [];
-    groups[a.category].push(a);
-  });
-
-  // Sort categories
-  const sortedCats = Object.keys(groups).sort();
-
-  sortedCats.forEach(cat => {
-    const articles = groups[cat];
-    const group = document.createElement('div');
-    group.className = 'category-group';
-    group.innerHTML = `<div class="category-header">${cat} <span class="category-count">${articles.length} article${articles.length > 1 ? 's' : ''}</span></div>`;
-
-    articles.forEach(a => {
-      const statusClass = `status-${a.status}`;
-      const badgeClass = `badge-${a.status}`;
-      const badgeLabel = { good: 'Keep', improve: 'Improve', thin: 'Thin/Stub', delete: 'Delete' }[a.status];
-
-      let typeBadge = '';
-      if (a.type === 'video') typeBadge = '<span class="badge badge-video">Video-based</span>';
-      if (a.type === 'quote') typeBadge = '<span class="badge badge-quote">Quote only</span>';
-      if (a.type === 'how-to') typeBadge = '<span class="badge badge-delete">How-to</span>';
-
-      const imgHtml = a.img
-        ? `<img class="article-thumb" src="${a.img}" alt="" loading="lazy">`
-        : `<div class="article-thumb no-img">No preview image</div>`;
-
-      const card = document.createElement('div');
-      card.className = `article-card ${statusClass}`;
-      card.innerHTML = `
-        ${imgHtml}
-        <div class="article-info">
-          <div class="article-title"><a href="${a.url}" target="_blank">${a.title}</a></div>
-          <div class="article-meta">${a.category}</div>
-          <div class="article-assessment">${a.assessment}</div>
+    <!-- Info grid -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          MRT &amp; Buses
         </div>
-        <div class="article-badges">
-          <span class="badge ${badgeClass}">${badgeLabel}</span>
-          ${typeBadge}
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Tiong Bahru MRT (EW17) · 8 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Havelock MRT (TE16) · 10 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Bus 5, 16, 33, 63, 75, 122, 123, 175, 195, 195A, 851, 970</span></div>
         </div>
-      `;
-      group.appendChild(card);
-    });
+      </div>
 
-    area.appendChild(group);
-  });
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Parking
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Ample outdoor parking in the estate</span></div>
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Market car park</span></div>
+        </div>
+      </div>
 
-  // Update counts
-  const all = ARTICLES;
-  document.getElementById('count-total').textContent = all.length;
-  document.getElementById('count-good').textContent = all.filter(a => a.status === 'good').length;
-  document.getElementById('count-improve').textContent = all.filter(a => a.status === 'improve').length;
-  document.getElementById('count-thin').textContent = all.filter(a => a.status === 'thin').length;
-  document.getElementById('count-delete').textContent = all.filter(a => a.status === 'delete').length;
-}
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          Cafés Nearby
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Merci Marcel · Eng Hoon St</span></div>
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Bakery · Eng Hoon St</span></div>
+          <div class="item"><div class="dot"></div><span>Toast Box · Seng Poh Road</span></div>
+          <div class="item"><div class="dot"></div><span>An Chiang · Tiong Poh Road</span></div>
+          <div class="item"><div class="dot"></div><span>Plain Vanilla · Yong Siak St</span></div>
+        </div>
+      </div>
 
-// Filter buttons
-document.querySelectorAll('.controls button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render(btn.dataset.filter, document.getElementById('searchBox').value);
-  });
-});
+      <div class="info-card">
+        <div class="ic-label">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#3d6b50" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Markets
+        </div>
+        <div class="ic-content">
+          <div class="item"><div class="dot"></div><span>Tiong Bahru Market · 3 min walk</span></div>
+          <div class="item"><div class="dot"></div><span>Hawker centre · Level 2</span></div>
+          <div class="item"><div class="dot"></div><span>Wet market · Level 1</span></div>
+        </div>
+      </div>
+    </div>
 
-// Search
-document.getElementById('searchBox').addEventListener('input', (e) => {
-  const activeFilter = document.querySelector('.controls button.active').dataset.filter;
-  render(activeFilter, e.target.value);
-});
+    <!-- Sustainability -->
+    <div class="sustain-note">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" style="flex-shrink:0">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+      </svg>
+      <div class="sustain-text">
+        <strong>A more sustainable practice</strong>
+        No more commercial overhead — a smaller footprint, a greener choice, and a quieter space more in keeping with the spirit of therapeutic work.
+      </div>
+    </div>
+  </div>
 
-render();
-</script>
+  <div class="footer">
+    <div class="footer-brand">psychotherapist.sg</div>
+    <div class="footer-note">Questions? Do reach out before July.</div>
+  </div>
+
+  <div class="bottom-band"></div>
+</div>
 </body>
 </html>
