@@ -12,24 +12,19 @@ h2 { font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 2px solid #3d6b4f; p
 .subtitle { color: #666; margin-bottom: 1.5rem; }
 .instructions { background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 1.2rem; margin-bottom: 2rem; font-size: 0.9rem; }
 .instructions code { background: #fff; padding: 0.15em 0.4em; border-radius: 3px; font-size: 0.85em; }
-
-/* Articles needing images */
 .needs-list { margin-bottom: 2rem; }
 .needs-item { background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #e74c3c; border-radius: 6px; padding: 0.8rem 1rem; margin-bottom: 0.5rem; }
 .needs-title { font-weight: 600; font-size: 0.95rem; }
 .needs-meta { font-size: 0.75rem; color: #888; }
-
-/* Image gallery */
+.section-label { background: #3d6b4f; color: #fff; font-size: 0.7rem; padding: 0.2em 0.6em; border-radius: 3px; margin-left: 0.5rem; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-.gallery-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
+.gallery-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
 .gallery-item:hover { border-color: #3d6b4f; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .gallery-item img { width: 100%; height: 150px; object-fit: cover; display: block; }
 .gallery-path { font-size: 0.65rem; color: #888; padding: 0.5rem; word-break: break-all; line-height: 1.3; }
 .gallery-copy { font-size: 0.7rem; padding: 0.3rem 0.5rem 0.5rem; }
 .gallery-copy code { background: #f0f0f0; padding: 0.2em 0.4em; border-radius: 3px; font-size: 0.8em; display: block; margin-top: 0.2rem; user-select: all; cursor: text; word-break: break-all; }
-
-.section-label { background: #3d6b4f; color: #fff; font-size: 0.7rem; padding: 0.2em 0.6em; border-radius: 3px; margin-left: 0.5rem; }
-
+.done-badge { background: #e8f5e9; color: #2e7d32; font-size: 0.75rem; padding: 0.3em 0.8em; border-radius: 4px; display: inline-block; margin-bottom: 1rem; }
 @media (max-width: 600px) {
   body { padding: 1rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
@@ -38,1087 +33,613 @@ h2 { font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 2px solid #3d6b4f; p
 </head>
 <body>
 <h1>Image Assignment Gallery</h1>
-<p class="subtitle">39 articles need hero images · 109 available surrealist images</p>
+<p class="subtitle">25 articles still need hero images · 109 available images</p>
 
 <div class="instructions">
 <strong>How to assign an image:</strong><br>
-1. Find an image you like from the gallery below<br>
-2. Click the image path to select it — it will look like: <code>wp-content/uploads/2023/02/example.jpg</code><br>
-3. Go to the article's <code>.md</code> file in your GitHub repo<br>
-4. Add this line before the closing <code>---</code> in the front matter:<br>
-<code>image: "wp-content/uploads/2023/02/example.jpg"</code>
+1. Pick an image from the gallery below<br>
+2. Copy the path shown under it<br>
+3. Edit the article's <code>.md</code> file on GitHub<br>
+4. Add this line before the closing <code>---</code>: <code>image: "wp-content/uploads/YYYY/MM/filename.jpg"</code><br>
+<strong>Remember:</strong> space after <code>image:</code> and quotes around the path!
 </div>
-<h2>Articles Missing Hero Images (39)</h2>
+
+<p class="done-badge">✓ Art — done</p>
+<p class="done-badge">✓ Cultural Anthropology — done</p>
+<p class="done-badge">✓ Diagnosis — done</p>
+<h2>Articles Still Missing Hero Images (25)</h2>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">content (1)</h3>
 <div class="needs-list">
-<div class="needs-item"><div class="needs-title">Your Inner Child in Children's Stories <span class="section-label">art</span></div><div class="needs-meta">File: content/art/your-inner-child-in-childrens-stories.md</div></div>
-<div class="needs-item"><div class="needs-title">Psychoanalysis and Segantini Art <span class="section-label">art</span></div><div class="needs-meta">File: content/art/psychoanalysis-and-segantini-art.md</div></div>
-<div class="needs-item"><div class="needs-title">Art in Psychosocial Care <span class="section-label">art</span></div><div class="needs-meta">File: content/art/art-in-psychosocial-care.md</div></div>
-<div class="needs-item"><div class="needs-title">About <span class="section-label">content</span></div><div class="needs-meta">File: content/content/about.md</div></div>
-<div class="needs-item"><div class="needs-title">The Function of Religion in Mental Health Today <span class="section-label">cultural-anthropology</span></div><div class="needs-meta">File: content/cultural-anthropology/the-function-of-religion-in-mental-health-today.md</div></div>
-<div class="needs-item"><div class="needs-title">Conformity and Obedience: Slippery Slope to Dehumanization of the Other <span class="section-label">cultural-anthropology</span></div><div class="needs-meta">File: content/cultural-anthropology/conformity-and-obedience-slippery-slope-to-dehumanization-of-the-other.md</div></div>
-<div class="needs-item"><div class="needs-title">Nationalism and National Identity: Liberating and Destructive Aspects <span class="section-label">cultural-anthropology</span></div><div class="needs-meta">File: content/cultural-anthropology/nationalism-and-national-identity-liberating-and-destructive-aspects.md</div></div>
-<div class="needs-item"><div class="needs-title">Psychotherapy Case Studies of the 18th Century: Das Magazin zur Erfahrungsseelenkunde <span class="section-label">cultural-anthropology</span></div><div class="needs-meta">File: content/cultural-anthropology/psychotherapy-case-studies-of-the-18th-century-das-magazin-zur-erfahrungsseelenk.md</div></div>
-<div class="needs-item"><div class="needs-title">Pinel 1754-1826 on Treatment of Illness from \ <span class="section-label">cultural-anthropology</span></div><div class="needs-meta">File: content/cultural-anthropology/pinel-1754-1826-on-treatment-of-illness-from-moral-causes.md</div></div>
-<div class="needs-item"><div class="needs-title">Differentiation between the Healthy Process of Grief and Depression <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/differentiation-between-the-healthy-process-of-grief-and-depression.md</div></div>
-<div class="needs-item"><div class="needs-title">Narrative Impoverishment in Schizophrenia: Lysaker & Lysaker <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/narrative-impoverishment-in-schizophrenia-lysaker-lysaker.md</div></div>
-<div class="needs-item"><div class="needs-title">How to Ask a Patient about Childhood Trauma History: Dr. Bessel van der Kolk <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/how-to-ask-a-patient-about-childhood-trauma-history-dr-bessel-van-der-kolk.md</div></div>
-<div class="needs-item"><div class="needs-title">Adjustment Disorders: Causes and Symptoms <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/adjustment-disorders-causes-and-symptoms.md</div></div>
-<div class="needs-item"><div class="needs-title">How do we classify mental diseases? <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/how-do-we-classify-mental-diseases.md</div></div>
-<div class="needs-item"><div class="needs-title">Difference between Hoarding and Normative Collecting Behaviors <span class="section-label">diagnosis</span></div><div class="needs-meta">File: content/diagnosis/difference-between-hoarding-and-normative-collecting-behaviors.md</div></div>
-<div class="needs-item"><div class="needs-title">How Gestalt Therapy Revolutionises Our Understanding of Psychopathology <span class="section-label">gestalt-therapy</span></div><div class="needs-meta">File: content/gestalt-therapy/gestalt-therapy-revolutionises-psychopathology.md</div></div>
-<div class="needs-item"><div class="needs-title">Bollas: Psycho-Pharmaceutical use, like war, can impair empathic feelings. <span class="section-label">lectures</span></div><div class="needs-meta">File: content/lectures/bollas-psycho-pharmaceutical-use-like-war-can-impair-empathic-feelings.md</div></div>
-<div class="needs-item"><div class="needs-title">Glen Gabbard: \ <span class="section-label">lectures</span></div><div class="needs-meta">File: content/lectures/glen-gabbard-the-difficult-patient.md</div></div>
-<div class="needs-item"><div class="needs-title">Sapolsky: The Biological and Psychological Link to Major Depression <span class="section-label">lectures</span></div><div class="needs-meta">File: content/lectures/sapolsky-the-biological-and-psychological-link-to-major-depression.md</div></div>
-<div class="needs-item"><div class="needs-title">Jane Tangney: the Difference between Shame and Guilt <span class="section-label">lectures</span></div><div class="needs-meta">File: content/lectures/jane-tangney-the-difference-between-shame-and-guilt.md</div></div>
-<div class="needs-item"><div class="needs-title">Neuroscience: Why we cannot explain psychopathology based only on genes <span class="section-label">neuroscience</span></div><div class="needs-meta">File: content/neuroscience/neuroscience-why-we-cannot-explain-psychopathology-based-only-on-genes.md</div></div>
-<div class="needs-item"><div class="needs-title">Mental States: from the Neuroscientists' Viewpoint <span class="section-label">neuroscience</span></div><div class="needs-meta">File: content/neuroscience/mental-states-from-the-neuroscientists-viewpoint.md</div></div>
-<div class="needs-item"><div class="needs-title">Carhart-Harris: Neuroscience and Freudian Concepts <span class="section-label">neuroscience</span></div><div class="needs-meta">File: content/neuroscience/carhart-harris-neuroscience-and-freudian-concepts.md</div></div>
-<div class="needs-item"><div class="needs-title">Notes: A Study Using Psychotherapy and fMRI Neuroimaging <span class="section-label">neuroscience</span></div><div class="needs-meta">File: content/neuroscience/notes-a-study-using-psychotherapy-and-fmri-neuroimaging.md</div></div>
-<div class="needs-item"><div class="needs-title">Neuroscience: Basic Emotions <span class="section-label">neuroscience</span></div><div class="needs-meta">File: content/neuroscience/neuroscience-basic-emotions.md</div></div>
-<div class="needs-item"><div class="needs-title">Personality vs Personality Disorders <span class="section-label">psychoanalysis</span></div><div class="needs-meta">File: content/psychoanalysis/personality-vs-personality-disorders.md</div></div>
-<div class="needs-item"><div class="needs-title">How emotional writing can improve your mood -- and health <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/how-emotional-writing-can-improve-your-mood-and-health.md</div></div>
-<div class="needs-item"><div class="needs-title">Otto Kernberg: Transference Analysis in Psychotherapy <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/otto-kernberg-transference-analysis-in-psychotherapy.md</div></div>
-<div class="needs-item"><div class="needs-title">Bion: The Function of Myths in Groups <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/bion-the-function-of-myths-in-groups.md</div></div>
-<div class="needs-item"><div class="needs-title">Going through Crisis, Dealing with Crisis <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/going-through-crisis-dealing-with-crisis.md</div></div>
-<div class="needs-item"><div class="needs-title">Notes: Bakhtin's Polyphonic Novel and the Dialogical Self <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/notes-bakhtins-polyphonic-novel-and-the-dialogical-self.md</div></div>
-<div class="needs-item"><div class="needs-title">Nicotine Addiction: the bio-psycho-social viewpoint of the smoking habit <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/nicotine-addiction-the-bio-psycho-social-viewpoint-of-the-smoking-habit.md</div></div>
-<div class="needs-item"><div class="needs-title">Book Review : Wilhelm Reich's Character Analysis <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/book-review-wilhelm-reichs-character-analysis.md</div></div>
-<div class="needs-item"><div class="needs-title">Notes: The Other as Extended Self vs. I-Thou. Bakhtin and Buber. <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/notes-the-other-as-extended-self-vs-i-thou-bakhtin-and-buber.md</div></div>
-<div class="needs-item"><div class="needs-title">Experiences of Grief after a Loss of a Loved Person <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/experiences-of-grief-after-a-loss-of-a-loved-person.md</div></div>
-<div class="needs-item"><div class="needs-title">Panic disorder and loneliness <span class="section-label">psychotherapy-articles</span></div><div class="needs-meta">File: content/psychotherapy-articles/panic-disorder-and-loneliness.md</div></div>
-<div class="needs-item"><div class="needs-title">Projective Identification <span class="section-label">psychotherapy-practice</span></div><div class="needs-meta">File: content/psychotherapy-practice/projective-identification.md</div></div>
-<div class="needs-item"><div class="needs-title">Levina's \ <span class="section-label">psychotherapy-practice</span></div><div class="needs-meta">File: content/psychotherapy-practice/levinas-face-of-the-other.md</div></div>
-<div class="needs-item"><div class="needs-title">Hoarding Disorder <span class="section-label">psychotherapy-practice</span></div><div class="needs-meta">File: content/psychotherapy-practice/hoarding-disorder.md</div></div>
+<div class="needs-item"><div class="needs-title">About</div><div class="needs-meta">content/content/about.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">gestalt-therapy (1)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">How Gestalt Therapy Revolutionises Our Understanding of Psychopathology</div><div class="needs-meta">content/gestalt-therapy/gestalt-therapy-revolutionises-psychopathology.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">lectures (4)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">Bollas: Psycho-Pharmaceutical use, like war, can impair empathic feelings.</div><div class="needs-meta">content/lectures/bollas-psycho-pharmaceutical-use-like-war-can-impair-empathic-feelings.md</div></div>
+<div class="needs-item"><div class="needs-title">Glen Gabbard: \</div><div class="needs-meta">content/lectures/glen-gabbard-the-difficult-patient.md</div></div>
+<div class="needs-item"><div class="needs-title">Jane Tangney: the Difference between Shame and Guilt</div><div class="needs-meta">content/lectures/jane-tangney-the-difference-between-shame-and-guilt.md</div></div>
+<div class="needs-item"><div class="needs-title">Sapolsky: The Biological and Psychological Link to Major Depression</div><div class="needs-meta">content/lectures/sapolsky-the-biological-and-psychological-link-to-major-depression.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">neuroscience (5)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">Carhart-Harris: Neuroscience and Freudian Concepts</div><div class="needs-meta">content/neuroscience/carhart-harris-neuroscience-and-freudian-concepts.md</div></div>
+<div class="needs-item"><div class="needs-title">Mental States: from the Neuroscientists' Viewpoint</div><div class="needs-meta">content/neuroscience/mental-states-from-the-neuroscientists-viewpoint.md</div></div>
+<div class="needs-item"><div class="needs-title">Neuroscience: Basic Emotions</div><div class="needs-meta">content/neuroscience/neuroscience-basic-emotions.md</div></div>
+<div class="needs-item"><div class="needs-title">Neuroscience: Why we cannot explain psychopathology based only on genes</div><div class="needs-meta">content/neuroscience/neuroscience-why-we-cannot-explain-psychopathology-based-only-on-genes.md</div></div>
+<div class="needs-item"><div class="needs-title">Notes: A Study Using Psychotherapy and fMRI Neuroimaging</div><div class="needs-meta">content/neuroscience/notes-a-study-using-psychotherapy-and-fmri-neuroimaging.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">psychoanalysis (1)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">Personality vs Personality Disorders</div><div class="needs-meta">content/psychoanalysis/personality-vs-personality-disorders.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">psychotherapy-articles (10)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">Bion: The Function of Myths in Groups</div><div class="needs-meta">content/psychotherapy-articles/bion-the-function-of-myths-in-groups.md</div></div>
+<div class="needs-item"><div class="needs-title">Book Review : Wilhelm Reich's Character Analysis</div><div class="needs-meta">content/psychotherapy-articles/book-review-wilhelm-reichs-character-analysis.md</div></div>
+<div class="needs-item"><div class="needs-title">Experiences of Grief after a Loss of a Loved Person</div><div class="needs-meta">content/psychotherapy-articles/experiences-of-grief-after-a-loss-of-a-loved-person.md</div></div>
+<div class="needs-item"><div class="needs-title">Going through Crisis, Dealing with Crisis</div><div class="needs-meta">content/psychotherapy-articles/going-through-crisis-dealing-with-crisis.md</div></div>
+<div class="needs-item"><div class="needs-title">How emotional writing can improve your mood -- and health</div><div class="needs-meta">content/psychotherapy-articles/how-emotional-writing-can-improve-your-mood-and-health.md</div></div>
+<div class="needs-item"><div class="needs-title">Nicotine Addiction: the bio-psycho-social viewpoint of the smoking habit</div><div class="needs-meta">content/psychotherapy-articles/nicotine-addiction-the-bio-psycho-social-viewpoint-of-the-smoking-habit.md</div></div>
+<div class="needs-item"><div class="needs-title">Notes: Bakhtin's Polyphonic Novel and the Dialogical Self</div><div class="needs-meta">content/psychotherapy-articles/notes-bakhtins-polyphonic-novel-and-the-dialogical-self.md</div></div>
+<div class="needs-item"><div class="needs-title">Notes: The Other as Extended Self vs. I-Thou. Bakhtin and Buber.</div><div class="needs-meta">content/psychotherapy-articles/notes-the-other-as-extended-self-vs-i-thou-bakhtin-and-buber.md</div></div>
+<div class="needs-item"><div class="needs-title">Otto Kernberg: Transference Analysis in Psychotherapy</div><div class="needs-meta">content/psychotherapy-articles/otto-kernberg-transference-analysis-in-psychotherapy.md</div></div>
+<div class="needs-item"><div class="needs-title">Panic disorder and loneliness</div><div class="needs-meta">content/psychotherapy-articles/panic-disorder-and-loneliness.md</div></div>
+</div>
+<h3 style="margin: 1.5rem 0 0.5rem; font-size: 1rem; color: #3d6b4f;">psychotherapy-practice (3)</h3>
+<div class="needs-list">
+<div class="needs-item"><div class="needs-title">Hoarding Disorder</div><div class="needs-meta">content/psychotherapy-practice/hoarding-disorder.md</div></div>
+<div class="needs-item"><div class="needs-title">Levina's \</div><div class="needs-meta">content/psychotherapy-practice/levinas-face-of-the-other.md</div></div>
+<div class="needs-item"><div class="needs-title">Projective Identification</div><div class="needs-meta">content/psychotherapy-practice/projective-identification.md</div></div>
 </div>
 <h2>Available Images (109)</h2>
 <div class="gallery">
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_0.jpg" alt="dreams_in_the_style_of_surrealism_0.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_1.jpg" alt="dreams_in_the_style_of_surrealism_1.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_2.jpg" alt="dreams_in_the_style_of_surrealism_2.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg" alt="dreams_in_the_style_of_surrealism_4.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_7.jpg" alt="dreams_in_the_style_of_surrealism_7.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg" alt="homeostasis_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/enneagram_painting_0.jpg" alt="enneagram_painting_0.jpg" loading="lazy">
 <div class="gallery-path">enneagram_painting_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/11/enneagram_painting_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/11/enneagram_painting_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/mourning_in_surrealism_in_vivid_colors_0.jpg" alt="mourning_in_surrealism_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">mourning_in_surrealism_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2017/11/mourning_in_surrealism_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2017/11/mourning_in_surrealism_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_2.jpg" alt="characters_in_therapy_in_the_style_of_surrealism_2.jpg" loading="lazy">
 <div class="gallery-path">characters_in_therapy_in_the_style_of_surrealism_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_6.jpg" alt="psychotherapy_in_the_style_of_surrealism_6.jpg" loading="lazy">
 <div class="gallery-path">psychotherapy_in_the_style_of_surrealism_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/04/dreamwork_in_surreal_painting_1.jpg" alt="dreamwork_in_surreal_painting_1.jpg" loading="lazy">
 <div class="gallery-path">dreamwork_in_surreal_painting_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2018/04/dreamwork_in_surreal_painting_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2018/04/dreamwork_in_surreal_painting_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_3.jpg" alt="dreams_in_the_style_of_surrealism_3.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_4.jpg" alt="dreams_in_the_style_of_surrealism_4.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_6.jpg" alt="dreams_in_the_style_of_surrealism_6.jpg" loading="lazy">
 <div class="gallery-path">dreams_in_the_style_of_surrealism_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_0.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_2.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_3.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_4.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_5.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_6.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_7.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_0.jpg" alt="couples_therapy_in_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">couples_therapy_in_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_6.jpg" alt="couples_therapy_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">couples_therapy_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/11/couples_therapy_in_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_1.jpg" alt="a_woman_therapist_surreal_painting_1.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_2.jpg" alt="a_woman_therapist_surreal_painting_2.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_3.jpg" alt="a_woman_therapist_surreal_painting_3.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_4.jpg" alt="a_woman_therapist_surreal_painting_4.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_5.jpg" alt="a_woman_therapist_surreal_painting_5.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_6.jpg" alt="a_woman_therapist_surreal_painting_6.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_7.jpg" alt="a_woman_therapist_surreal_painting_7.jpg" loading="lazy">
 <div class="gallery-path">a_woman_therapist_surreal_painting_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_0.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_0.jpg" loading="lazy">
 <div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_4.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_4.jpg" loading="lazy">
 <div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__0.jpg" alt="forbidden_fruit_in_surrealism__0.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__1.jpg" alt="forbidden_fruit_in_surrealism__1.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__2.jpg" alt="forbidden_fruit_in_surrealism__2.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__3.jpg" alt="forbidden_fruit_in_surrealism__3.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__4.jpg" alt="forbidden_fruit_in_surrealism__4.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__6.jpg" alt="forbidden_fruit_in_surrealism__6.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__7.jpg" alt="forbidden_fruit_in_surrealism__7.jpg" loading="lazy">
 <div class="gallery-path">forbidden_fruit_in_surrealism__7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychoanalysis_surreal_painting_2.jpg" alt="psychoanalysis_surreal_painting_2.jpg" loading="lazy">
 <div class="gallery-path">psychoanalysis_surreal_painting_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/psychoanalysis_surreal_painting_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/psychoanalysis_surreal_painting_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/sigmund_freud_treatment_surrealistic_in_vivid_colors_7.jpg" alt="sigmund_freud_treatment_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">sigmund_freud_treatment_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/sigmund_freud_treatment_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/sigmund_freud_treatment_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_3.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_6.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_7.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_1.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_1.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_2.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_2.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_4.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_4.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_5.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_5.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_6.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_6.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_7.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_film_noir_7.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_film_noir_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_film_noir_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_3.jpg" alt="two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_3.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg" alt="two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg" alt="two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg" alt="two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5-1.jpg" alt="two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5-1.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg" alt="two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg" alt="two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg" loading="lazy">
 <div class="gallery-path">two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_7.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_3-1.jpg" alt="dreamwork_in_surreal_painting_3-1.jpg" loading="lazy">
 <div class="gallery-path">dreamwork_in_surreal_painting_3-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_3-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_3-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_4-1.jpg" alt="dreamwork_in_surreal_painting_4-1.jpg" loading="lazy">
 <div class="gallery-path">dreamwork_in_surreal_painting_4-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_4-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_4-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_5-1.jpg" alt="dreamwork_in_surreal_painting_5-1.jpg" loading="lazy">
 <div class="gallery-path">dreamwork_in_surreal_painting_5-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_5-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_5-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_6-1.jpg" alt="dreamwork_in_surreal_painting_6-1.jpg" loading="lazy">
 <div class="gallery-path">dreamwork_in_surreal_painting_6-1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_6-1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_6-1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/gabor_mate_with_sia_silhouette_as_surrealistic_in_vivid_colors_0.jpg" alt="gabor_mate_with_sia_silhouette_as_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">gabor_mate_with_sia_silhouette_as_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/gabor_mate_with_sia_silhouette_as_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/gabor_mate_with_sia_silhouette_as_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_3.jpg" alt="gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_4.jpg" alt="gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
 <div class="gallery-path">gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_0.jpg" alt="homeostasis_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_3.jpg" alt="homeostasis_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/mourning_and_healing_surrealistic_in_vivid_colors_3.jpg" alt="mourning_and_healing_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">mourning_and_healing_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/mourning_and_healing_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/mourning_and_healing_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/psychotherapy_in_the_style_of_surrealism_0.jpg" alt="psychotherapy_in_the_style_of_surrealism_0.jpg" loading="lazy">
 <div class="gallery-path">psychotherapy_in_the_style_of_surrealism_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/psychotherapy_in_the_style_of_surrealism_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/psychotherapy_in_the_style_of_surrealism_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_4.jpg" alt="self_object_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
 <div class="gallery-path">self_object_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_0.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_1.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_2.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_3.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_6.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_7.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_4.jpg" alt="a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_4.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_0.jpg" alt="a_picture_of_two_separate_people_in_an_environment_in_surrealism_0.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_in_an_environment_in_surrealism_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_1.jpg" alt="a_picture_of_two_separate_people_in_an_environment_in_surrealism_1.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_in_an_environment_in_surrealism_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_in_an_environment_in_surrealism_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_0.jpg" alt="a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_0.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_1.jpg" alt="a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_1.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_3.jpg" alt="a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_3.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_4.jpg" alt="a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_4.jpg" loading="lazy">
 <div class="gallery-path">a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/a_picture_of_two_separate_people_talking_to_each_other_in_an_environment_in_surrealism_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_3.jpg" alt="cycles_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">cycles_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_6.jpg" alt="cycles_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">cycles_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_7.jpg" alt="cycles_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">cycles_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_1.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_3.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_4.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_5.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_6.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_7.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_1.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_1.jpg" loading="lazy">
 <div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_5.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_5.jpg" loading="lazy">
 <div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_6.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_6.jpg" loading="lazy">
 <div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_8.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_8.jpg" loading="lazy">
 <div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_8.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_8.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_8.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_0.jpg" alt="homeostasis_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_0.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_0.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_1.jpg" alt="homeostasis_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_2.jpg" alt="homeostasis_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_2.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_2.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_3.jpg" alt="homeostasis_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_5.jpg" alt="homeostasis_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_5.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_5.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_6.jpg" alt="homeostasis_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/teams_and_group_surrealistic_in_vivid_colors_7.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/teams_and_group_surrealistic_in_vivid_colors_7.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/teams_and_group_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_1.jpg" alt="treatment_in_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
 <div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_1.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_1.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_3.jpg" alt="treatment_in_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
 <div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_3.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_3.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_4.jpg" alt="treatment_in_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
 <div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_4.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_4.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_6.jpg" alt="treatment_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
 <div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_6.jpg</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_6.jpg</code></div>
 </div>
 <div class="gallery-item">
 <img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_7.jpg" alt="treatment_in_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
 <div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">Copy this path:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-</div>
-<h2>Already Assigned (96 images)</h2>
-<div class="gallery">
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg" alt="composer_on_the_piano_in_surrealism_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">composer_on_the_piano_in_surrealism_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_3.jpg" alt="dreams_in_the_style_of_surrealism_3.jpg" loading="lazy">
-<div class="gallery-path">dreams_in_the_style_of_surrealism_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_5.jpg" alt="dreams_in_the_style_of_surrealism_5.jpg" loading="lazy">
-<div class="gallery-path">dreams_in_the_style_of_surrealism_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_6.jpg" alt="dreams_in_the_style_of_surrealism_6.jpg" loading="lazy">
-<div class="gallery-path">dreams_in_the_style_of_surrealism_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/dreamwork_in_surreal_painting_3.jpg" alt="dreamwork_in_surreal_painting_3.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/dreamwork_in_surreal_painting_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/05/psychotherapy.jpg" alt="psychotherapy.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/05/psychotherapy.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/control_in_surrealism_in_vivid_colors_1.jpg" alt="control_in_surrealism_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">control_in_surrealism_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/control_in_surrealism_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/control_in_surrealism_in_vivid_colors_3.jpg" alt="control_in_surrealism_in_vivid_colors_3.jpg" loading="lazy">
-<div class="gallery-path">control_in_surrealism_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/control_in_surrealism_in_vivid_colors_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/mourning_and_healing_surrealistic_in_vivid_colors_1.jpg" alt="mourning_and_healing_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">mourning_and_healing_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/mourning_and_healing_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/mourning_in_surrealism_in_vivid_colors_7.jpg" alt="mourning_in_surrealism_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">mourning_in_surrealism_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/mourning_in_surrealism_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_3.jpg" alt="narcissism_in_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
-<div class="gallery-path">narcissism_in_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_4.jpg" alt="narcissism_in_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">narcissism_in_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_5.jpg" alt="narcissism_in_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">narcissism_in_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_6.jpg" alt="narcissism_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">narcissism_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/11/teddybear_in_surrealism_in_vivid_colors_3.jpg" alt="teddybear_in_surrealism_in_vivid_colors_3.jpg" loading="lazy">
-<div class="gallery-path">teddybear_in_surrealism_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/11/teddybear_in_surrealism_in_vivid_colors_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/12/couples_therapy_in_surrealistic_in_vivid_colors_6.jpg" alt="couples_therapy_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">couples_therapy_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/12/couples_therapy_in_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_4.jpg" alt="dialogue_in_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_6.jpg" alt="dialogue_in_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_7.jpg" alt="dialogue_in_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_4.jpg" alt="characters_in_therapy_in_the_style_of_surrealism_4.jpg" loading="lazy">
-<div class="gallery-path">characters_in_therapy_in_the_style_of_surrealism_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_1.jpg" alt="psychotherapy_in_the_style_of_surrealism_1.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_in_the_style_of_surrealism_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_5.jpg" alt="psychotherapy_in_the_style_of_surrealism_5.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_in_the_style_of_surrealism_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/04/dreamwork_in_surreal_painting_5.jpg" alt="dreamwork_in_surreal_painting_5.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2018/04/dreamwork_in_surreal_painting_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2018/12/dialogue_in_the_style_of_surrealism_6.jpg" alt="dialogue_in_the_style_of_surrealism_6.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_the_style_of_surrealism_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2018/12/dialogue_in_the_style_of_surrealism_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/01/dreamwork_in_surreal_painting_6.jpg" alt="dreamwork_in_surreal_painting_6.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/01/dreamwork_in_surreal_painting_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/01/garden_with_flowers_in_the_style_of_surrealism_7.jpg" alt="garden_with_flowers_in_the_style_of_surrealism_7.jpg" loading="lazy">
-<div class="gallery-path">garden_with_flowers_in_the_style_of_surrealism_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/01/garden_with_flowers_in_the_style_of_surrealism_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_0.jpg" alt="dreams_in_the_style_of_surrealism_0.jpg" loading="lazy">
-<div class="gallery-path">dreams_in_the_style_of_surrealism_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_1.jpg" alt="teams_and_group_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">teams_and_group_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_0.jpg" alt="a_woman_therapist_surreal_painting_0.jpg" loading="lazy">
-<div class="gallery-path">a_woman_therapist_surreal_painting_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/12/a_woman_therapist_surreal_painting_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/psychotherapy_in_surrealism_vivid_colours__5.jpg" alt="psychotherapy_in_surrealism_vivid_colours__5.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_in_surrealism_vivid_colours__5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/12/psychotherapy_in_surrealism_vivid_colours__5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2019/12/psychotherapy_in_the_style_of_surrealism_0.jpg" alt="psychotherapy_in_the_style_of_surrealism_0.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_in_the_style_of_surrealism_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2019/12/psychotherapy_in_the_style_of_surrealism_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_0.jpg" alt="dialogue_in_the_style_of_surrealism_0.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_the_style_of_surrealism_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_2.jpg" alt="dialogue_in_the_style_of_surrealism_2.jpg" loading="lazy">
-<div class="gallery-path">dialogue_in_the_style_of_surrealism_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/a_woman_therapist_surreal_painting_6.jpg" alt="a_woman_therapist_surreal_painting_6.jpg" loading="lazy">
-<div class="gallery-path">a_woman_therapist_surreal_painting_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/a_woman_therapist_surreal_painting_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_4.jpg" alt="characters_in_therapy_midcentury_modern_4.jpg" loading="lazy">
-<div class="gallery-path">characters_in_therapy_midcentury_modern_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_7.jpg" alt="characters_in_therapy_midcentury_modern_7.jpg" loading="lazy">
-<div class="gallery-path">characters_in_therapy_midcentury_modern_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_1.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_1.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_2.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_2.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_3.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_3.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_5.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_5.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_6.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_6.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_7.jpg" alt="dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_7.jpg" loading="lazy">
-<div class="gallery-path">dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/dialogue_therapy_with_therapist_in_surrealistic_in_vivid_colours_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg" alt="forbidden_fruit_in_surrealism__5.jpg" loading="lazy">
-<div class="gallery-path">forbidden_fruit_in_surrealism__5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/here_and_now_surreal_painting_2.jpg" alt="here_and_now_surreal_painting_2.jpg" loading="lazy">
-<div class="gallery-path">here_and_now_surreal_painting_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/here_and_now_surreal_painting_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/intersubjectivity_surrealistic_in_vivid_colors_1.jpg" alt="intersubjectivity_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">intersubjectivity_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/intersubjectivity_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychotherapist_and_client_surrealistic_in_vivid_colors_2.jpg" alt="psychotherapist_and_client_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">psychotherapist_and_client_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/psychotherapist_and_client_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychotherapist_and_client_surrealistic_in_vivid_colors_7.jpg" alt="psychotherapist_and_client_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">psychotherapist_and_client_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/psychotherapist_and_client_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_2.jpg" alt="psychotherapy_as_medicine_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_as_medicine_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg" alt="psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg" alt="psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/sigmund_freud_treatment_surrealistic_in_vivid_colors_2.jpg" alt="sigmund_freud_treatment_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">sigmund_freud_treatment_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/sigmund_freud_treatment_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_0.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_1.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_2.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_4.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_5.jpg" alt="therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/therapeutic_autoethnography_journal_as_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_0.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_1.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_2.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_3.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_5.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_6.jpg" alt="writings_and_journals_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">writings_and_journals_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2022/12/writings_and_journals_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg" alt="1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg" loading="lazy">
-<div class="gallery-path">1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/body_awareness_body_scan_in_surrealistic_in_vivid_colors_0.jpg" alt="body_awareness_body_scan_in_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">body_awareness_body_scan_in_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/body_awareness_body_scan_in_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/body_awareness_body_scan_in_surrealistic_in_vivid_colors_2.jpg" alt="body_awareness_body_scan_in_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">body_awareness_body_scan_in_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/body_awareness_body_scan_in_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/chinese_five_elements_in_surrealism_in_vivid_colors_1.jpg" alt="chinese_five_elements_in_surrealism_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">chinese_five_elements_in_surrealism_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/chinese_five_elements_in_surrealism_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_1-1.jpg" alt="dreamwork_in_surreal_painting_1-1.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_1-1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_1-1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_2-1.jpg" alt="dreamwork_in_surreal_painting_2-1.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_2-1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_2-1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/dreamwork_in_surreal_painting_7-1.jpg" alt="dreamwork_in_surreal_painting_7-1.jpg" loading="lazy">
-<div class="gallery-path">dreamwork_in_surreal_painting_7-1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/dreamwork_in_surreal_painting_7-1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_2.jpg" alt="gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/gabor_mate_with_singer_sia_silhouette_as_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_6.jpg" alt="homeostasis_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/homeostasis_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/outsider_in_surrealistic_in_vivid_colors_7.jpg" alt="outsider_in_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">outsider_in_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/outsider_in_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_0.jpg" alt="self_object_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">self_object_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_3.jpg" alt="self_object_surrealistic_in_vivid_colors_3.jpg" loading="lazy">
-<div class="gallery-path">self_object_surrealistic_in_vivid_colors_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_5.jpg" alt="self_object_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">self_object_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_6.jpg" alt="self_object_surrealistic_in_vivid_colors_6.jpg" loading="lazy">
-<div class="gallery-path">self_object_surrealistic_in_vivid_colors_6.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/self_object_surrealistic_in_vivid_colors_6.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_4.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_5.jpg" alt="time_and_space_as_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">time_and_space_as_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg" alt="a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg" loading="lazy">
-<div class="gallery-path">a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_1.jpg" alt="cycles_surrealistic_in_vivid_colors_1.jpg" loading="lazy">
-<div class="gallery-path">cycles_surrealistic_in_vivid_colors_1.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_1.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_2.jpg" alt="cycles_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">cycles_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_5.jpg" alt="cycles_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">cycles_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_0.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_2.jpg" alt="figure_and_background_in_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">figure_and_background_in_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_2.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_2.jpg" loading="lazy">
-<div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_3.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_3.jpg" loading="lazy">
-<div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_3.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_3.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg" loading="lazy">
-<div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg" alt="garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg" loading="lazy">
-<div class="gallery-path">garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_4.jpg" alt="homeostasis_surrealistic_in_vivid_colors_4.jpg" loading="lazy">
-<div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_4.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_4.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_7.jpg" alt="homeostasis_surrealistic_in_vivid_colors_7.jpg" loading="lazy">
-<div class="gallery-path">homeostasis_surrealistic_in_vivid_colors_7.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_7.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_0.jpg" alt="treatment_in_surrealistic_in_vivid_colors_0.jpg" loading="lazy">
-<div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_0.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_0.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_2.jpg" alt="treatment_in_surrealistic_in_vivid_colors_2.jpg" loading="lazy">
-<div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_2.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_2.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_5.jpg" alt="treatment_in_surrealistic_in_vivid_colors_5.jpg" loading="lazy">
-<div class="gallery-path">treatment_in_surrealistic_in_vivid_colors_5.jpg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_5.jpg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2024/03/IMG_0339.jpeg" alt="IMG_0339.jpeg" loading="lazy">
-<div class="gallery-path">IMG_0339.jpeg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2024/03/IMG_0339.jpeg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2024/05/677061BC-1233-40D6-90CF-195B378159B3.jpeg" alt="677061BC-1233-40D6-90CF-195B378159B3.jpeg" loading="lazy">
-<div class="gallery-path">677061BC-1233-40D6-90CF-195B378159B3.jpeg</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2024/05/677061BC-1233-40D6-90CF-195B378159B3.jpeg</code></div>
-</div>
-<div class="gallery-item" style="opacity: 0.6;">
-<img src="https://chewhelbig.github.io/nikhelbig/wp-content/uploads/2025/10/IMG_0533.png" alt="IMG_0533.png" loading="lazy">
-<div class="gallery-path">IMG_0533.png</div>
-<div class="gallery-copy">In use:<code>wp-content/uploads/2025/10/IMG_0533.png</code></div>
+<div class="gallery-copy"><code>wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_7.jpg</code></div>
 </div>
 </div>
 </body></html>
