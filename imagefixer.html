@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nikhelbig.at — Image Fixer Tool</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1114;color:#e0e2e7;padding:1.5rem}
+h1{font-size:1.5rem;margin-bottom:.2rem}
+h2{font-size:1.15rem;margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid #2d323b}
+.sub{color:#8b909e;font-size:.82rem;margin-bottom:1.2rem}
+.stats{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.stat{background:#1a1d23;border:1px solid #2d323b;border-radius:8px;padding:.7rem 1rem;min-width:110px}
+.stat .n{font-size:1.6rem;font-weight:700}
+.stat .l{font-size:.65rem;color:#8b909e;text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.stat.ok .n{color:#4ade80}.stat.miss .n{color:#f87171}.stat.avail .n{color:#60a5fa}.stat.unused .n{color:#fbbf24}
+.progress{background:#1a1d23;border-radius:4px;height:5px;margin-bottom:1.5rem;overflow:hidden}
+.progress-bar{height:100%;background:#fbbf24;transition:width .3s;border-radius:4px}
+
+.section-title{font-size:1rem;color:#60a5fa;margin:1.5rem 0 .6rem;display:flex;justify-content:space-between;align-items:baseline}
+.section-count{font-size:.75rem;color:#8b909e}
+
+/* Broken articles list */
+.broken-card{background:#1a1d23;border:1px solid #2d323b;border-left:3px solid #f87171;border-radius:6px;padding:.8rem;margin-bottom:.5rem;display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center}
+.broken-title{font-size:.85rem;font-weight:600}
+.broken-path{font-size:.68rem;color:#f87171;word-break:break-all;margin-top:.15rem}
+.broken-section{font-size:.68rem;color:#8b909e}
+.broken-fix{font-size:.7rem;background:#1e3a2f;color:#4ade80;border:1px solid #2d5a3f;padding:.3rem .6rem;border-radius:4px;cursor:pointer}
+.broken-fix:hover{background:#2d5a3f}
+
+/* Available images gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem;margin-top:.8rem}
+.gal-item{background:#1a1d23;border:1px solid #2d323b;border-radius:5px;overflow:hidden;cursor:pointer;transition:border-color .15s;position:relative}
+.gal-item:hover{border-color:#60a5fa}
+.gal-item.used{opacity:.4}
+.gal-item img{width:100%;height:100px;object-fit:cover;display:block}
+.gal-path{font-size:.55rem;color:#8b909e;padding:.3rem;word-break:break-all;line-height:1.2}
+.gal-badge{position:absolute;top:4px;right:4px;font-size:.55rem;padding:.1rem .35rem;border-radius:8px;background:rgba(0,0,0,.7)}
+.gal-badge.used-badge{color:#4ade80}.gal-badge.unused-badge{color:#fbbf24}
+
+/* Fix modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:100;overflow-y:auto;padding:2rem}
+.modal{background:#1a1d23;border:1px solid #2d323b;border-radius:10px;max-width:700px;margin:0 auto;padding:1.5rem}
+.modal h3{margin-bottom:.8rem;font-size:1rem}
+.modal-close{float:right;background:none;border:none;color:#8b909e;font-size:1.2rem;cursor:pointer}
+.modal-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem;margin:1rem 0}
+.modal-gallery .gal-item{cursor:pointer}
+.modal-gallery .gal-item:hover{border-color:#4ade80}
+.modal-result{background:#111;border:1px solid #2d323b;border-radius:5px;padding:.8rem;margin-top:1rem;font-family:monospace;font-size:.75rem;color:#4ade80;word-break:break-all;display:none}
+.copy-btn{background:#2d5a3f;color:#4ade80;border:1px solid #3d7a5f;padding:.3rem .8rem;border-radius:4px;font-size:.72rem;cursor:pointer;margin-top:.5rem}
+.copy-btn:hover{background:#3d7a5f}
+
+.tab-bar{display:flex;gap:.4rem;margin-bottom:1rem}
+.tab-bar button{background:#1a1d23;border:1px solid #2d323b;color:#8b909e;padding:.5rem 1rem;border-radius:6px;font-size:.8rem;cursor:pointer}
+.tab-bar button.active{border-color:#60a5fa;color:#60a5fa;background:rgba(96,165,250,.1)}
+.tab-content{display:none}.tab-content.active{display:block}
+</style>
+</head>
+<body>
+
+<h1>Image Fixer Tool</h1>
+<p class="sub">This tool scans nikhelbig.at, finds which preview images are broken, shows you all available images, and helps you pick replacements.</p>
+
+<div class="progress"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+<div id="statusMsg" style="font-size:.75rem;color:#fbbf24;margin-bottom:1rem">Scanning images… please wait</div>
+
+<div class="stats">
+  <div class="stat miss"><div class="n" id="nBroken">–</div><div class="l">Broken Previews</div></div>
+  <div class="stat avail"><div class="n" id="nAvail">–</div><div class="l">Images in Repo</div></div>
+  <div class="stat unused"><div class="n" id="nUnused">–</div><div class="l">Unused Images</div></div>
+  <div class="stat ok"><div class="n" id="nWorking">–</div><div class="l">Working Previews</div></div>
+</div>
+
+<div class="tab-bar">
+  <button class="active" data-tab="broken">Broken Previews — Fix These</button>
+  <button data-tab="unused">Unused Images — Available to Assign</button>
+  <button data-tab="all">All Images in Repo</button>
+</div>
+
+<div class="tab-content active" id="tab-broken"></div>
+<div class="tab-content" id="tab-unused"></div>
+<div class="tab-content" id="tab-all"></div>
+
+<!-- Fix modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modalTitle">Pick a replacement image for: ...</h3>
+    <p style="font-size:.75rem;color:#8b909e;margin-bottom:.5rem">Click an image below to select it. Then copy the front matter line to paste into the article's .md file on GitHub.</p>
+    <p style="font-size:.7rem;color:#8b909e" id="modalArticlePath"></p>
+    <div class="modal-gallery" id="modalGallery"></div>
+    <div class="modal-result" id="modalResult"></div>
+    <button class="copy-btn" id="copyBtn" style="display:none" onclick="copyResult()">Copy to clipboard</button>
+  </div>
+</div>
+
+<script>
+const BASE = "https://nikhelbig.at/";
+
+// All image paths that COULD exist (comprehensive list from WP uploads structure)
+// We'll test all of these to find what's actually available
+const ALL_POSSIBLE = [
+  // 2017
+  "wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_3.jpg",
+  "wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg",
+  "wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_6.jpg",
+  "wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg",
+  "wp-content/uploads/2017/05/Screen-Shot-2017-05-30-at-11.43.36.png",
+  "wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg",
+  "wp-content/uploads/2017/06/Character_Analysis_German_edition.jpg",
+  "wp-content/uploads/2017/07/IMG_20170702_124811.jpg",
+  "wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_3.jpg",
+  "wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_5.jpg",
+  "wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_4.jpg",
+  "wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_6.jpg",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.18.12.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.23.16.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.38.57.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-18.51.12.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-18.54.42.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.02.40.png",
+  "wp-content/uploads/2017/12/Screen-Shot-2017-12-11-at-19.29.57.png",
+  "wp-content/uploads/2017/12/Bakhtin-2.png",
+  // 2018
+  "wp-content/uploads/2018/03/illusion-2.png",
+  "wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_1.jpg",
+  "wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_5.jpg",
+  "wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_6.jpg",
+  "wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_4.jpg",
+  "wp-content/uploads/2018/12/dialogue_in_the_style_of_surrealism_6.jpg",
+  // 2019
+  "wp-content/uploads/2019/01/garden_with_flowers_in_the_style_of_surrealism_7.jpg",
+  "wp-content/uploads/2019/05/NICOLE-HELBIG-PRINTING-copy.pdf",
+  "wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_0.jpg",
+  "wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_1.jpg",
+  // 2020
+  "wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_0.jpg",
+  "wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_2.jpg",
+  // 2022
+  "wp-content/uploads/2022/12/freud_office_1.jpg",
+  "wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg",
+  "wp-content/uploads/2022/12/woman_crying_in_expressionism_1.jpg",
+  "wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg",
+  "wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_5.jpg",
+  "wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg",
+  "wp-content/uploads/2022/12/two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg",
+  "wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg",
+  "wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg",
+  "wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg",
+  "wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg",
+  "wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg",
+  "wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_7.jpg",
+  // 2023
+  "wp-content/uploads/2023/01/gestalt_therapy_concept_1.jpg",
+  "wp-content/uploads/2023/01/art_therapy_session_in_the_style_of_watercolor_1.jpg",
+  "wp-content/uploads/2023/01/giovanni_segantini_alps_1.jpg",
+  "wp-content/uploads/2023/01/dreamwork_in_surreal_painting_1-1.jpg",
+  "wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_4.jpg",
+  "wp-content/uploads/2023/01/1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg",
+  "wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg",
+  "wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_2.jpg",
+  "wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_4.jpg",
+  "wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_5.jpg",
+  "wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_7.jpg",
+  "wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_2.jpg",
+  "wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg",
+  "wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg",
+  "wp-content/uploads/2023/02/cycles_surrealistic_in_vivid_colors_2.jpg",
+  // 2024
+  "wp-content/uploads/2024/03/IMG_0339.jpeg",
+  "wp-content/uploads/2024/03/IMG_0346.jpeg",
+  "wp-content/uploads/2024/04/E86E4712-33A8-4A83-AC48-79880F1FF699.jpeg",
+  "wp-content/uploads/2024/05/677061BC-1233-40D6-90CF-195B378159B3.jpeg",
+  "wp-content/uploads/2024/10/man_portrait_in_distress_in_the_style_of_expressionism_bold_bru_1-1024x1024.jpg",
+  "wp-content/uploads/2024/11/books_in_the_style_of_expressionism_2.jpg",
+  // 2025
+  "wp-content/uploads/2025/07/gestalt_psychopathology_cover.jpg",
+  "wp-content/uploads/2025/09/gestalt_therapy_field_theory_abstract_1.jpg",
+  "wp-content/uploads/2025/10/IMG_0533.png",
+];
+
+// Articles with their current image assignments
+const ARTICLES = [
+  {title:"How a Gestalt Approach to Couples Therapy Compares with EFT, Gottman, IFS, Esther Perel",section:"couples-and-family",file:"gestalt-couples-therapy-compared.md",img:"wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg"},
+  {title:"Book: A Gestalt Approach to Couples Therapy",section:"theses-and-publications",file:"book-a-gestalt-approach-to-couples-therapy.md",img:"wp-content/uploads/2025/10/IMG_0533.png"},
+  {title:"How Gestalt Therapy Revolutionises Our Understanding of Psychopathology",section:"gestalt-therapy",file:"gestalt-therapy-revolutionises-psychopathology.md",img:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg"},
+  {title:"Psychodynamic Diagnostic Process: McWilliams",section:"psychotherapy-articles",file:"psychodynamic-diagnostic-process-mcwilliams.md",img:"wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg"},
+  {title:"Assigned Gender Is Not an Introject",section:"psychotherapy-articles",file:"assigned-gender-is-not-an-introject.md",img:"wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_3.jpg"},
+  {title:"Researchers' self-reflection with trauma survivors",section:"theses-and-publications",file:"exploring-the-importance-of-researchers-self-reflection.md",img:"wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_4.jpg"},
+  {title:"Creative Indifference: A Meteorological Metaphor",section:"gestalt-therapy",file:"creative-indifference.md",img:"wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_5.jpg"},
+  {title:"Levinas' Face of the Other",section:"psychotherapy-practice",file:"levinas-face-of-the-other.md",img:"wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg"},
+  {title:"Gestalt Therapy: A Tapestry Woven...",section:"general-psychology",file:"gestalt-therapy-a-tapestry.md",img:"wp-content/uploads/2023/01/gestalt_therapy_concept_1.jpg"},
+  {title:"Daoist Philosophy and Gestalt Therapy",section:"gestalt-therapy",file:"key-ideas-in-daoist-philosophy.md",img:"wp-content/uploads/2024/05/677061BC-1233-40D6-90CF-195B378159B3.jpeg"},
+  {title:"Kurt Goldstein's Influence on Fritz Perls",section:"general-psychology",file:"kurt-goldsteins-influence.md",img:"wp-content/uploads/2022/12/freud_office_1.jpg"},
+  {title:"Alienation: Philosophical Roots",section:"gestalt-therapy",file:"alienation-philosophical-roots.md",img:"wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_7.jpg"},
+  {title:"Wilhelm Reich's Influence on Gestalt Therapy",section:"gestalt-therapy",file:"wilhelm-reichs-influence.md",img:"wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_0.jpg"},
+  {title:"Early Conceptualisation of Introjection",section:"gestalt-therapy",file:"early-conceptualisation-of-introjection.md",img:"wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_2.jpg"},
+  {title:"Erving Polster (1922-2024)",section:"gestalt-therapy",file:"erving-polster.md",img:"wp-content/uploads/2023/01/dreamwork_in_surreal_painting_1-1.jpg"},
+  {title:"Karen Horney's Influence on Perls",section:"gestalt-therapy",file:"karen-horney.md",img:"wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_2.jpg"},
+  {title:"Integration through Experimentation",section:"gestalt-therapy",file:"integration-through-experimentation.md",img:"wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg"},
+  {title:"Francesetti: Gestalt Therapy Engine of Change",section:"gestalt-therapy",file:"francesetti-engine-of-change.md",img:"wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg"},
+  {title:"Treatment of CSBD: Gestalt Therapy",section:"psychotherapy-articles",file:"treatment-of-csbd.md",img:"wp-content/uploads/2024/10/man_portrait_in_distress_in_the_style_of_expressionism_bold_bru_1-1024x1024.jpg"},
+  {title:"Paradoxical Theory of Change",section:"gestalt-therapy",file:"paradoxical-theory-of-change.md",img:"wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_1.jpg"},
+  {title:"Fritz Perls: What is Gestalt? 1970",section:"gestalt-therapy",file:"fritz-perls-what-is-gestalt-1970.md",img:"wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg"},
+  {title:"Fertile Void, Creative Indifference",section:"gestalt-therapy",file:"amendt-lyon-creative-indifference.md",img:"wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_0.jpg"},
+  {title:"Short Definitions of Relatedness",section:"gestalt-therapy",file:"petzold-short-definitions.md",img:"wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_2.jpg"},
+  {title:"Notes on Field Theory",section:"gestalt-therapy",file:"notes-on-field-theory.md",img:"wp-content/uploads/2019/01/garden_with_flowers_in_the_style_of_surrealism_7.jpg"},
+  {title:"Diagnosis of OCD from Gestalt Perspective",section:"gestalt-therapy",file:"diagnosis-of-ocd.md",img:"wp-content/uploads/2018/12/dialogue_in_the_style_of_surrealism_6.jpg"},
+  {title:"Gestalt Therapy: Action not Simply Talk",section:"gestalt-therapy",file:"gestalt-therapy-action-not-talk.md",img:"wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_4.jpg"},
+  {title:"Levels of Gestalt Therapy Treatment",section:"gestalt-therapy",file:"levels-of-treatment.md",img:"wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_5.jpg"},
+  {title:"Integrating Kernberg's Model with Gestalt",section:"gestalt-therapy",file:"integrating-kernbergs-model.md",img:"wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_1.jpg"},
+  {title:"Dialogical Self & Contact Cycle",section:"gestalt-therapy",file:"illustration-dialogical-self.md",img:"wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_4.jpg"},
+  {title:"5 Phases of Therapeutic Change",section:"gestalt-therapy",file:"gestalt-theory-5-phases.md",img:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_3.jpg"},
+  {title:"Fritz Perls: Working with Dreams",section:"gestalt-therapy",file:"fritz-perls-working-with-dreams.md",img:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_6.jpg"},
+  {title:"Bobby McFerrin explains Gestalt Theory",section:"gestalt-therapy",file:"bobby-mcferrin-gestalt-theory.md",img:"wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg"},
+  {title:"PHG: Gestalt Therapy (1951)",section:"gestalt-therapy-books",file:"gestalt-therapy-perls-hefferline-and-goodman-1951.md",img:"wp-content/uploads/2024/03/IMG_0339.jpeg"},
+  {title:"Gestalt Therapy Verbatim (1969)",section:"gestalt-therapy-books",file:"gestalt-therapy-verbatim-perls-1969-book-review.md",img:"wp-content/uploads/2023/01/1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg"},
+  {title:"Art in Psychosocial Care",section:"art",file:"art-in-psychosocial-care.md",img:"wp-content/uploads/2023/01/art_therapy_session_in_the_style_of_watercolor_1.jpg"},
+  {title:"Psychoanalysis and Segantini Art",section:"art",file:"psychoanalysis-and-segantini-art.md",img:"wp-content/uploads/2023/01/giovanni_segantini_alps_1.jpg"},
+  {title:"Grief vs Depression",section:"diagnosis",file:"differentiation-grief-and-depression.md",img:"wp-content/uploads/2022/12/woman_crying_in_expressionism_1.jpg"},
+  {title:"Gestalt Therapy Resource Page",section:"(standalone)",file:"gestalt-therapy-resource-page.md",img:"wp-content/uploads/2018/03/illusion-2.png"},
+  {title:"Naranjo: Great Composers and Enneagram",section:"personality",file:"naranjo-the-great-composers-and-the-enneagram.md",img:"wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg"},
+];
+
+// State
+let availableImages = [];
+let brokenArticles = [];
+let usedImages = new Set();
+let currentFixArticle = null;
+
+// Test all images
+let tested = 0;
+const total = ALL_POSSIBLE.length;
+
+function testImages() {
+  ALL_POSSIBLE.forEach((path, i) => {
+    const img = new Image();
+    const url = BASE + path;
+    img.onload = () => { availableImages.push(path); tested++; update(); };
+    img.onerror = () => { tested++; update(); };
+    setTimeout(() => { img.src = url; }, i * 50);
+  });
+}
+
+function update() {
+  document.getElementById('pbar').style.width = ((tested/total)*100)+'%';
+  if (tested < total) {
+    document.getElementById('statusMsg').textContent = `Scanning… ${tested}/${total} images tested`;
+    return;
+  }
+  document.getElementById('pbar').style.background = '#4ade80';
+  document.getElementById('statusMsg').textContent = `Done! ${availableImages.length} images found in repo.`;
+
+  // Determine which articles have broken images
+  const availSet = new Set(availableImages);
+  ARTICLES.forEach(a => {
+    if (a.img && availSet.has(a.img)) {
+      usedImages.add(a.img);
+    } else {
+      brokenArticles.push(a);
+    }
+  });
+
+  const unusedImages = availableImages.filter(p => !usedImages.has(p));
+
+  document.getElementById('nBroken').textContent = brokenArticles.length;
+  document.getElementById('nAvail').textContent = availableImages.length;
+  document.getElementById('nUnused').textContent = unusedImages.length;
+  document.getElementById('nWorking').textContent = ARTICLES.length - brokenArticles.length;
+
+  renderBroken();
+  renderUnused(unusedImages);
+  renderAll(availSet);
+}
+
+function renderBroken() {
+  const el = document.getElementById('tab-broken');
+  if (brokenArticles.length === 0) {
+    el.innerHTML = '<p style="color:#4ade80;padding:1rem">All preview images are working!</p>';
+    return;
+  }
+  let html = `<p style="font-size:.8rem;color:#8b909e;margin-bottom:1rem">These ${brokenArticles.length} articles have preview images that don't exist in the repo. Click "Fix" to pick a replacement from available images.</p>`;
+  brokenArticles.forEach((a, i) => {
+    html += `<div class="broken-card">
+      <div>
+        <div class="broken-title">${a.title}</div>
+        <div class="broken-section">content/${a.section}/${a.file}</div>
+        <div class="broken-path">Current: ${a.img || '(none)'}</div>
+      </div>
+      <button class="broken-fix" onclick="openModal(${i})">Fix →</button>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderUnused(unused) {
+  const el = document.getElementById('tab-unused');
+  if (unused.length === 0) {
+    el.innerHTML = '<p style="color:#fbbf24;padding:1rem">All available images are assigned to articles.</p>';
+    return;
+  }
+  let html = `<p style="font-size:.8rem;color:#8b909e;margin-bottom:1rem">These ${unused.length} images exist in the repo but aren't assigned to any article preview. You can use them as replacements.</p><div class="gallery">`;
+  unused.forEach(p => {
+    html += `<div class="gal-item">
+      <img src="${BASE}${p}" loading="lazy">
+      <div class="gal-path">${p.split('/').slice(-2).join('/')}</div>
+    </div>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function renderAll(availSet) {
+  const el = document.getElementById('tab-all');
+  let html = `<p style="font-size:.8rem;color:#8b909e;margin-bottom:1rem">All ${availableImages.length} images found in the repo.</p><div class="gallery">`;
+  availableImages.forEach(p => {
+    const used = usedImages.has(p);
+    html += `<div class="gal-item ${used?'used':''}">
+      <img src="${BASE}${p}" loading="lazy">
+      <span class="gal-badge ${used?'used-badge':'unused-badge'}">${used?'in use':'unused'}</span>
+      <div class="gal-path">${p.split('/').slice(-2).join('/')}</div>
+    </div>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function openModal(idx) {
+  currentFixArticle = brokenArticles[idx];
+  document.getElementById('modalTitle').textContent = 'Pick image for: ' + currentFixArticle.title;
+  document.getElementById('modalArticlePath').textContent = 'File: content/' + currentFixArticle.section + '/' + currentFixArticle.file;
+  document.getElementById('modalResult').style.display = 'none';
+  document.getElementById('copyBtn').style.display = 'none';
+
+  const gal = document.getElementById('modalGallery');
+  gal.innerHTML = '';
+  availableImages.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'gal-item';
+    div.innerHTML = `<img src="${BASE}${p}" loading="lazy"><div class="gal-path">${p.split('/').slice(-2).join('/')}</div>`;
+    div.onclick = () => selectImage(p);
+    gal.appendChild(div);
+  });
+
+  document.getElementById('modal').style.display = 'block';
+}
+
+function selectImage(path) {
+  const result = document.getElementById('modalResult');
+  result.style.display = 'block';
+  result.textContent = `image: "${path}"`;
+  document.getElementById('copyBtn').style.display = 'inline-block';
+  result.dataset.text = `image: "${path}"`;
+}
+
+function copyResult() {
+  const text = document.getElementById('modalResult').dataset.text;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('copyBtn').textContent = '✓ Copied!';
+    setTimeout(() => { document.getElementById('copyBtn').textContent = 'Copy to clipboard'; }, 1500);
+  });
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// Tab switching
+document.querySelectorAll('.tab-bar button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-bar button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+testImages();
+</script>
+</body>
+</html>
