@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nikhelbig.at — Image Diagnostic</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #111; color: #e0e0e0; padding: 1.5rem; }
+h1 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+.sub { color: #888; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.stats { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.stat { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 0.8rem 1.2rem; min-width: 120px; }
+.stat .n { font-size: 1.8rem; font-weight: 700; }
+.stat .l { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
+.stat.ok .n { color: #4ade80; }
+.stat.miss .n { color: #f87171; }
+.stat.test .n { color: #fbbf24; }
+.stat.total .n { color: #60a5fa; }
+
+.filters { margin-bottom: 1rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.filters button { background: #1a1a1a; border: 1px solid #333; color: #ccc; padding: 0.4rem 0.9rem; border-radius: 5px; font-size: 0.8rem; cursor: pointer; }
+.filters button.active { border-color: #60a5fa; color: #60a5fa; background: rgba(96,165,250,0.1); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem; }
+.card { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; overflow: hidden; }
+.card.ok { border-left: 3px solid #4ade80; }
+.card.miss { border-left: 3px solid #f87171; }
+.card.testing { border-left: 3px solid #fbbf24; }
+.card-img { width: 100%; height: 140px; object-fit: cover; background: #222; display: block; }
+.card-img.broken { display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 0.75rem; height: 80px; }
+.card-body { padding: 0.6rem; }
+.card-title { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-path { font-size: 0.65rem; color: #888; word-break: break-all; line-height: 1.3; }
+.card-type { font-size: 0.6rem; padding: 0.15rem 0.4rem; border-radius: 10px; display: inline-block; margin-top: 0.3rem; }
+.card-type.preview { background: rgba(96,165,250,0.15); color: #60a5fa; }
+.card-type.inline { background: rgba(167,139,250,0.15); color: #a78bfa; }
+.card-status { font-size: 0.65rem; font-weight: 600; margin-top: 0.3rem; }
+.card-status.ok { color: #4ade80; }
+.card-status.miss { color: #f87171; }
+.card-status.testing { color: #fbbf24; }
+.card-action { font-size: 0.65rem; color: #f97316; margin-top: 0.2rem; }
+.hidden { display: none !important; }
+.progress { background: #222; border-radius: 4px; height: 6px; margin-bottom: 1.5rem; overflow: hidden; }
+.progress-bar { height: 100%; background: #fbbf24; transition: width 0.3s; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<h1>Image Diagnostic — nikhelbig.at</h1>
+<p class="sub">Testing every image referenced in article front matter. Preview = hero/thumbnail image. Inline = image used inside article body.</p>
+
+<div class="progress"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+
+<div class="stats">
+  <div class="stat total"><div class="n" id="nTotal">0</div><div class="l">Total Images</div></div>
+  <div class="stat ok"><div class="n" id="nOk">0</div><div class="l">Working</div></div>
+  <div class="stat miss"><div class="n" id="nMiss">0</div><div class="l">Missing (404)</div></div>
+  <div class="stat test"><div class="n" id="nTest">0</div><div class="l">Testing…</div></div>
+</div>
+
+<div class="filters">
+  <button class="active" data-f="all">All</button>
+  <button data-f="ok">Working</button>
+  <button data-f="miss">Missing</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+// All image references extracted from articles
+const IMAGES = [
+  // === HOMEPAGE VISIBLE ===
+  {path:"wp-content/uploads/2023/02/a_picture_of_two_people_talking_to_each_other_in_an_environment_connect_together_in_surrealism_0.jpg", article:"Gestalt Couples Therapy Compared", type:"preview"},
+  {path:"wp-content/uploads/2025/10/IMG_0533.png", article:"Book: A Gestalt Approach to Couples Therapy", type:"preview"},
+  {path:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_4.jpg", article:"Gestalt Therapy Revolutionises Psychopathology", type:"preview"},
+  {path:"wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_7.jpg", article:"Psychodynamic Diagnostic Process: McWilliams", type:"preview"},
+  {path:"wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_3.jpg", article:"Assigned Gender Is Not an Introject", type:"preview"},
+  {path:"wp-content/uploads/2023/01/time_and_space_as_surrealistic_in_vivid_colors_4.jpg", article:"Researchers' self-reflection with trauma survivors", type:"preview"},
+  {path:"wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_5.jpg", article:"Creative Indifference: A Meteorological Metaphor", type:"preview"},
+  {path:"wp-content/uploads/2017/06/homeostasis_surrealistic_in_vivid_colors_1.jpg", article:"Levinas' Face of the Other", type:"preview"},
+  {path:"wp-content/uploads/2023/01/gestalt_therapy_concept_1.jpg", article:"Gestalt Therapy: A Tapestry Woven...", type:"preview"},
+  {path:"wp-content/uploads/2024/05/677061BC-1233-40D6-90CF-195B378159B3.jpeg", article:"Daoist Philosophy and Gestalt Therapy", type:"preview"},
+  {path:"wp-content/uploads/2022/12/freud_office_1.jpg", article:"Kurt Goldstein's Influence on Fritz Perls", type:"preview"},
+  {path:"wp-content/uploads/2023/02/homeostasis_surrealistic_in_vivid_colors_7.jpg", article:"Alienation: Philosophical Roots", type:"preview"},
+
+  // === GESTALT THERAPY ===
+  {path:"wp-content/uploads/2019/07/dreams_in_the_style_of_surrealism_0.jpg", article:"Wilhelm Reich's Influence on Gestalt Therapy", type:"preview"},
+  {path:"wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_2.jpg", article:"Early Conceptualisation of Introjection", type:"preview"},
+  {path:"wp-content/uploads/2023/01/dreamwork_in_surreal_painting_1-1.jpg", article:"Erving Polster (1922-2024)", type:"preview"},
+  {path:"wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_6.jpg", article:"Kurt Goldstein's Influence", type:"preview"},
+  {path:"wp-content/uploads/2023/02/figure_and_background_in_surrealistic_in_vivid_colors_2.jpg", article:"Karen Horney's Influence on Perls", type:"preview"},
+  {path:"wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_7.jpg", article:"Integration through Experimentation", type:"preview"},
+  {path:"wp-content/uploads/2023/02/garden_of_eden_surrealistic_in_vivid_colors_vkZK3oVgXCCX7SiB7mvO_4.jpg", article:"Francesetti: Gestalt Therapy Engine of Change", type:"preview"},
+  {path:"wp-content/uploads/2017/11/narcissism_in_surrealistic_in_vivid_colors_5.jpg", article:"Treatment of CSBD: Gestalt Therapy", type:"preview"},
+  {path:"wp-content/uploads/2019/07/teams_and_group_surrealistic_in_vivid_colors_1.jpg", article:"Gestalt Therapy: Paradoxical Theory of Change", type:"preview"},
+  {path:"wp-content/uploads/2022/12/forbidden_fruit_in_surrealism__5.jpg", article:"Fritz Perls: What is Gestalt? 1970", type:"preview"},
+  {path:"wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_0.jpg", article:"Fertile Void, Creative Indifference", type:"preview"},
+  {path:"wp-content/uploads/2020/09/dialogue_in_the_style_of_surrealism_2.jpg", article:"Short Definitions of Relatedness", type:"preview"},
+  {path:"wp-content/uploads/2019/01/garden_with_flowers_in_the_style_of_surrealism_7.jpg", article:"Notes on Field Theory in Gestalt Therapy", type:"preview"},
+  {path:"wp-content/uploads/2018/12/dialogue_in_the_style_of_surrealism_6.jpg", article:"Diagnosis of OCD from Gestalt Perspective", type:"preview"},
+  {path:"wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_6.jpg", article:"Resnick: Gestalt Therapy Principles", type:"preview"},
+  {path:"wp-content/uploads/2018/03/characters_in_therapy_in_the_style_of_surrealism_4.jpg", article:"Gestalt Therapy: Action not Simply Talk", type:"preview"},
+  {path:"wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_5.jpg", article:"Levels of Gestalt Therapy Treatment", type:"preview"},
+  {path:"wp-content/uploads/2018/03/psychotherapy_in_the_style_of_surrealism_1.jpg", article:"Integrating Kernberg's Model with Gestalt", type:"preview"},
+  {path:"wp-content/uploads/2017/12/dialogue_in_surrealistic_in_vivid_colors_4.jpg", article:"Illustration: Dialogical Self & Contact Cycle", type:"preview"},
+  {path:"wp-content/uploads/2022/12/characters_in_therapy_midcentury_modern_7.jpg", article:"Fritz Perls: Quotes on Therapy in Groups", type:"preview"},
+  {path:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_3.jpg", article:"Gestalt Theory: 5 Phases of Change", type:"preview"},
+  {path:"wp-content/uploads/2017/05/dreams_in_the_style_of_surrealism_6.jpg", article:"Fritz Perls: Working with Dreams", type:"preview"},
+  {path:"wp-content/uploads/2017/05/composer_on_the_piano_in_surrealism_vivid_colors_4.jpg", article:"Bobby McFerrin explains Gestalt Theory", type:"preview"},
+
+  // === GESTALT THERAPY BOOKS ===
+  {path:"wp-content/uploads/2024/03/IMG_0339.jpeg", article:"PHG: Gestalt Therapy (1951)", type:"preview"},
+  {path:"wp-content/uploads/2023/01/1FF0865D-EA7F-4505-A979-CC7FBD72295F.jpeg", article:"Gestalt Therapy Verbatim (1969)", type:"preview"},
+
+  // === ART ===
+  {path:"wp-content/uploads/2024/11/books_in_the_style_of_expressionism_2.jpg", article:"Your Inner Child in Children's Stories", type:"preview"},
+  {path:"wp-content/uploads/2023/01/art_therapy_session_in_the_style_of_watercolor_1.jpg", article:"Art in Psychosocial Care", type:"preview"},
+  {path:"wp-content/uploads/2023/01/giovanni_segantini_alps_1.jpg", article:"Psychoanalysis and Segantini Art", type:"preview"},
+
+  // === PSYCHOTHERAPY ARTICLES ===
+  {path:"wp-content/uploads/2025/09/gestalt_therapy_field_theory_abstract_1.jpg", article:"Gestalt Therapy Revolutionises Psychopathology", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_5.jpg", article:"Multiple articles (chairs watercolor)", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_in_the_style_of_dadaism_1.jpg", article:"Multiple articles (dadaism)", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_in_the_style_of_watercolor_and_white_background_4.jpg", article:"Index page header", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_3.jpg", article:"Index page header", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4-1.jpg", article:"Index page header", type:"preview"},
+  {path:"wp-content/uploads/2022/12/two_chairs_facing_each_other_in_conversation_in_the_style_of_watercolor_and_white_background_4.jpg", article:"Index page header", type:"preview"},
+
+  // === DIAGNOSIS ===
+  {path:"wp-content/uploads/2022/12/woman_crying_in_expressionism_1.jpg", article:"Grief vs Depression", type:"preview"},
+
+  // === ADDICTION ===
+  {path:"wp-content/uploads/2024/10/man_portrait_in_distress_in_the_style_of_expressionism_bold_bru_1-1024x1024.jpg", article:"Treatment of CSBD", type:"preview"},
+
+  // === RESOURCE PAGE ===
+  {path:"wp-content/uploads/2018/03/illusion-2.png", article:"Gestalt Therapy Resource Page", type:"preview"},
+  {path:"wp-content/uploads/2024/04/E86E4712-33A8-4A83-AC48-79880F1FF699.jpeg", article:"Gestalt Resource Page (Searching for Wholeness)", type:"inline"},
+  {path:"wp-content/uploads/2024/03/IMG_0346.jpeg", article:"Gestalt Resource Page (Bocian book)", type:"inline"},
+
+  // === PSYCHOTHERAPY PRACTICE ===
+  {path:"wp-content/uploads/2023/02/treatment_in_surrealistic_in_vivid_colors_4.jpg", article:"Psychotherapy Practice section", type:"preview"},
+  {path:"wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_4.jpg", article:"Various practice articles", type:"preview"},
+
+  // === THESES ===
+  {path:"wp-content/uploads/2025/10/IMG_0533.png", article:"Book: A Gestalt Approach to Couples Therapy", type:"preview"},
+  {path:"wp-content/uploads/2019/05/NICOLE-HELBIG-PRINTING-copy.pdf", article:"HELDA thesis PDF", type:"inline"},
+
+  // === NEUROSCIENCE ===
+  {path:"wp-content/uploads/2017/05/Screen-Shot-2017-05-30-at-11.43.36.png", article:"Van der Kolk childhood trauma", type:"inline"},
+
+  // === CULTURAL ANTHROPOLOGY ===
+  {path:"wp-content/uploads/2022/12/psychotherapy_as_medicine_surrealistic_in_vivid_colors_5.jpg", article:"Cultural anthropology articles", type:"preview"},
+
+  // === INLINE ARTICLE IMAGES (inside markdown body) ===
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.18.12.png", article:"Bakhtin and Buber notes", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.23.16.png", article:"Bakhtin and Buber notes", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.38.57.png", article:"Bakhtin and Buber notes", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Bakhtin-2.png", article:"Bakhtin and Buber notes", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-18.51.12.png", article:"Bakhtin's Polyphonic Novel", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-18.54.42.png", article:"Bakhtin's Polyphonic Novel", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-26-at-19.02.40.png", article:"Bakhtin's Polyphonic Novel", type:"inline"},
+  {path:"wp-content/uploads/2017/12/Screen-Shot-2017-12-11-at-19.29.57.png", article:"Bion: Function of Myths in Groups", type:"inline"},
+  {path:"wp-content/uploads/2017/06/Character_Analysis_German_edition.jpg", article:"Reich's Character Analysis review", type:"inline"},
+  {path:"wp-content/uploads/2017/07/IMG_20170702_124811.jpg", article:"Reich's Character Analysis review", type:"inline"},
+];
+
+// Deduplicate
+const unique = [...new Map(IMAGES.map(i => [i.path, i])).values()];
+const BASE = "https://nikhelbig.at/";
+
+let tested = 0, ok = 0, miss = 0;
+const grid = document.getElementById('grid');
+
+document.getElementById('nTotal').textContent = unique.length;
+document.getElementById('nTest').textContent = unique.length;
+
+function updateStats() {
+  document.getElementById('nOk').textContent = ok;
+  document.getElementById('nMiss').textContent = miss;
+  document.getElementById('nTest').textContent = unique.length - tested;
+  document.getElementById('progressBar').style.width = ((tested / unique.length) * 100) + '%';
+  if (tested === unique.length) {
+    document.getElementById('progressBar').style.background = '#4ade80';
+  }
+}
+
+// Filter buttons
+document.querySelectorAll('.filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.card').forEach(c => {
+      if (f === 'all') c.classList.remove('hidden');
+      else if (f === 'ok') c.classList.toggle('hidden', !c.classList.contains('ok'));
+      else if (f === 'miss') c.classList.toggle('hidden', !c.classList.contains('miss'));
+    });
+  });
+});
+
+unique.forEach((img, i) => {
+  const card = document.createElement('div');
+  card.className = 'card testing';
+  card.dataset.path = img.path;
+
+  const url = BASE + img.path;
+  const shortPath = img.path.split('/').slice(-2).join('/');
+
+  card.innerHTML = `
+    <div class="card-img broken" id="imgwrap-${i}">Testing…</div>
+    <div class="card-body">
+      <div class="card-title">${img.article}</div>
+      <div class="card-path">${img.path}</div>
+      <span class="card-type ${img.type}">${img.type}</span>
+      <div class="card-status testing" id="status-${i}">Testing…</div>
+      <div class="card-action" id="action-${i}"></div>
+    </div>
+  `;
+  grid.appendChild(card);
+
+  // Test image
+  const testImg = new Image();
+  testImg.onload = () => {
+    card.classList.remove('testing');
+    card.classList.add('ok');
+    const wrap = document.getElementById('imgwrap-' + i);
+    wrap.outerHTML = `<img class="card-img" src="${url}" loading="lazy">`;
+    document.getElementById('status-' + i).className = 'card-status ok';
+    document.getElementById('status-' + i).textContent = '✓ Found — ' + testImg.naturalWidth + '×' + testImg.naturalHeight;
+    ok++; tested++; updateStats();
+  };
+  testImg.onerror = () => {
+    card.classList.remove('testing');
+    card.classList.add('miss');
+    document.getElementById('status-' + i).className = 'card-status miss';
+    document.getElementById('status-' + i).textContent = '✗ MISSING — 404';
+    document.getElementById('action-' + i).textContent = 'Upload this file from SiteGround to static/' + img.path;
+    miss++; tested++; updateStats();
+  };
+  // Stagger requests to avoid hammering
+  setTimeout(() => { testImg.src = url; }, i * 80);
+});
+</script>
+</body>
+</html>
