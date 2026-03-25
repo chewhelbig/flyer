@@ -168,6 +168,15 @@
   .hook-formula { font-size: 0.72rem; color: var(--text-muted); }
   .hook-label { font-weight: 600; color: #2e7d32; }
 
+
+  .ie-controls { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; padding: 0.5rem 0; }
+  .ie-group { display: flex; align-items: center; gap: 0.3rem; }
+  .ie-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-right: 0.2rem; }
+  .ie-star, .ie-dot { cursor: pointer; font-size: 1rem; transition: all 0.15s; opacity: 0.3; user-select: none; }
+  .ie-star:hover, .ie-dot:hover { transform: scale(1.3); }
+  .ie-star.active { opacity: 1; color: var(--gold); }
+  .ie-dot.active { opacity: 1; color: var(--accent); }
+
 </style>
 </head>
 <body>
@@ -1242,6 +1251,21 @@ const SEC_THEMES = {
 
 // Enrich reels with theme data at runtime
 function enrichReel(reel) {
+  // Check localStorage overrides first
+  try {
+    const overrides = JSON.parse(localStorage.getItem('shameEnrichOverrides') || '{}');
+    if (overrides[reel.id]) {
+      const ov = overrides[reel.id];
+      const base = ENRICH[reel.id] || { t: 'paradox', i: 3, e: 2, l: '45-60s', q: 'backlog' };
+      if (ov.i !== undefined) base.i = ov.i;
+      if (ov.e !== undefined) base.e = ov.e;
+      // Still apply theme logic
+      const typeTheme = TYPE_THEMES[reel.type];
+      const secTheme = SEC_THEMES[reel.s] || 'paradox';
+      if (!base.t) base.t = typeTheme || secTheme;
+      return base;
+    }
+  } catch(e) {}
   // Check if we have a specific override
   if (ENRICH[reel.id]) {
     const e = ENRICH[reel.id];
@@ -1380,6 +1404,17 @@ function buildCard(reel) {
           <textarea class="detail-textarea" placeholder="Script edits, reminders..." oninput="setState(${reel.id},{memo:this.value})">${s.memo}</textarea>
         </div>
       </div>
+      <div class="ie-controls">
+        <div class="ie-group">
+          <span class="ie-label">Impact:</span>
+          ${[1,2,3,4,5].map(n => `<span class="ie-star ${n <= en.i ? 'active' : ''}" onclick="event.stopPropagation();setImpact(${reel.id},${n})">★</span>`).join('')}
+        </div>
+        <div class="ie-group">
+          <span class="ie-label">Effort:</span>
+          ${[1,2,3].map(n => `<span class="ie-dot ${n <= en.e ? 'active' : ''}" onclick="event.stopPropagation();setEffort(${reel.id},${n})">●</span>`).join('')}
+        </div>
+        <span class="card-quadrant-badge ${qClasses[en.q]}" style="margin-left:auto">${qLabels[en.q]}</span>
+      </div>
       ${tip.tip ? `<div class="prod-tip">
         <div class="prod-tip-title">🎬 Production Tip — ${reel.type}</div>
         <div class="prod-tip-content">${tip.tip}</div>
@@ -1420,6 +1455,32 @@ function updateLink(id, link) {
 document.addEventListener('click', e => { if (!e.target.closest('.color-picker-wrap')) document.querySelectorAll('.color-picker-popup.open').forEach(p => p.classList.remove('open')); });
 
 // ===================== SECTIONS =====================
+
+function setImpact(id, val) {
+  if (!state[id]) state[id] = {};
+  const enrichOverrides = JSON.parse(localStorage.getItem('shameEnrichOverrides') || '{}');
+  if (!enrichOverrides[id]) enrichOverrides[id] = {};
+  enrichOverrides[id].i = val;
+  localStorage.setItem('shameEnrichOverrides', JSON.stringify(enrichOverrides));
+  // Rebuild sections to reflect change
+  document.getElementById('sections-container').innerHTML = '';
+  buildSections();
+  updateStats();
+  showToast();
+}
+
+function setEffort(id, val) {
+  if (!state[id]) state[id] = {};
+  const enrichOverrides = JSON.parse(localStorage.getItem('shameEnrichOverrides') || '{}');
+  if (!enrichOverrides[id]) enrichOverrides[id] = {};
+  enrichOverrides[id].e = val;
+  localStorage.setItem('shameEnrichOverrides', JSON.stringify(enrichOverrides));
+  document.getElementById('sections-container').innerHTML = '';
+  buildSections();
+  updateStats();
+  showToast();
+}
+
 function buildSections() {
   const container = document.getElementById('sections-container');
   SECTIONS.forEach(sec => {
