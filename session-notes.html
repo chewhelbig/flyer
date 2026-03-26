@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f0e0c; --surface: #181714; --surface2: #201e1a; --surface3: #272420;
+  --border: #2e2b26; --border2: #3d3930;
+  --ink: #e8e2d8; --ink2: #a09890; --ink3: #665f57;
+  --gold: #c9a84c; --gold-dim: #8a6f32;
+  --rust: #b05a3a; --rust-dim: #7a3e28;
+  --sage: #5a7a65; --red-soft: #8b3a3a; --blue-soft: #3a5a7a;
+}
+body { background: var(--bg); color: var(--ink); font-family: 'Lora', Georgia, serif; min-height: 100vh; display: grid; grid-template-columns: 240px 1fr; grid-template-rows: 52px 1fr; }
+::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--surface); } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* KEY SETUP OVERLAY */
+#keyOverlay { position: fixed; inset: 0; background: rgba(10,9,8,0.95); z-index: 999; display: flex; align-items: center; justify-content: center; }
+#keyOverlay.hidden { display: none; }
+.key-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 36px; max-width: 480px; width: 90%; }
+.key-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; margin-bottom: 8px; }
+.key-title em { color: var(--gold); font-style: italic; }
+.key-sub { font-size: 0.82rem; color: var(--ink2); font-style: italic; line-height: 1.7; margin-bottom: 20px; }
+.key-input { width: 100%; background: var(--surface2); border: 1px solid var(--border2); border-radius: 2px; padding: 10px 14px; color: var(--ink); font-family: 'DM Mono', monospace; font-size: 0.8rem; outline: none; margin-bottom: 12px; }
+.key-input:focus { border-color: var(--gold-dim); }
+.key-note { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: var(--ink3); margin-bottom: 16px; }
+.key-link { color: var(--gold-dim); text-decoration: none; } .key-link:hover { color: var(--gold); }
+
+/* SIDEBAR */
+.sidebar { grid-row: 1/-1; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+.sidebar-logo { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); }
+.logo-label { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink3); margin-bottom: 3px; }
+.logo-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; }
+.logo-title em { color: var(--gold); font-style: italic; }
+.sidebar-nav { padding: 12px 12px 0; }
+.nav-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px; border-radius: 3px; border: none; background: none; color: var(--ink2); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; cursor: pointer; text-align: left; transition: all 0.15s; margin-bottom: 2px; }
+.nav-btn:hover { background: var(--surface2); color: var(--ink); }
+.nav-btn.active { background: var(--surface3); color: var(--gold); }
+.sidebar-section-label { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink3); padding: 14px 10px 6px; }
+.client-list { flex: 1; overflow-y: auto; padding: 0 12px; }
+.client-item { padding: 7px 10px; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1px; transition: background 0.15s; }
+.client-item:hover { background: var(--surface2); }
+.client-item.active { background: var(--surface3); }
+.client-name { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--ink); }
+.client-count { font-family: 'DM Mono', monospace; font-size: 7px; color: var(--ink3); background: var(--surface3); padding: 2px 5px; border-radius: 8px; }
+.sidebar-footer { padding: 12px 16px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 8px; color: var(--ink3); cursor: pointer; transition: color 0.15s; }
+.sidebar-footer:hover { color: var(--gold); }
+
+/* TOPBAR */
+.topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.topbar-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; color: var(--ink2); }
+.topbar-title strong { color: var(--ink); font-weight: 400; }
+
+/* MAIN */
+.main { overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.panel { display: none; flex-direction: column; gap: 20px; }
+.panel.active { display: flex; }
+
+/* CARD */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+.card-header { padding: 11px 18px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; }
+.card-title { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink3); }
+.card-title em { color: var(--gold-dim); font-style: normal; }
+.card-body { padding: 18px; }
+
+/* UPLOAD */
+.upload-zone { border: 1px dashed var(--border2); border-radius: 3px; padding: 32px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; background: var(--surface2); }
+.upload-zone:hover { border-color: var(--gold-dim); background: var(--surface3); }
+.upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-text { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--ink2); margin-bottom: 4px; }
+.upload-sub { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); }
+.preview-img { max-width: 100%; max-height: 200px; object-fit: contain; display: none; margin: 0 auto; border-radius: 2px; }
+
+/* FIELDS */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field-full { grid-column: 1/-1; }
+.field-label { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); }
+.field-input, .field-textarea { background: var(--surface2); border: 1px solid var(--border2); border-radius: 2px; padding: 8px 11px; font-family: 'Lora', serif; font-size: 0.82rem; color: var(--ink); outline: none; transition: border-color 0.15s; }
+.field-input:focus, .field-textarea:focus { border-color: var(--gold-dim); }
+.field-input::placeholder, .field-textarea::placeholder { color: var(--ink3); font-style: italic; }
+.field-textarea { resize: vertical; min-height: 52px; line-height: 1.6; }
+
+/* CHIPS */
+.chips-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.chip { padding: 4px 11px; border-radius: 2px; border: 1px solid var(--border2); font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3); cursor: pointer; transition: all 0.15s; user-select: none; }
+.chip.on { background: var(--surface3); color: var(--gold); border-color: var(--gold-dim); }
+
+/* BUTTONS */
+.btn { padding: 8px 18px; border-radius: 2px; border: none; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+.btn-primary { background: var(--gold-dim); color: var(--bg); }
+.btn-primary:hover { background: var(--gold); }
+.btn-primary:disabled { background: var(--border2); color: var(--ink3); cursor: not-allowed; }
+.btn-ghost { background: none; border: 1px solid var(--border2); color: var(--ink2); }
+.btn-ghost:hover { border-color: var(--ink3); color: var(--ink); }
+.btn-sm { padding: 3px 8px; font-size: 7px; }
+
+/* SPINNER */
+.spinner { width: 12px; height: 12px; border: 1.5px solid rgba(201,168,76,0.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ERROR */
+.error-bar { padding: 10px 14px; background: rgba(139,58,58,0.15); border: 1px solid var(--red-soft); border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 8px; color: #e07070; display: none; }
+.error-bar.show { display: block; }
+
+/* OUTPUT BLOCKS */
+.output-block { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; display: none; }
+.output-block.visible { display: block; }
+.output-header { padding: 10px 18px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; }
+.output-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); }
+.output-content { padding: 18px 22px; font-size: 0.87rem; line-height: 1.85; color: var(--ink); outline: none; white-space: pre-wrap; min-height: 60px; }
+.output-content[contenteditable]:focus { background: var(--surface2); }
+.outline-h { font-family: 'Cormorant Garamond', serif; font-size: 0.98rem; font-weight: 600; color: var(--gold); margin: 14px 0 5px; }
+.outline-h:first-child { margin-top: 0; }
+.outline-li { padding: 2px 0 2px 16px; position: relative; font-size: 0.84rem; color: var(--ink2); }
+.outline-li::before { content: '—'; position: absolute; left: 0; color: var(--ink3); }
+
+/* GLOSSARY */
+.glossary-table { width: 100%; border-collapse: collapse; }
+.glossary-table th { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+.glossary-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 0.82rem; vertical-align: top; }
+.glossary-table tr:last-child td { border-bottom: none; }
+.glossary-table tr:hover td { background: var(--surface2); }
+.glyph-cell { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--gold); }
+.meaning-cell { color: var(--ink2); }
+.del-btn { border: none; background: none; color: var(--ink3); cursor: pointer; font-size: 0.72rem; padding: 2px 5px; border-radius: 2px; transition: all 0.15s; }
+.del-btn:hover { color: var(--rust); background: var(--surface3); }
+.empty-state { text-align: center; padding: 32px 16px; font-style: italic; color: var(--ink3); font-size: 0.82rem; }
+.add-row { display: grid; grid-template-columns: 1fr 2fr auto; gap: 10px; align-items: end; margin-bottom: 18px; }
+
+/* SESSION HISTORY */
+.session-entry { border: 1px solid var(--border); border-radius: 3px; margin-bottom: 10px; overflow: hidden; }
+.session-entry-header { padding: 10px 14px; background: var(--surface2); display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+.session-date { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: var(--ink3); }
+.session-preview { font-size: 0.78rem; color: var(--ink2); font-style: italic; margin-top: 2px; }
+.session-body { padding: 14px; display: none; border-top: 1px solid var(--border); }
+.session-body.open { display: block; }
+.session-section-label { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink3); margin-bottom: 5px; margin-top: 12px; }
+.session-section-label:first-child { margin-top: 0; }
+.session-text { font-size: 0.82rem; color: var(--ink2); line-height: 1.7; white-space: pre-wrap; }
+
+/* SYNTHESIS */
+.synthesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.synthesis-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 14px; }
+.synthesis-card-title { font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+.synthesis-card-body { font-size: 0.82rem; color: var(--ink2); line-height: 1.75; font-style: italic; }
+.loading-row { display: flex; align-items: center; gap: 10px; padding: 14px; font-family: 'DM Mono', monospace; font-size: 8px; color: var(--gold); }
+
+@media (max-width: 700px) {
+  body { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .synthesis-grid, .field-row { grid-template-columns: 1fr; }
+  .add-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- API KEY OVERLAY -->
+<div id="keyOverlay">
+  <div class="key-box">
+    <div class="key-title">Clinical <em>Notes</em></div>
+    <p class="key-sub">This app needs your Anthropic API key to read handwritten notes. Your key is stored only in this browser — never sent anywhere except directly to Anthropic.</p>
+    <input class="key-input" id="keyInput" type="password" placeholder="sk-ant-api03-...">
+    <p class="key-note">Get your key at <a class="key-link" href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key</p>
+    <button class="btn btn-primary" onclick="saveKey()">Save & Continue</button>
+    <div id="keyError" style="color:#e07070; font-family:'DM Mono',monospace; font-size:8px; margin-top:10px; display:none;"></div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-label">psychotherapist.sg</div>
+    <div class="logo-title">Clinical <em>Notes</em></div>
+  </div>
+  <div class="sidebar-nav">
+    <button class="nav-btn active" onclick="switchPanel('process',this)"><span>◈</span> Process Notes</button>
+    <button class="nav-btn" onclick="switchPanel('glossary',this)"><span>◎</span> My Glossary</button>
+  </div>
+  <div class="sidebar-section-label">Clients</div>
+  <div class="client-list" id="clientList">
+    <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);padding:6px 4px;">No clients yet</div>
+  </div>
+  <div class="sidebar-footer" onclick="switchPanel('clients', null)">All clients →</div>
+  <div style="padding:10px 16px; border-top:1px solid var(--border); font-family:'DM Mono',monospace; font-size:7px; color:var(--ink3);">
+    Glossary: <span id="glossaryCount" style="color:var(--gold-dim);">0</span> entries
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-title" id="topbarTitle">Process <strong>New Session</strong></div>
+  <div style="display:flex;gap:8px;">
+    <button class="btn btn-ghost btn-sm" onclick="switchPanel('process', document.querySelector('.nav-btn'))">+ New Session</button>
+    <button class="btn btn-ghost btn-sm" onclick="changeKey()">⚙ API Key</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROCESS PANEL -->
+  <div class="panel active" id="panel-process">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">◈ Notes Image</span>
+        <button class="btn btn-ghost btn-sm" id="clearBtn" onclick="clearImage()" style="display:none">✕ clear</button>
+      </div>
+      <div class="card-body">
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="fileInput" accept="image/*">
+          <div id="uploadPH">
+            <div style="font-size:1.3rem;opacity:0.3;margin-bottom:8px;">✦</div>
+            <div class="upload-text">Drop handwritten notes here</div>
+            <div class="upload-sub" style="margin-top:4px;">jpg · png · heic · tap to browse</div>
+          </div>
+          <img id="previewImg" class="preview-img">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><span class="card-title">◎ Session Details</span></div>
+      <div class="card-body">
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label">Client pseudonym</label>
+            <input class="field-input" id="clientName" placeholder="e.g. Nightingale…" list="clientSuggestions">
+            <datalist id="clientSuggestions"></datalist>
+          </div>
+          <div class="field">
+            <label class="field-label">Session date</label>
+            <input class="field-input" type="date" id="sessionDate">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field field-full">
+            <label class="field-label">Session context (optional)</label>
+            <textarea class="field-textarea" id="contextNote" placeholder="e.g. couples session, post-rupture, 4th meeting…" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="chips-row">
+          <span class="chip on" id="chip-outline" onclick="toggleChip(this)">◈ Outline</span>
+          <span class="chip on" id="chip-narrative" onclick="toggleChip(this)">◎ Narrative</span>
+          <span class="chip" id="chip-transcript" onclick="toggleChip(this)">◻ Transcript</span>
+          <span class="chip" id="chip-followup" onclick="toggleChip(this)">↻ Follow-up</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="btn btn-primary" id="processBtn" disabled onclick="processNotes()">Process Session</button>
+      <div class="spinner" id="spinner" style="display:none;"></div>
+      <span id="statusText" style="font-family:'DM Mono',monospace;font-size:8px;color:var(--ink3);letter-spacing:0.1em;"></span>
+    </div>
+
+    <div class="error-bar" id="errorBar"></div>
+
+    <div class="output-block" id="block-transcript">
+      <div class="output-header">
+        <span class="output-label">◻ Raw Transcript</span>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-ghost btn-sm" onclick="copyOut('out-transcript')">copy</button>
+          <button class="btn btn-ghost btn-sm" onclick="saveCorrection()" title="Save edits as glossary corrections">save corrections →</button>
+        </div>
+      </div>
+      <div class="output-content" id="out-transcript" contenteditable="true"></div>
+    </div>
+
+    <div class="output-block" id="block-outline">
+      <div class="output-header">
+        <span class="output-label">◈ Thematic Outline</span>
+        <button class="btn btn-ghost btn-sm" onclick="copyOut('out-outline')">copy</button>
+      </div>
+      <div class="output-content" id="out-outline" contenteditable="true"></div>
+    </div>
+
+    <div class="output-block" id="block-narrative">
+      <div class="output-header">
+        <span class="output-label">◎ Session Narrative</span>
+        <button class="btn btn-ghost btn-sm" onclick="copyOut('out-narrative')">copy</button>
+      </div>
+      <div class="output-content" id="out-narrative" contenteditable="true"></div>
+    </div>
+
+    <div class="output-block" id="block-followup">
+      <div class="output-header">
+        <span class="output-label">↻ Client Arc — Follow-up</span>
+        <button class="btn btn-ghost btn-sm" onclick="copyOut('out-followup')">copy</button>
+      </div>
+      <div class="output-content" id="out-followup" contenteditable="true"></div>
+    </div>
+
+    <div id="saveRow" style="display:none;">
+      <button class="btn btn-ghost" onclick="saveSession()">↓ Save to client record</button>
+    </div>
+  </div>
+
+  <!-- GLOSSARY PANEL -->
+  <div class="panel" id="panel-glossary">
+    <div class="card">
+      <div class="card-header"><span class="card-title">◎ My <em>Handwriting</em> Glossary</span></div>
+      <div class="card-body">
+        <p style="font-size:0.82rem;color:var(--ink2);font-style:italic;margin-bottom:14px;line-height:1.7;">
+          Teach the system your abbreviations, symbols, and shorthand. These are injected into every read request.
+        </p>
+        <div class="add-row">
+          <div class="field"><label class="field-label">Symbol / abbrev</label><input class="field-input" id="glyph" placeholder="e.g. → emo."></div>
+          <div class="field"><label class="field-label">Meaning</label><input class="field-input" id="glyphMeaning" placeholder="e.g. movement toward / emotional"></div>
+          <button class="btn btn-primary" onclick="addGlossaryEntry()" style="margin-top:14px;">Add</button>
+        </div>
+        <div id="glossaryTableWrap"><div class="empty-state">No entries yet.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS PANEL -->
+  <div class="panel" id="panel-clients">
+    <div class="card">
+      <div class="card-header"><span class="card-title">All Clients</span></div>
+      <div class="card-body" id="clientsOverview"><div class="empty-state">No records yet.</div></div>
+    </div>
+  </div>
+
+  <!-- CLIENT DETAIL PANEL -->
+  <div class="panel" id="panel-client-detail">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;" id="detailName"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:7px;color:var(--ink3);letter-spacing:0.15em;" id="detailCount"></div>
+      </div>
+      <button class="btn btn-ghost" onclick="generateSynthesis()" id="synthBtn">↻ Generate arc synthesis</button>
+    </div>
+    <div id="synthesisArea" style="display:none;">
+      <div class="loading-row" id="synthLoading" style="display:none;"><div class="spinner"></div> Synthesising client arc…</div>
+      <div class="synthesis-grid" id="synthesisGrid"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Session History</span></div>
+      <div class="card-body" id="sessionHistory"></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── STORAGE (localStorage fallback) ──
+const DB = {
+  get(k) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) { console.error(e); } },
+  del(k) { try { localStorage.removeItem(k); } catch {} },
+  keys(prefix) { try { return Object.keys(localStorage).filter(k => k.startsWith(prefix)); } catch { return []; } }
+};
+
+// Also try window.storage if available (Claude artifact env)
+const store = {
+  async get(k) {
+    if (window.storage) { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : null; } catch {} }
+    return DB.get(k);
+  },
+  async set(k, v) {
+    if (window.storage) { try { await window.storage.set(k, JSON.stringify(v)); return; } catch {} }
+    DB.set(k, v);
+  },
+  async del(k) {
+    if (window.storage) { try { await window.storage.delete(k); } catch {} }
+    DB.del(k);
+  },
+  async keys(prefix) {
+    if (window.storage) { try { const r = await window.storage.list(prefix); return r ? r.keys : []; } catch {} }
+    return DB.keys(prefix);
+  }
+};
+
+// ── API KEY ──
+let API_KEY = '';
+
+function saveKey() {
+  const k = document.getElementById('keyInput').value.trim();
+  if (!k.startsWith('sk-ant-')) {
+    document.getElementById('keyError').textContent = 'Key should start with sk-ant-…';
+    document.getElementById('keyError').style.display = 'block';
+    return;
+  }
+  API_KEY = k;
+  DB.set('apiKey', k);
+  document.getElementById('keyOverlay').classList.add('hidden');
+}
+
+function changeKey() {
+  document.getElementById('keyInput').value = API_KEY || '';
+  document.getElementById('keyOverlay').classList.remove('hidden');
+}
+
+async function callClaude(messages, system, maxTokens = 1000) {
+  const headers = { 'Content-Type': 'application/json' };
+  // Use API key if available, otherwise rely on Claude artifact env (no key needed)
+  if (API_KEY) headers['x-api-key'] = API_KEY;
+  headers['anthropic-version'] = '2023-06-01';
+
+  const body = { model: 'claude-sonnet-4-20250514', max_tokens: maxTokens, messages };
+  if (system) body.system = system;
+
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST', headers,
+    body: JSON.stringify(body)
+  });
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.error?.message || `API error ${r.status}`);
+  return d.content.map(b => b.text || '').join('');
+}
+
+// ── STATE ──
+let imageBase64 = null, imageMediaType = null;
+let glossary = [], currentSession = null, activeClient = null;
+
+async function init() {
+  // Check for saved API key
+  const saved = DB.get('apiKey');
+  if (saved) { API_KEY = saved; document.getElementById('keyOverlay').classList.add('hidden'); }
+
+  glossary = (await store.get('glossary')) || [];
+  renderGlossary();
+  await renderClientList();
+  document.getElementById('sessionDate').value = new Date().toISOString().split('T')[0];
+}
+
+// ── PANEL NAV ──
+function switchPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`panel-${name}`).classList.add('active');
+  if (btn) btn.classList.add('active');
+  const t = { process:'Process <strong>New Session</strong>', glossary:'My <strong>Handwriting Glossary</strong>', clients:'All <strong>Clients</strong>', 'client-detail':`Client <strong>${activeClient||''}</strong>` };
+  document.getElementById('topbarTitle').innerHTML = t[name] || name;
+}
+
+// ── CHIPS ──
+function toggleChip(el) { el.classList.toggle('on'); }
+
+// ── IMAGE ──
+const fileInput = document.getElementById('fileInput');
+const previewImg = document.getElementById('previewImg');
+const uploadPH = document.getElementById('uploadPH');
+const uploadZone = document.getElementById('uploadZone');
+
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--gold-dim)'; });
+uploadZone.addEventListener('dragleave', () => { uploadZone.style.borderColor = ''; });
+uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.style.borderColor = ''; if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+function handleFile(file) {
+  imageMediaType = file.type || 'image/jpeg';
+  const reader = new FileReader();
+  reader.onload = e => {
+    imageBase64 = e.target.result.split(',')[1];
+    previewImg.src = e.target.result;
+    previewImg.style.display = 'block';
+    uploadPH.style.display = 'none';
+    document.getElementById('processBtn').disabled = false;
+    document.getElementById('clearBtn').style.display = 'inline';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImage() {
+  imageBase64 = null; fileInput.value = '';
+  previewImg.style.display = 'none'; previewImg.src = '';
+  uploadPH.style.display = 'block';
+  document.getElementById('processBtn').disabled = true;
+  document.getElementById('clearBtn').style.display = 'none';
+}
+
+// ── GLOSSARY PROMPT ──
+function glossaryPrompt() {
+  if (!glossary.length) return '';
+  return '\n\nThis therapist uses these personal abbreviations and symbols — apply them when reading:\n' +
+    glossary.map(e => `  "${e.glyph}" = ${e.meaning}`).join('\n');
+}
+
+// ── PROCESS ──
+async function processNotes() {
+  if (!imageBase64) return;
+  const wantO = document.getElementById('chip-outline').classList.contains('on');
+  const wantN = document.getElementById('chip-narrative').classList.contains('on');
+  const wantT = document.getElementById('chip-transcript').classList.contains('on');
+  const wantF = document.getElementById('chip-followup').classList.contains('on');
+  const context = document.getElementById('contextNote').value.trim();
+  const client = document.getElementById('clientName').value.trim();
+
+  ['transcript','outline','narrative','followup'].forEach(k => document.getElementById(`block-${k}`).classList.remove('visible'));
+  document.getElementById('saveRow').style.display = 'none';
+  document.getElementById('errorBar').classList.remove('show');
+
+  const btn = document.getElementById('processBtn');
+  btn.disabled = true;
+  document.getElementById('spinner').style.display = 'inline-block';
+  document.getElementById('statusText').textContent = 'Reading notes…';
+
+  // Build history prompt for follow-up
+  let historyPrompt = '';
+  if (wantF && client) {
+    const cd = await store.get(`client:${client}`);
+    if (cd?.sessions?.length) {
+      const recent = cd.sessions.slice(-5).map((s,i) =>
+        `Session ${s.date||i+1}:\n${s.outline||''}\n${s.narrative||''}`
+      ).join('\n\n---\n\n');
+      historyPrompt = `\n\nPREVIOUS SESSIONS FOR THIS CLIENT:\n\n${recent}`;
+    }
+  }
+
+  const outputs = [];
+  if (wantT) outputs.push('TRANSCRIPT: Verbatim transcription. Label: "TRANSCRIPT:"');
+  if (wantO) outputs.push('OUTLINE: Thematic outline with ### headings and bullet points. Label: "OUTLINE:"');
+  if (wantN) outputs.push('NARRATIVE: Flowing third-person clinical prose, 3-5 sentences per theme. Label: "NARRATIVE:"');
+  if (wantF) outputs.push('FOLLOWUP: Sections: EVOLVING THEMES, UNRESOLVED THREADS, RELATIONAL SHIFTS, CASE FORMULATION. Label: "FOLLOWUP:"');
+
+  const system = `You are assisting a Gestalt psychotherapist process handwritten session notes. Read carefully. Be clinically precise. Do not invent content.${glossaryPrompt()}${context?`\n\nSession context: ${context}`:''}${historyPrompt}`;
+
+  try {
+    const text = await callClaude([{
+      role: 'user',
+      content: [
+        { type: 'image', source: { type: 'base64', media_type: imageMediaType, data: imageBase64 } },
+        { type: 'text', text: `Please read these handwritten session notes and produce:\n\n${outputs.join('\n\n')}` }
+      ]
+    }], system, 1500);
+
+    currentSession = { date: document.getElementById('sessionDate').value, client, context, raw: text };
+
+    if (wantT) { const t = extract(text,'TRANSCRIPT'); if(t) { document.getElementById('out-transcript').textContent = t; document.getElementById('block-transcript').classList.add('visible'); currentSession.transcript = t; } }
+    if (wantO) { const t = extract(text,'OUTLINE'); if(t) { document.getElementById('out-outline').innerHTML = fmtOutline(t); document.getElementById('block-outline').classList.add('visible'); currentSession.outline = t; } }
+    if (wantN) { const t = extract(text,'NARRATIVE'); if(t) { document.getElementById('out-narrative').textContent = t; document.getElementById('block-narrative').classList.add('visible'); currentSession.narrative = t; } }
+    if (wantF) { const t = extract(text,'FOLLOWUP'); if(t) { document.getElementById('out-followup').innerHTML = fmtFollowup(t); document.getElementById('block-followup').classList.add('visible'); currentSession.followup = t; } }
+
+    if (client) document.getElementById('saveRow').style.display = 'block';
+  } catch(err) {
+    document.getElementById('errorBar').textContent = `Error: ${err.message}`;
+    document.getElementById('errorBar').classList.add('show');
+  } finally {
+    btn.disabled = false;
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('statusText').textContent = '';
+  }
+}
+
+function extract(text, label) {
+  const others = ['TRANSCRIPT','OUTLINE','NARRATIVE','FOLLOWUP'].filter(l=>l!==label).join('|');
+  const m = text.match(new RegExp(`${label}:\\s*([\\s\\S]*?)(?=\\n(?:${others}):|$)`, 'i'));
+  return m ? m[1].trim() : null;
+}
+
+function fmtOutline(text) {
+  return text.split('\n').map(line => {
+    const t = line.trim(); if (!t) return '';
+    if (/^#{1,3}\s/.test(t) || (t === t.toUpperCase() && t.length > 3 && !/^[-•]/.test(t)))
+      return `<div class="outline-h">${t.replace(/^#+\s*/,'')}</div>`;
+    if (/^[-•*]\s/.test(t)) return `<div class="outline-li">${t.replace(/^[-•*]\s/,'')}</div>`;
+    return `<div class="outline-h">${t}</div>`;
+  }).join('');
+}
+
+function fmtFollowup(text) {
+  return text
+    .replace(/EVOLVING THEMES?:/gi, '<div class="outline-h" style="color:var(--gold)">Evolving Themes</div>')
+    .replace(/UNRESOLVED THREADS?:/gi, '<div class="outline-h" style="color:var(--rust)">Unresolved Threads</div>')
+    .replace(/RELATIONAL SHIFTS?:/gi, '<div class="outline-h" style="color:var(--sage)">Relational Shifts</div>')
+    .replace(/CASE FORMULATION:/gi, '<div class="outline-h" style="color:var(--blue-soft)">Case Formulation</div>')
+    .replace(/^[-•]\s(.+)$/gm, '<div class="outline-li">$1</div>')
+    .replace(/\n\n/g,'<br>');
+}
+
+// ── COPY ──
+function copyOut(id) {
+  navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => {
+    const btn = document.getElementById(id).closest('.output-block').querySelector('.btn');
+    btn.textContent = 'copied ✓'; setTimeout(() => btn.textContent = 'copy', 1500);
+  });
+}
+
+// ── SAVE CORRECTIONS → GLOSSARY ──
+async function saveCorrection() {
+  const corrected = document.getElementById('out-transcript').innerText;
+  const original = currentSession?.transcript || '';
+  if (!original || original === corrected) {
+    alert('Edit the transcript first to correct misread words or symbols.');
+    return;
+  }
+  document.getElementById('statusText').textContent = 'Extracting patterns…';
+  try {
+    const result = await callClaude([{
+      role: 'user',
+      content: `Original transcription:\n${original}\n\nCorrected transcription:\n${corrected}\n\nExtract any patterns where the AI misread a symbol, abbreviation, or letter form. Return ONLY a JSON array: [{"glyph":"symbol/abbrev","meaning":"correct interpretation"}]. If none, return [].`
+    }], null, 500);
+    const clean = result.replace(/```json|```/g,'').trim();
+    const entries = JSON.parse(clean);
+    if (entries.length) {
+      const existing = new Set(glossary.map(e=>e.glyph));
+      entries.forEach(e => { if (!existing.has(e.glyph)) glossary.push(e); });
+      await store.set('glossary', glossary);
+      renderGlossary();
+      alert(`${entries.length} pattern(s) saved to glossary.`);
+    } else {
+      alert('No new patterns detected.');
+    }
+  } catch(e) { alert('Error: ' + e.message); }
+  finally { document.getElementById('statusText').textContent = ''; }
+}
+
+// ── SAVE SESSION ──
+async function saveSession() {
+  const client = document.getElementById('clientName').value.trim();
+  if (!client || !currentSession) return;
+  currentSession.outline = document.getElementById('out-outline').innerText;
+  currentSession.narrative = document.getElementById('out-narrative').innerText;
+  currentSession.transcript = document.getElementById('out-transcript').innerText;
+  currentSession.followup = document.getElementById('out-followup').innerText;
+  const cd = (await store.get(`client:${client}`)) || { name: client, sessions: [] };
+  cd.sessions.push(currentSession);
+  await store.set(`client:${client}`, cd);
+  await renderClientList();
+  document.getElementById('saveRow').style.display = 'none';
+  alert(`Saved to ${client}'s record.`);
+}
+
+// ── GLOSSARY ──
+async function addGlossaryEntry() {
+  const g = document.getElementById('glyph').value.trim();
+  const m = document.getElementById('glyphMeaning').value.trim();
+  if (!g || !m) return;
+  glossary.push({ glyph: g, meaning: m });
+  await store.set('glossary', glossary);
+  document.getElementById('glyph').value = '';
+  document.getElementById('glyphMeaning').value = '';
+  renderGlossary();
+}
+
+async function delGlossary(i) {
+  glossary.splice(i, 1);
+  await store.set('glossary', glossary);
+  renderGlossary();
+}
+
+function renderGlossary() {
+  document.getElementById('glossaryCount').textContent = glossary.length;
+  const w = document.getElementById('glossaryTableWrap');
+  if (!glossary.length) { w.innerHTML = '<div class="empty-state">No entries yet.</div>'; return; }
+  w.innerHTML = `<table class="glossary-table"><thead><tr><th>Symbol</th><th>Meaning</th><th></th></tr></thead><tbody>
+    ${glossary.map((e,i)=>`<tr><td class="glyph-cell">${e.glyph}</td><td class="meaning-cell">${e.meaning}</td><td><button class="del-btn" onclick="delGlossary(${i})">✕</button></td></tr>`).join('')}
+  </tbody></table>`;
+}
+
+// ── CLIENT LIST ──
+async function renderClientList() {
+  const keys = await store.keys('client:');
+  const listEl = document.getElementById('clientList');
+  const datalist = document.getElementById('clientSuggestions');
+  const overview = document.getElementById('clientsOverview');
+
+  if (!keys.length) {
+    listEl.innerHTML = '<div style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--ink3);padding:6px 4px;">No clients yet</div>';
+    overview.innerHTML = '<div class="empty-state">No records yet.</div>';
+    datalist.innerHTML = ''; return;
+  }
+
+  const clients = (await Promise.all(keys.map(k => store.get(k)))).filter(Boolean);
+  listEl.innerHTML = clients.map(c => `<div class="client-item" onclick="openClient('${c.name}')"><span class="client-name">${c.name}</span><span class="client-count">${c.sessions.length}</span></div>`).join('');
+  datalist.innerHTML = clients.map(c=>`<option value="${c.name}">`).join('');
+  overview.innerHTML = clients.map(c=>`<div class="client-item" style="margin-bottom:8px;padding:12px 14px;border:1px solid var(--border);border-radius:3px;" onclick="openClient('${c.name}')"><div class="client-name">${c.name}</div><div style="font-family:'DM Mono',monospace;font-size:7px;color:var(--ink3);margin-top:2px;">${c.sessions.length} session${c.sessions.length!==1?'s':''} · last: ${c.sessions.at(-1)?.date||'—'}</div></div>`).join('');
+}
+
+// ── CLIENT DETAIL ──
+async function openClient(name) {
+  activeClient = name;
+  const cd = await store.get(`client:${name}`);
+  if (!cd) return;
+  document.getElementById('detailName').textContent = name;
+  document.getElementById('detailCount').textContent = `${cd.sessions.length} session${cd.sessions.length!==1?'s':''}`;
+  document.getElementById('synthesisArea').style.display = 'none';
+  const h = document.getElementById('sessionHistory');
+  h.innerHTML = !cd.sessions.length ? '<div class="empty-state">No sessions.</div>' :
+    [...cd.sessions].reverse().map(s=>`
+      <div class="session-entry">
+        <div class="session-entry-header" onclick="this.nextElementSibling.classList.toggle('open')">
+          <div><div class="session-date">${s.date||'—'}</div><div class="session-preview">${(s.narrative||s.outline||'').substring(0,80)}…</div></div>
+          <span style="color:var(--ink3);font-size:0.7rem;">▾</span>
+        </div>
+        <div class="session-body">
+          ${s.outline?`<div class="session-section-label">Outline</div><div class="session-text">${s.outline}</div>`:''}
+          ${s.narrative?`<div class="session-section-label">Narrative</div><div class="session-text">${s.narrative}</div>`:''}
+          ${s.followup?`<div class="session-section-label">Follow-up</div><div class="session-text">${s.followup}</div>`:''}
+        </div>
+      </div>`).join('');
+  switchPanel('client-detail', null);
+}
+
+// ── ARC SYNTHESIS ──
+async function generateSynthesis() {
+  const cd = await store.get(`client:${activeClient}`);
+  if (!cd?.sessions?.length) return;
+  document.getElementById('synthesisArea').style.display = 'block';
+  document.getElementById('synthLoading').style.display = 'flex';
+  document.getElementById('synthesisGrid').innerHTML = '';
+  document.getElementById('synthBtn').disabled = true;
+
+  const summaries = cd.sessions.map((s,i)=>`Session ${i+1} (${s.date||'undated'}):\n${s.outline||''}\n${s.narrative||''}`).join('\n\n---\n\n');
+
+  try {
+    const text = await callClaude([{
+      role:'user',
+      content:`Session records:\n\n${summaries}\n\nProduce a structured arc synthesis with these four labelled sections:\n\nEVOLVING THEMES: How themes have developed.\nUNRESOLVED THREADS: What remains unresolved or defended.\nRELATIONAL SHIFTS: Changes in relational dynamic.\nCASE FORMULATION: 4-6 sentence Gestalt-informed formulation.`
+    }], 'You are a Gestalt-informed clinical supervisor. Be precise and phenomenologically grounded.', 1000);
+
+    const sections = [
+      {key:'EVOLVING THEMES',label:'Evolving Themes',color:'var(--gold)'},
+      {key:'UNRESOLVED THREADS',label:'Unresolved Threads',color:'var(--rust)'},
+      {key:'RELATIONAL SHIFTS',label:'Relational Shifts',color:'var(--sage)'},
+      {key:'CASE FORMULATION',label:'Case Formulation',color:'var(--blue-soft)'}
+    ];
+
+    document.getElementById('synthesisGrid').innerHTML = sections.map(s => {
+      const m = text.match(new RegExp(`${s.key.replace(/\s/g,'\\s+')}:?\\s*([\\s\\S]*?)(?=\\n(?:EVOLVING THEMES|UNRESOLVED THREADS|RELATIONAL SHIFTS|CASE FORMULATION):?|$)`, 'i'));
+      const content = m ? m[1].trim() : '—';
+      return `<div class="synthesis-card"><div class="synthesis-card-title" style="color:${s.color}">${s.label}</div><div class="synthesis-card-body">${content.replace(/\n/g,'<br>')}</div></div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('synthesisGrid').innerHTML = `<div style="color:var(--rust);font-size:0.82rem;">Error: ${e.message}</div>`;
+  } finally {
+    document.getElementById('synthLoading').style.display = 'none';
+    document.getElementById('synthBtn').disabled = false;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
