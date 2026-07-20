@@ -74,6 +74,17 @@ a:hover{text-decoration:underline}
 .article h2{font-size:24px;color:var(--slate);margin:34px 0 12px}
 .article h2:first-child{margin-top:0}
 .article p{font-size:18px;margin-bottom:10px}
+
+/* key points */
+.keypoints{background:var(--cream);border-radius:16px;padding:34px 36px;margin:42px 0 10px}
+.keypoints h2{margin:0 0 20px;color:var(--dark)}
+.kp-list{list-style:none;display:grid;gap:16px}
+.kp{display:flex;align-items:flex-start;gap:18px}
+.kp-num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--sage);color:var(--dark);
+  font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center}
+.kp-text{font-size:17px;line-height:1.55}
+.kp-source{margin-top:24px;color:var(--mute);font-size:14px;font-style:italic}
+
 .try{background:var(--sagel);border-radius:14px;padding:26px 30px;margin:38px 0 10px}
 .try-label{color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;margin-bottom:8px}
 .try p{margin:0}
@@ -98,8 +109,71 @@ a:hover{text-decoration:underline}
   .hero-inner{padding:84px 24px 90px}
   .two-col{grid-template-columns:1fr;gap:26px}
   .phero h1{font-size:34px}
+  .keypoints{padding:26px 22px}
   .foot-inner{flex-direction:column}
   .foot-contact{text-align:left}
   .flow-row{flex-wrap:wrap}
   .flow-time{margin-left:68px}
 }
+/* ===== Mulan-style magnolia animations ===== */
+.hero,.phero{position:relative;overflow:hidden}
+.petal-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.hero-inner,.phero .wrap{position:relative;z-index:2}
+.petal{position:absolute;top:-46px;width:22px;height:28px;opacity:0;
+  animation:petalFall 11s linear infinite}
+.petal path{fill:#EDC5CD}
+.petal:nth-child(3n) path{fill:#DFA3AF}
+.petal:nth-child(4n) path{fill:#F4DCE0}
+.petal:nth-child(1){left:6%;animation-duration:12s;animation-delay:0s;transform:scale(.8)}
+.petal:nth-child(2){left:16%;animation-duration:15s;animation-delay:3.5s}
+.petal:nth-child(3){left:27%;animation-duration:10.5s;animation-delay:1.2s;transform:scale(.65)}
+.petal:nth-child(4){left:38%;animation-duration:14s;animation-delay:6s;transform:scale(.9)}
+.petal:nth-child(5){left:49%;animation-duration:11.5s;animation-delay:2.4s;transform:scale(.7)}
+.petal:nth-child(6){left:60%;animation-duration:13s;animation-delay:8s}
+.petal:nth-child(7){left:70%;animation-duration:10s;animation-delay:4.8s;transform:scale(.75)}
+.petal:nth-child(8){left:79%;animation-duration:15.5s;animation-delay:.8s;transform:scale(1.05)}
+.petal:nth-child(9){left:88%;animation-duration:12.5s;animation-delay:5.6s;transform:scale(.6)}
+.petal:nth-child(10){left:95%;animation-duration:13.5s;animation-delay:7.2s;transform:scale(.85)}
+@keyframes petalFall{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:0}
+  6%{opacity:.85}
+  25%{transform:translate3d(-28px,130px,0) rotate(70deg)}
+  50%{transform:translate3d(22px,260px,0) rotate(150deg);opacity:.85}
+  75%{transform:translate3d(-18px,390px,0) rotate(230deg)}
+  94%{opacity:.5}
+  100%{transform:translate3d(14px,520px,0) rotate(310deg);opacity:0}
+}
+/* ink-brush swash under the page title */
+.brushline{display:block;width:min(260px,60%);height:16px;margin-top:14px;
+  clip-path:inset(0 100% 0 0);animation:brushReveal .9s ease .35s forwards}
+.brushline path{fill:var(--accent);opacity:.9}
+@keyframes brushReveal{to{clip-path:inset(0 0 0 0)}}
+/* gentle ink-wash drift on hero blobs */
+.blob{animation:blobDrift 14s ease-in-out infinite alternate}
+.b2{animation-duration:18s}
+@keyframes blobDrift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-24px,18px,0) scale(1.08)}}
+/* content reveals */
+.hero-inner>*,.phero .wrap>*{opacity:0;animation:fadeUp .8s ease forwards}
+.hero-inner>:nth-child(1),.phero .wrap>:nth-child(1){animation-delay:.1s}
+.hero-inner>:nth-child(2),.phero .wrap>:nth-child(2){animation-delay:.25s}
+.hero-inner>:nth-child(3),.phero .wrap>:nth-child(3){animation-delay:.45s}
+.hero-inner>:nth-child(4),.phero .wrap>:nth-child(4){animation-delay:.6s}
+.pcard,.flow-row,.kp{opacity:0;animation:fadeUp .7s ease forwards}
+.pcard:nth-child(1),.flow-row:nth-child(1),.kp:nth-child(1){animation-delay:.15s}
+.pcard:nth-child(2),.flow-row:nth-child(2),.kp:nth-child(2){animation-delay:.3s}
+.pcard:nth-child(3),.flow-row:nth-child(3),.kp:nth-child(3){animation-delay:.45s}
+.pcard:nth-child(4),.flow-row:nth-child(4),.kp:nth-child(4){animation-delay:.6s}
+.pcard:nth-child(5),.flow-row:nth-child(5),.kp:nth-child(5){animation-delay:.75s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){
+  .petal,.blob,.brushline,.hero-inner>*,.phero .wrap>*,.pcard,.flow-row,.kp{animation:none}
+  .brushline{clip-path:none}
+  .hero-inner>*,.phero .wrap>*,.pcard,.flow-row,.kp{opacity:1}
+}
+/* brushline: combine reveal with fade (overrides generic child animation) */
+svg.brushline{opacity:0;clip-path:inset(0 100% 0 0);
+  animation:fadeUp .6s ease .3s forwards,brushReveal .9s ease .5s forwards}
+@media (prefers-reduced-motion:reduce){svg.brushline{animation:none;clip-path:none;opacity:1}}
+.hero svg.brushline,.phero svg.brushline{opacity:0;clip-path:inset(0 100% 0 0);
+  animation:fadeUp .6s ease .3s forwards,brushReveal .9s ease .5s forwards}
+@media (prefers-reduced-motion:reduce){.hero svg.brushline,.phero svg.brushline{animation:none;clip-path:none;opacity:1}}
