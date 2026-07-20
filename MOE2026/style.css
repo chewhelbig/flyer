@@ -177,3 +177,15 @@ svg.brushline{opacity:0;clip-path:inset(0 100% 0 0);
 .hero svg.brushline,.phero svg.brushline{opacity:0;clip-path:inset(0 100% 0 0);
   animation:fadeUp .6s ease .3s forwards,brushReveal .9s ease .5s forwards}
 @media (prefers-reduced-motion:reduce){.hero svg.brushline,.phero svg.brushline{animation:none;clip-path:none;opacity:1}}
+/* petals v2 — bigger, richer, unmistakable */
+.petal{width:26px;height:33px}
+.petal path{fill:#EFB7C1}
+.petal:nth-child(3n) path{fill:#E39AA9}
+.petal:nth-child(4n) path{fill:#F6D3D9}
+.petal:nth-child(2n){width:20px;height:25px}
+/* cartoon embeds (Mulan's Clinical Quotes) */
+.cartoon-band{padding-top:56px}
+.cartoon-embed{background:var(--white);border:1px solid #e6e1d6;border-radius:16px;
+  padding:10px;box-shadow:0 10px 26px rgba(47,74,82,.08)}
+.cartoon-embed iframe{display:block;width:100%;height:560px;border:0;border-radius:10px}
+@media(max-width:680px){.cartoon-embed iframe{height:600px}}
