@@ -37,7 +37,7 @@ body {
 }
 .viewport { position: fixed; inset: 0; display: grid; place-items: center; }
 .stage {
-  width: 1600px; height: 900px; position: relative; flex: none;
+  width: 1600px; height: 900px; position: absolute; left: 50%; top: 50%; flex: none;
   background: var(--cream); transform-origin: center center;
   box-shadow: 0 0 0 1px rgba(0,0,0,.2);
   overflow: hidden;
@@ -207,10 +207,10 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
 
 /* Phone held upright: all slides stacked, scrolling */
-html:has(body.phone) { height: auto; }
+html.phone-root { height: auto; }
 body.phone { overflow: visible; height: auto; background: var(--cream); }
 body.phone .viewport { position: relative; inset: auto; display: block; place-items: normal; justify-items: normal; overflow: hidden; }
-body.phone .stage { height: auto; box-shadow: none; overflow: visible; }
+body.phone .stage { position: relative; left: 0; top: 0; height: auto; box-shadow: none; overflow: visible; }
 body.phone .slide { position: relative; inset: auto; height: 900px; opacity: 1; visibility: visible; transition: none; border-bottom: 10px solid var(--rose-soft); }
 body.phone .band, body.phone .footer, body.phone .progress, body.phone .nav, body.phone .help { display: none; }
 
@@ -1698,14 +1698,17 @@ body.phone .band, body.phone .footer, body.phone .progress, body.phone .nav, bod
     const w = window.innerWidth, h = window.innerHeight;
     const phone = isPhone();
     document.body.classList.toggle('phone', phone);
+    document.documentElement.classList.toggle('phone-root', phone);
     if (phone) {
       const s = w / 1600;
       stage.style.transformOrigin = 'top left';
       stage.style.transform = 'scale(' + s + ')';
       viewportEl.style.height = (stage.scrollHeight * s) + 'px';
     } else {
+      // Centre by absolute position, which every browser handles the same way,
+      // instead of relying on grid centring of a box wider than the screen.
       stage.style.transformOrigin = 'center center';
-      stage.style.transform = 'scale(' + Math.min(w / 1600, h / 900) + ')';
+      stage.style.transform = 'translate(-50%, -50%) scale(' + Math.min(w / 1600, h / 900) + ')';
       viewportEl.style.height = '';
     }
   }
