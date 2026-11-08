@@ -150,12 +150,51 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 .record-body { columns: 2; column-gap: 48px; }
 .record-body p { font-size: 22px; line-height: 1.5; margin: 0 0 12px; max-width: none; break-inside: avoid-column; color: var(--text); }
 
+/* Denzin */
+.denzin-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+.denzin-head > * { margin: 0; }
+.skel.denzin { grid-template-columns: 300px 1fr; }
+.skel.denzin dt, .skel.denzin dd { font-size: 22px; padding: 9px 0; line-height: 1.38; }
+
+/* Tina facts sheet */
+.facts-grid { display: grid; grid-template-columns: 640px 1fr; gap: 64px; align-items: center; flex: 1; min-height: 0; }
+.facts-grid > * { min-width: 0; }
+.facts-sheet { background: #ffffff; color: #000000; padding: 26px 30px; box-shadow: 0 2px 12px rgba(42,40,34,.12); }
+.facts-sheet p { font-size: 15.5px; line-height: 1.42; margin: 0 0 9px; max-width: none; color: #000000; }
+.facts-sheet p:last-child { margin-bottom: 0; }
+
+/* Findings under figures */
+.findings { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.findings p { font-size: 23px; line-height: 1.42; max-width: none; margin: 0; padding-left: 18px; border-left: 3px solid var(--rose-soft); color: var(--text); }
+
+/* Link to the website copy */
+.web-link { align-self: flex-start; font-size: 17px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--rose); text-decoration: none; border-bottom: 1px solid var(--rose-soft); padding-bottom: 2px; }
+.web-link:hover, .web-link:focus-visible { color: var(--ink); border-color: var(--ink); outline: none; }
+
+/* Bonus poem */
+.poem-head { display: flex; flex-direction: column; gap: 6px; }
+.poem-head > * { margin: 0; }
+.listen { display: flex; align-items: center; gap: 16px; margin-top: 6px; }
+.listen span { font-size: 15px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--rose); }
+.listen audio { height: 36px; width: 420px; max-width: 100%; }
+.listen-stack { flex-direction: column; align-items: flex-start; gap: 10px; }
+.byline { font-size: 18px; line-height: 1.4; color: var(--muted); max-width: none; }
+.poem-full { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; flex: 1; min-height: 0; }
+.poem-full > div { min-width: 0; }
+.poem-full p { font-family: var(--display); font-size: 18.5px; line-height: 1.45; margin: 0 0 8px; max-width: none; color: var(--text); }
+.poem-end { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: 28px; row-gap: 2px; margin-top: 6px; align-items: baseline; }
+.poem-end .de { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--rose); }
+.poem-end .en { font-size: 17px; color: var(--text); }
+
 /* References */
 .refs { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 56px; }
 .refs li { font-size: 19px; line-height: 1.4; margin: 0 0 12px; padding-left: 26px; text-indent: -26px; break-inside: avoid-column; color: var(--text); }
 
 /* Book */
-.cover { width: 300px; border-radius: 3px; box-shadow: 0 6px 24px rgba(42,40,34,.22); justify-self: center; }
+.cover-link { justify-self: center; display: block; border-radius: 3px; }
+.cover-link:hover .cover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(42,40,34,.28); }
+.cover-link:focus-visible { outline: 2px solid var(--rose); outline-offset: 6px; }
+.cover { transition: transform .2s ease, box-shadow .2s ease; width: 300px; border-radius: 3px; box-shadow: 0 6px 24px rgba(42,40,34,.22); justify-self: center; }
 
 /* Poem */
 .poem { display: grid; grid-template-columns: auto auto; column-gap: 72px; row-gap: 20px; align-items: baseline; }
@@ -196,7 +235,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   <!-- 1 Title -->
   <section class="slide" data-name="title">
-    <div class="title-grid">
+    <div class="title-grid" style="grid-template-columns:1fr 560px;gap:56px">
       <div style="display:flex;flex-direction:column;gap:34px">
         <div class="label">NYIGT · Online workshop</div>
         <h1>Theorizing <em>Stories</em></h1>
@@ -207,6 +246,205 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
           <span>From Singapore, where it is midnight</span>
         </div>
       </div>
+      <div class="mulan" data-mulan><svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+
+<rect width="1080" height="1080" fill="#F0E8DD"/>
+<rect x="0" y="900" width="1080" height="180" fill="#D8D0C4"/>
+<line x1="0" y1="900" x2="1080" y2="900" stroke="#C4BAA8" stroke-width="2"/>
+<rect x="0" y="0" width="1080" height="6" fill="#9e4a5a"/>
+<text x="72" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="500" letter-spacing="3.5" fill="#9e4a5a">MULAN'S CLINICAL QUOTES</text>
+
+<g transform="translate(100, 640) rotate(-2)">
+  <rect x="3" y="3" width="200" height="130" rx="2" fill="#2A1F18" opacity="0.06"/>
+  <rect x="0" y="0" width="200" height="130" rx="2" fill="#FFF9C4"/>
+  <path d="M0,0 L200,0 L200,8 Q100,12 0,8 Z" fill="#FFF176" opacity="0.4"/>
+  <rect x="75" y="-8" width="50" height="16" rx="1" fill="#E0D8C0" opacity="0.5"/>
+  <text x="100" y="55" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">Please ignore</text>
+  <text x="100" y="82" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">the dog</text>
+  <circle cx="150" cy="108" r="4" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="145" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="150" cy="97" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="156" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+</g>
+
+<g transform="translate(160, 830)">
+  <path d="M-16,20 L-12,62 Q0,67 12,62 L16,20 Z" fill="#C9A87C"/>
+  <ellipse cx="0" cy="20" rx="18" ry="5" fill="#B8956A"/>
+  <ellipse cx="0" cy="20" rx="14" ry="3.5" fill="#C9A87C"/>
+  <ellipse cx="0" cy="22" rx="12" ry="3" fill="#8B7355"/>
+  <ellipse cx="0" cy="2" rx="7" ry="16" fill="#5A8A3A" opacity="0.85">
+    <animate attributeName="ry" values="16;17;16" dur="2.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="-8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(-20,-8,6)" opacity="0.7"/>
+  <ellipse cx="8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(20,8,6)" opacity="0.7"/>
+  <ellipse cx="-5" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(-35,-5,0)" opacity="0.5"/>
+  <ellipse cx="6" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(30,6,0)" opacity="0.5"/>
+</g>
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;1;1;0;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.24;0.28;0.32;0.36;0.42;0.55;0.6;0.65;0.68;0.72;0.76;1"/>
+  <text x="540" y="230" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#2a2420">He said therapy</text>
+  <text x="540" y="295" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#2a2420">isn't doing anything.</text>
+  <text x="540" y="400" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#9e4a5a" font-style="italic">He also arrived on time,</text>
+  <text x="540" y="458" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#9e4a5a" font-style="italic">took his shoes off</text>
+  <text x="540" y="516" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#9e4a5a" font-style="italic">without being asked,</text>
+  <text x="540" y="574" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#9e4a5a" font-style="italic">and chose the same seat.</text>
+</g>
+
+<!-- ═══ MULAN ═══ -->
+<g>
+  <animateTransform attributeName="transform" type="translate"
+    values="-300,0; -300,0; 470,0; 470,0; 470,0; 470,0; 470,0; 1400,0; 1400,0"
+    keyTimes="0; 0.01; 0.28; 0.32; 0.5; 0.68; 0.72; 0.95; 1"
+    dur="10s" repeatCount="indefinite"
+    calcMode="spline"
+    keySplines="0 0 1 1; 0.1 0 0.3 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0.7 0 0.9 1; 0 0 1 1"/>
+
+  <ellipse cx="55" cy="898" rx="68" ry="5" fill="#2A1F18" opacity="0.07"/>
+
+  <path d="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" fill="#B8883E">
+    <animate attributeName="d" values="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818; M-28,810 Q-52,780 -44,795 Q-40,812 -30,816; M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+
+  <ellipse cx="28" cy="848" rx="62" ry="26" fill="#C4944E">
+    <animate attributeName="ry" values="26;27;26" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="28" cy="858" rx="45" ry="14" fill="#D4A86A" opacity="0.3"/>
+
+  <line x1="-16" y1="865" x2="-20" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="-20" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="0" y1="865" x2="6" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="6" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <line x1="55" y1="865" x2="50" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="50" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="68" y1="865" x2="72" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="72" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <path d="M72,838 L76,810 L92,808 L90,836" fill="#C4944E"/>
+
+  <g transform="translate(82, 788)">
+
+    <g>
+      <animate attributeName="opacity" values="1;1;1;0;0;0;0;0;1;1" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.29;0.33;0.4;0.6;0.67;0.69;0.73;1"/>
+      <ellipse cx="10" cy="0" rx="28" ry="30" fill="#C4944E"/>
+      <ellipse cx="36" cy="8" rx="16" ry="12" fill="#C4944E"/>
+      <path d="M25,0 Q36,-1 46,5" fill="none" stroke="#B08040" stroke-width="0.8" opacity="0.25"/>
+      <ellipse cx="46" cy="8" rx="9" ry="9" fill="#B08040" opacity="0.45"/>
+      <ellipse cx="50" cy="4" rx="6.5" ry="5" fill="#2A1F18"/>
+      <ellipse cx="49" cy="2.5" rx="2.5" ry="1.5" fill="#3E2F24" opacity="0.3"/>
+      <path d="M50,10 Q44,17 34,14" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <g>
+        <circle cx="16" cy="-6" r="6" fill="#1A1210"/>
+        <circle cx="14" cy="-8.5" r="2" fill="#fff" opacity="0.22"/>
+        <ellipse cx="16" cy="-6" rx="7.5" ry="0" fill="#C4944E">
+          <animate attributeName="ry" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;7;7;0;0;0" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+      <path d="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" fill="#B8883E">
+        <animate attributeName="d" values="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14; M-4,-18 Q-20,-40 -16,-46 Q-10,-50 -4,-34 Q0,-24 0,-14; M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" fill="#A07830" opacity="0.3">
+        <animate attributeName="d" values="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30; M-2,-16 Q-16,-35 -13,-40 Q-9,-43 -4,-32; M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" fill="#A07830" opacity="0.7">
+        <animate attributeName="d" values="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14; M8,-20 Q16,-42 24,-44 Q30,-42 24,-28 Q19,-18 12,-14; M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <rect x="-8" y="20" width="32" height="8" rx="4" fill="#3A8A9A"/>
+      <circle cx="10" cy="32" r="3.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4"/>
+    </g>
+
+    <g>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.31;0.35;0.4;0.6;0.67;0.69;0.73;1"/>
+      <g>
+      <ellipse cx="10" cy="0" rx="46" ry="42" fill="#C4944E"/>
+      <ellipse cx="10" cy="10" rx="26" ry="20" fill="#B08040" opacity="0.4"/>
+      <ellipse cx="10" cy="16" rx="18" ry="13" fill="#D4A86A" opacity="0.5"/>
+      <ellipse cx="10" cy="8" rx="8" ry="6" fill="#2A1F18"/>
+      <ellipse cx="9" cy="6" rx="3" ry="1.8" fill="#3E2F24" opacity="0.35"/>
+      <path d="M10,14 Q5,20 0,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <path d="M10,14 Q15,20 20,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <circle cx="-6" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="26" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="-8" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <circle cx="24" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <path d="M-16,-22 Q-6,-26 2,-22" fill="none" stroke="#8A6830" stroke-width="1.5" opacity="0.2"/>
+      <path d="M18,-22 Q28,-29 36,-22" fill="none" stroke="#8A6830" stroke-width="1.8" opacity="0.3"/>
+      <path d="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" fill="#B8883E">
+        <animate attributeName="d" values="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4; M-24,-24 Q-56,-42 -54,-24 Q-52,-10 -34,-4; M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M-22,-20 Q-46,-30 -44,-18 Q-42,-10 -32,-6" fill="#A07830" opacity="0.2"/>
+      <path d="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" fill="#B8883E">
+        <animate attributeName="d" values="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4; M44,-24 Q76,-42 74,-24 Q72,-10 54,-4; M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+      </path>
+      <path d="M42,-20 Q66,-30 64,-18 Q62,-10 52,-6" fill="#A07830" opacity="0.2"/>
+      <rect x="-16" y="32" width="52" height="10" rx="5" fill="#3A8A9A" stroke="#2E7282" stroke-width="0.5"/>
+      <rect x="22" y="33" width="6" height="8" rx="1.5" fill="#888" opacity="0.4"/>
+      <circle cx="10" cy="47" r="4.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4">
+        <animate attributeName="cy" values="47;48;47" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      </g>
+
+      <g>
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0.7;0.3;0;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-15" cy="6" rx="5" ry="4" fill="#DDD5C8">
+          <animate attributeName="cx" values="-15;-38;-58" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="rx" values="5;12;18" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="ry" values="4;7;10" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+      <g>
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0.5;0.15;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-12" cy="12" rx="4" ry="3" fill="#DDD5C8">
+          <animate attributeName="cx" values="-12;-32;-50" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="rx" values="4;9;14" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+    </g>
+
+  </g>
+</g>
+
+<!-- Shoes on floor — simple boot shapes, separated -->
+<g transform="translate(745, 870)">
+  <!-- Left shoe -->
+  <g>
+    <ellipse cx="15" cy="24" rx="15" ry="6" fill="#2A1F18"/>
+    <rect x="5" y="6" width="20" height="18" rx="3" fill="#3E2F24"/>
+    <rect x="5" y="6" width="20" height="5" rx="2" fill="#2A1F18"/>
+  </g>
+  <!-- Right shoe -->
+  <g transform="translate(38, 0)">
+    <ellipse cx="15" cy="24" rx="15" ry="6" fill="#3E2F24"/>
+    <rect x="5" y="6" width="20" height="18" rx="3" fill="#4A3828"/>
+    <rect x="5" y="6" width="20" height="5" rx="2" fill="#3E2F24"/>
+  </g>
+</g>
+<g transform="translate(820, 868)">
+  <rect x="0" y="0" width="48" height="35" rx="3" fill="#F5EDE0" stroke="#D4CFC6" stroke-width="1"/>
+  <rect x="0" y="0" width="48" height="7" rx="3" fill="#E8E0D4"/>
+  <path d="M18,0 Q24,-10 30,0" fill="none" stroke="#D4CFC6" stroke-width="1.5"/>
+  <path d="M20,-2 Q24,-14 28,-2" fill="#fff" opacity="0.6" stroke="#E8E0D4" stroke-width="0.5"/>
+</g>
+
+<text x="1008" y="1050" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#9a8e82" font-style="italic">psychotherapist.sg</text>
+
+</svg></div>
     </div>
   </section>
 
@@ -278,19 +516,189 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     <div class="spacer"></div>
     <div class="big-q">What kind of <em>knowledge</em> is this?</div>
     <ul class="list">
-      <li>What does it tell you about your client?</li>
+      <li>What does it tell you about the case? About the client? About yourself?</li>
       <li>What does it leave out?</li>
     </ul>
     <div class="spacer"></div>
   </section>
 
+  <!-- Denzin -->
+  <section class="slide tinted" data-name="denzin" style="padding-block:72px 84px;gap:20px">
+    <div class="label">What I have adopted from Norman Denzin</div>
+    <div class="denzin-head">
+      <h3 style="font-size:46px">Norman K. Denzin <span style="color:var(--rose);font-weight:400;font-style:italic">(1941–2023)</span></h3>
+      <p class="small" style="font-size:21px;max-width:none">American sociologist, University of Illinois at Urbana-Champaign. Co-editor of the <em>Sage Handbook of Qualitative Research</em>. Founder of the International Congress of Qualitative Inquiry. Author of <em>Interpretive Autoethnography</em> (2013).</p>
+    </div>
+    <dl class="skel denzin">
+      <dt>Facts and facticities</dt><dd>Facts are what happened. Facticities are how those facts were lived and experienced. Therapeutic autoethnography writes the facticities.</dd>
+      <dt>Truthful fiction</dt><dd>A story is crafted, and it stays faithful to facts and facticities. It “creates verisimilitude, or what are for the reader believable experiences” (Denzin, 2013, p. 29).</dd>
+      <dt>The epiphany</dt><dd>The story turns on a moment that leaves its mark on the people in it. In the therapy room, even the very first contact is data-rich.</dd>
+      <dt>What a story needs</dt><dd>Living characters drawn from real persons · the aesthetics of the setting · an epiphany or crisis · a temporal order true to the case · a meaning that arises from reading it.</dd>
+      <dt>The writer inside the text</dt><dd>The researcher’s own lived experience is the material. The therapist writes from within the field she is part of.</dd>
+    </dl>
+  </section>
+
   <!-- 8 Facticities -->
   <section class="slide" data-name="facticities">
     <div class="label">11:28 · The facticities</div>
-    <div class="spacer"></div>
-    <blockquote>Facts: what happened. Facticities: how it was lived.<cite>After Norman Denzin, American sociologist</cite></blockquote>
-    <p class="lead">Now we write the facticities.</p>
-    <div class="spacer"></div>
+    <div class="two" style="grid-template-columns:1fr 600px">
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <blockquote style="margin:0">Facts: what happened. Facticities: how it was lived.<cite>After Norman Denzin, American sociologist</cite></blockquote>
+        <p class="lead">Now we write the facticities.</p>
+      </div>
+      <div class="mulan" data-mulan><svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1080" fill="#F0E8DD"/>
+<rect x="0" y="900" width="1080" height="180" fill="#D8D0C4"/>
+<line x1="0" y1="900" x2="1080" y2="900" stroke="#C4BAA8" stroke-width="2"/>
+<rect x="0" y="0" width="1080" height="6" fill="#9e4a5a"/>
+<text x="72" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="500" letter-spacing="3.5" fill="#9e4a5a">MULAN'S CLINICAL QUOTES</text>
+
+<g transform="translate(100, 640) rotate(-2)">
+  <rect x="3" y="3" width="200" height="130" rx="2" fill="#2A1F18" opacity="0.06"/>
+  <rect x="0" y="0" width="200" height="130" rx="2" fill="#FFF9C4"/>
+  <path d="M0,0 L200,0 L200,8 Q100,12 0,8 Z" fill="#FFF176" opacity="0.4"/>
+  <rect x="75" y="-8" width="50" height="16" rx="1" fill="#E0D8C0" opacity="0.5"/>
+  <text x="100" y="55" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">Please ignore</text>
+  <text x="100" y="82" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">the dog</text>
+  <circle cx="150" cy="108" r="4" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="145" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="150" cy="97" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="156" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+</g>
+
+<g transform="translate(160, 830)">
+  <path d="M-16,20 L-12,62 Q0,67 12,62 L16,20 Z" fill="#C9A87C"/>
+  <ellipse cx="0" cy="20" rx="18" ry="5" fill="#B8956A"/>
+  <ellipse cx="0" cy="20" rx="14" ry="3.5" fill="#C9A87C"/>
+  <ellipse cx="0" cy="22" rx="12" ry="3" fill="#8B7355"/>
+  <ellipse cx="0" cy="2" rx="7" ry="16" fill="#5A8A3A" opacity="0.85">
+    <animate attributeName="ry" values="16;17;16" dur="2.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="-8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(-20,-8,6)" opacity="0.7"/>
+  <ellipse cx="8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(20,8,6)" opacity="0.7"/>
+  <ellipse cx="-5" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(-35,-5,0)" opacity="0.5"/>
+  <ellipse cx="6" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(30,6,0)" opacity="0.5"/>
+</g>
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;1;1;0;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.24;0.28;0.32;0.36;0.42;0.55;0.6;0.65;0.68;0.72;0.76;1"/>
+  <text x="540" y="250" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#2a2420">New client sat down today.</text>
+  <text x="540" y="315" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#2a2420">I sniffed their shoes.</text>
+  <text x="540" y="420" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#2a2420">Nicole asked how</text>
+  <text x="540" y="480" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#2a2420">they were feeling.</text>
+  <text x="540" y="575" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#9e4a5a" font-style="italic">We have different methods.</text>
+</g>
+
+<g>
+  <animateTransform attributeName="transform" type="translate"
+    values="-300,0; -300,0; 470,0; 470,0; 470,0; 470,0; 470,0; 1400,0; 1400,0"
+    keyTimes="0; 0.01; 0.28; 0.32; 0.5; 0.68; 0.72; 0.95; 1"
+    dur="10s" repeatCount="indefinite"
+    calcMode="spline"
+    keySplines="0 0 1 1; 0.1 0 0.3 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0.7 0 0.9 1; 0 0 1 1"/>
+  <ellipse cx="55" cy="898" rx="68" ry="5" fill="#2A1F18" opacity="0.07"/>
+  <path d="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" fill="#B8883E">
+    <animate attributeName="d" values="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818; M-28,810 Q-52,780 -44,795 Q-40,812 -30,816; M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+  <ellipse cx="28" cy="848" rx="62" ry="26" fill="#C4944E">
+    <animate attributeName="ry" values="26;27;26" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="28" cy="858" rx="45" ry="14" fill="#D4A86A" opacity="0.3"/>
+  <line x1="-16" y1="865" x2="-20" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="-20" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="0" y1="865" x2="6" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="6" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="55" y1="865" x2="50" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="50" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="68" y1="865" x2="72" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="72" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <path d="M72,838 L76,810 L92,808 L90,836" fill="#C4944E"/>
+  <g transform="translate(82, 788)">
+
+    <g>
+      <animate attributeName="opacity" values="1;1;1;0;0;0;0;0;1;1" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.29;0.33;0.4;0.6;0.67;0.69;0.73;1"/>
+      <ellipse cx="10" cy="0" rx="28" ry="30" fill="#C4944E"/>
+      <ellipse cx="36" cy="8" rx="16" ry="12" fill="#C4944E"/>
+      <path d="M25,0 Q36,-1 46,5" fill="none" stroke="#B08040" stroke-width="0.8" opacity="0.25"/>
+      <ellipse cx="46" cy="8" rx="9" ry="9" fill="#B08040" opacity="0.45"/>
+      <ellipse cx="50" cy="4" rx="6.5" ry="5" fill="#2A1F18"/>
+      <ellipse cx="49" cy="2.5" rx="2.5" ry="1.5" fill="#3E2F24" opacity="0.3"/>
+      <path d="M50,10 Q44,17 34,14" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <g><circle cx="16" cy="-6" r="6" fill="#1A1210"/><circle cx="14" cy="-8.5" r="2" fill="#fff" opacity="0.22"/>
+        <ellipse cx="16" cy="-6" rx="7.5" ry="0" fill="#C4944E"><animate attributeName="ry" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;7;7;0;0;0" dur="10s" repeatCount="indefinite"/></ellipse>
+      </g>
+      <path d="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" fill="#B8883E"><animate attributeName="d" values="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14; M-4,-18 Q-20,-40 -16,-46 Q-10,-50 -4,-34 Q0,-24 0,-14; M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" dur="0.5s" repeatCount="indefinite"/></path>
+      <path d="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" fill="#A07830" opacity="0.3"><animate attributeName="d" values="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30; M-2,-16 Q-16,-35 -13,-40 Q-9,-43 -4,-32; M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" dur="0.5s" repeatCount="indefinite"/></path>
+      <path d="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" fill="#A07830" opacity="0.7"><animate attributeName="d" values="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14; M8,-20 Q16,-42 24,-44 Q30,-42 24,-28 Q19,-18 12,-14; M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" dur="0.5s" repeatCount="indefinite"/></path>
+      <rect x="-8" y="20" width="32" height="8" rx="4" fill="#3A8A9A"/><circle cx="10" cy="32" r="3.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4"/>
+    </g>
+
+    <g>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.31;0.35;0.4;0.6;0.67;0.69;0.73;1"/>
+      <g>
+      <ellipse cx="10" cy="0" rx="46" ry="42" fill="#C4944E"/>
+      <ellipse cx="10" cy="10" rx="26" ry="20" fill="#B08040" opacity="0.4"/>
+      <ellipse cx="10" cy="16" rx="18" ry="13" fill="#D4A86A" opacity="0.5"/>
+      <ellipse cx="10" cy="8" rx="8" ry="6" fill="#2A1F18"/>
+      <ellipse cx="9" cy="6" rx="3" ry="1.8" fill="#3E2F24" opacity="0.35"/>
+      <path d="M10,14 Q5,20 0,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <path d="M10,14 Q15,20 20,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <circle cx="-6" cy="-10" r="7.5" fill="#1A1210"/><circle cx="26" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="-8" cy="-13" r="2.5" fill="#fff" opacity="0.22"/><circle cx="24" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <path d="M-16,-22 Q-6,-26 2,-22" fill="none" stroke="#8A6830" stroke-width="1.5" opacity="0.2"/>
+      <path d="M18,-22 Q28,-29 36,-22" fill="none" stroke="#8A6830" stroke-width="1.8" opacity="0.3"/>
+      <path d="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" fill="#B8883E"><animate attributeName="d" values="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4; M-24,-24 Q-56,-42 -54,-24 Q-52,-10 -34,-4; M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" dur="2s" repeatCount="indefinite"/></path>
+      <path d="M-22,-20 Q-46,-30 -44,-18 Q-42,-10 -32,-6" fill="#A07830" opacity="0.2"/>
+      <path d="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" fill="#B8883E"><animate attributeName="d" values="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4; M44,-24 Q76,-42 74,-24 Q72,-10 54,-4; M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" dur="2s" repeatCount="indefinite" begin="0.3s"/></path>
+      <path d="M42,-20 Q66,-30 64,-18 Q62,-10 52,-6" fill="#A07830" opacity="0.2"/>
+      <rect x="-16" y="32" width="52" height="10" rx="5" fill="#3A8A9A" stroke="#2E7282" stroke-width="0.5"/>
+      <rect x="22" y="33" width="6" height="8" rx="1.5" fill="#888" opacity="0.4"/>
+      <circle cx="10" cy="47" r="4.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4">
+        <animate attributeName="cy" values="47;48;47" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      </g>
+
+      <g><animate attributeName="opacity" values="0;0;0;0;0;0;0.7;0.3;0;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-15" cy="6" rx="5" ry="4" fill="#DDD5C8"><animate attributeName="cx" values="-15;-38;-58" dur="10s" repeatCount="indefinite"/><animate attributeName="rx" values="5;12;18" dur="10s" repeatCount="indefinite"/><animate attributeName="ry" values="4;7;10" dur="10s" repeatCount="indefinite"/></ellipse>
+      </g>
+      <g><animate attributeName="opacity" values="0;0;0;0;0;0;0;0.5;0.15;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-12" cy="12" rx="4" ry="3" fill="#DDD5C8"><animate attributeName="cx" values="-12;-32;-50" dur="10s" repeatCount="indefinite"/><animate attributeName="rx" values="4;9;14" dur="10s" repeatCount="indefinite"/></ellipse>
+      </g>
+    </g>
+
+  </g>
+</g>
+
+<g transform="translate(745, 870)">
+  <g><ellipse cx="15" cy="24" rx="15" ry="6" fill="#2A1F18"/><rect x="5" y="6" width="20" height="18" rx="3" fill="#3E2F24"/><rect x="5" y="6" width="20" height="5" rx="2" fill="#2A1F18"/></g>
+  <g transform="translate(38, 0)"><ellipse cx="15" cy="24" rx="15" ry="6" fill="#3E2F24"/><rect x="5" y="6" width="20" height="18" rx="3" fill="#4A3828"/><rect x="5" y="6" width="20" height="5" rx="2" fill="#3E2F24"/></g>
+</g>
+
+<g transform="translate(820, 868)">
+  <rect x="0" y="0" width="48" height="35" rx="3" fill="#F5EDE0" stroke="#D4CFC6" stroke-width="1"/>
+  <rect x="0" y="0" width="48" height="7" rx="3" fill="#E8E0D4"/>
+  <path d="M18,0 Q24,-10 30,0" fill="none" stroke="#D4CFC6" stroke-width="1.5"/>
+  <path d="M20,-2 Q24,-14 28,-2" fill="#fff" opacity="0.6" stroke="#E8E0D4" stroke-width="0.5"/>
+</g>
+
+<text x="1008" y="1050" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#9a8e82" font-style="italic">psychotherapist.sg</text>
+</svg></div>
+    </div>
   </section>
 
   <!-- 9 Guided return -->
@@ -313,7 +721,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     <div class="two">
       <div style="display:flex;flex-direction:column;gap:26px">
         <div class="label">Before you write</div>
-        <h2>Show, and tell <em>very little</em></h2>
+        <h2>Show more, <em>tell less</em></h2>
         <p style="font-size:28px">Nothing is invented. You are reporting the phenomenon, as closely as you can.</p>
         <ul class="list" style="gap:14px">
           <li style="font-size:28px">Leave out the adverbs. Not <em>slowly</em>, but what her steps are.</li>
@@ -453,18 +861,19 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
   </section>
 
   <!-- 11 Write from inside -->
-  <section class="slide" data-name="write">
+  <section class="slide" data-name="write" style="padding-block:64px 84px;gap:20px">
     <div class="label">The facticities</div>
-    <h2>Write it from <em>inside</em></h2>
-    <ul class="list">
+    <h2 style="font-size:56px">Write it from <em>inside</em></h2>
+    <ul class="list" style="gap:10px">
       <li>First person, present tense</li>
-      <li>Begin in the first minutes of the session</li>
+      <li>Focus purely on the first minutes of contact with the client</li>
       <li>What you see, hear, and feel in your body. The atmosphere of the room.</li>
       <li>Leave out diagnosis and formulation</li>
+      <li>Not more than 300 words</li>
     </ul>
-    <p class="lead">Write before you know what you think.</p>
+    <p class="lead" style="font-size:36px">Write before you know what you think.</p>
     <div class="spacer"></div>
-    <div class="timer" data-minutes="12"><span class="clock">12:00</span><button type="button">Start</button></div>
+    <div class="timer" data-minutes="12" style="margin-bottom:8px"><span class="clock">12:00</span><button type="button">Start</button></div>
   </section>
 
   <!-- 12 How was it -->
@@ -514,12 +923,22 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
   </section>
 
   <!-- Tina: the facts -->
-  <section class="slide tinted" data-name="tina-facts">
+  <section class="slide tinted" data-name="tina-facts" style="padding-block:64px 84px;gap:18px">
     <div class="label">12:35 · A story of mine</div>
-    <div class="spacer"></div>
-    <div class="big-q">Tina: the <em>facts</em></div>
-    <p class="small">First session, 5 October 2017. Vienna.</p>
-    <div class="spacer"></div>
+    <div class="facts-grid">
+      <div class="facts-sheet">
+        <p>Tina attended her first session on 5 October 2017. She arrived ten minutes late.</p>
+        <p>She brought a cardboard folder of medical records, psychiatric assessments and proof of residency, and offered to send soft copies. Each page of the assessments was stamped. They recorded a diagnosis of obsessive-compulsive disorder, made by a psychiatrist when she was sixteen, after a breakdown during her school examinations. Later reports added panic disorder, migraine and an autoimmune condition. She had been treated with exposure and response prevention some years earlier and had stopped. She took no medication. Her parents were against it.</p>
+        <p>Tina was born in 1997 in Asia. She completed her degree at a university there and came to Vienna in the summer of 2017 on a research visa, to a junior position at the research and development facility of a technology company. The salary did not cover the cost of living in the city. She planned to apply to graduate school in the United States.</p>
+        <p>She lived alone. She spoke to her parents every day. They did not know she was in therapy.</p>
+        <p>She complained of stomach pains, headaches and poor sleep, and of anxiety, probably related to difficulty adjusting to life in Vienna. She described anxiety at work, where she was juggling several projects and felt guilty when a task was left undone. Her checking had intensified since she arrived. Before any new activity, including going to the supermarket, she searched for it online. She said, “I Google everything.”</p>
+        <p>We agreed to meet weekly.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="big-q">Tina: the <em>facts</em></div>
+        <p class="small">First session, 5 October 2017. Vienna.</p>
+      </div>
+    </div>
   </section>
 
   <!-- 16 Tina -->
@@ -531,7 +950,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
         <p>From <em>The Shame Paradox</em>, Chapter 4.</p>
         <p class="lead">As you listen, hold your own story beside it.</p>
       </div>
-      <img class="cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/6xaJSlACEQAAAAEAABZ/anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFllqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjI4ZDhmZDA5LTM3ZDctNGYxNS05OTA2LWM4YjJiZTY3MTI5YgAAAAOUanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuWp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoZqKa11+X4saPoGo+kImjzQAAAG1jYm9yo2lkYzpmb3JtYXRqaW1hZ2UvanBlZ2ppbnN0YW5jZUlEeCx4bXA6aWlkOjRlNzViMTAyLTgxMDYtNDI2ZS1hMTYxLTllZDBmOTUzZGEyNmxyZWxhdGlvbnNoaXBocGFyZW50T2YAAAHianVtYgAAAEFqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmFjdGlvbnMudjIAAAAAGGMyc2jbIGSx9qWazEevHurRm43iAAABmWNib3KiZ2FjdGlvbnOComZhY3Rpb25rYzJwYS5vcGVuZWRqcGFyYW1ldGVyc6FraW5ncmVkaWVudHOBomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAGGcv2kwszcgl5cBnpREob4MF5ydX7Y/QQOI5JX3M8iqRmYWN0aW9ueB1jb20uYW50aHJvcGljLmNsYXVkZS5wcm92aWRlZGpwYXJhbWV0ZXJzoXgfY29tLmFudGhyb3BpYy5vcmlnaW4tY29uZmlkZW5jZWd1bmtub3dua2Rlc2NyaXB0aW9ueGZDbGF1ZGUgcHJvdmlkZWQgdGhpcyBmaWxlIGF0IHRoZSByZXF1ZXN0IG9mIGEgdXNlciBhbmQgbWF5IGhhdmUgY3JlYXRlZCBvciBtb2RpZmllZCB0aGUgZmlsZSBjb250ZW50cy5tc29mdHdhcmVBZ2VudKFkbmFtZWZDbGF1ZGVyYWxsQWN0aW9uc0luY2x1ZGVk9QAAAMhqdW1iAAAAQGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaGFzaC5kYXRhAAAAABhjMnNo8CKrDpv5aCpyqmMZOR8nWwAAAIBjYm9ypWNhbGdmc2hhMjU2Y3BhZE4AAAAAAAAAAAAAAAAAAGRoYXNoWCDnrpnjqRccLIg8Dk/1xUSfZenkLmWUZzEMl7u1sJcpSmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBRmbGVuZ3RoGRaLAAACPmp1bWIAAAAnanVtZGMyY2wAEQAQgAAAqgA4m3EDYzJwYS5jbGFpbS52MgAAAAIPY2JvcqVjYWxnZnNoYTI1NmlzaWduYXR1cmV4TXNlbGYjanVtYmY9L2MycGEvdXJuOmMycGE6MjhkOGZkMDktMzdkNy00ZjE1LTk5MDYtYzhiMmJlNjcxMjliL2MycGEuc2lnbmF0dXJlamluc3RhbmNlSUR4LHhtcDppaWQ6YTUwMGZjOTUtZThmZi00N2E0LWFkNmEtNzU5ZDExZjg1MDI1cmNyZWF0ZWRfYXNzZXJ0aW9uc4OiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIAYZy/aTCzNyCXlwGelEShvgwXnJ1ftj9BA4jklfczyKomN1cmx4KnNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuYWN0aW9ucy52MmRoYXNoWCADBQPxGeSkC2dM3mLo6HIlvJr9Q/KDjMxVEB3rCfhkUKJjdXJseClzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmhhc2guZGF0YWRoYXNoWCAYLxeQcOZnlMB15IKJnP8BRnPzVNyEQYYYhP50wKYqJ3RjbGFpbV9nZW5lcmF0b3JfaW5mb6NkbmFtZW9BbnRocm9waWMgRmlsZXNndmVyc2lvbmUxLjAuMGtzcGVjVmVyc2lvbmUyLjQuMAAAEDhqdW1iAAAAKGp1bWRjMmNzABEAEIAAAKoAOJtxA2MycGEuc2lnbmF0dXJlAAAAEAhjYm9y0oRZAhKiASYYIVkCCjCCAgYwggGNoAMCAQICFEDloAruwjnQvriD+gZCBT1nVRMAMAoGCCqGSM49BAMDMEkxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMS4wLAYDVQQDEyVBbnRocm9waWMgQ29udGVudCBDcmVkZW50aWFscyBSb290IENBMB4XDTI2MDgwNzE4NDM1NloXDTI4MDgwNjE5NDM1NlowRDEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxKTAnBgNVBAMTIEFudGhyb3BpYyBDbGF1ZGUgQ29udGVudCBTaWduaW5nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmHoKa8tQGAUU1TS9QqU5W0Tp2N3XsvlK7BfQt6YWKwEzd2R3/dzKPEUDdCjlLjp9fT+KFjRVnuZ9v0oXvTe3k6NYMFYwDgYDVR0PAQH/BAQDAgeAMBUGA1UdJQQOMAwGCisGAQQBg+heAgEwDAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBTOUeIEgU5kWyP448TPmj6cwddcwjAKBggqhkjOPQQDAwNnADBkAjAxcx0UngF60stVjs5G4T2eiptsBk5mf9oCtfJPAUBl8qs/PEXa8+gk1/X5QJ2DVcYCMHBfXN31YapiSqYvlIWrDVDJKOvXMl+kkz37Wt0PBI8sw486Mq6JeOhT+lRR4b1HCaFjcGFkWQ2eAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="The Shame Paradox, book cover">
+      <a class="cover-link" href="https://nicolechewhelbig.com/theshameparadox.html" target="_blank" rel="noopener" aria-label="The Shame Paradox: book page"><img class="cover" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/6xaJSlACEQAAAAEAABZ/anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFllqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjI4ZDhmZDA5LTM3ZDctNGYxNS05OTA2LWM4YjJiZTY3MTI5YgAAAAOUanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuWp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoZqKa11+X4saPoGo+kImjzQAAAG1jYm9yo2lkYzpmb3JtYXRqaW1hZ2UvanBlZ2ppbnN0YW5jZUlEeCx4bXA6aWlkOjRlNzViMTAyLTgxMDYtNDI2ZS1hMTYxLTllZDBmOTUzZGEyNmxyZWxhdGlvbnNoaXBocGFyZW50T2YAAAHianVtYgAAAEFqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmFjdGlvbnMudjIAAAAAGGMyc2jbIGSx9qWazEevHurRm43iAAABmWNib3KiZ2FjdGlvbnOComZhY3Rpb25rYzJwYS5vcGVuZWRqcGFyYW1ldGVyc6FraW5ncmVkaWVudHOBomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAGGcv2kwszcgl5cBnpREob4MF5ydX7Y/QQOI5JX3M8iqRmYWN0aW9ueB1jb20uYW50aHJvcGljLmNsYXVkZS5wcm92aWRlZGpwYXJhbWV0ZXJzoXgfY29tLmFudGhyb3BpYy5vcmlnaW4tY29uZmlkZW5jZWd1bmtub3dua2Rlc2NyaXB0aW9ueGZDbGF1ZGUgcHJvdmlkZWQgdGhpcyBmaWxlIGF0IHRoZSByZXF1ZXN0IG9mIGEgdXNlciBhbmQgbWF5IGhhdmUgY3JlYXRlZCBvciBtb2RpZmllZCB0aGUgZmlsZSBjb250ZW50cy5tc29mdHdhcmVBZ2VudKFkbmFtZWZDbGF1ZGVyYWxsQWN0aW9uc0luY2x1ZGVk9QAAAMhqdW1iAAAAQGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaGFzaC5kYXRhAAAAABhjMnNo8CKrDpv5aCpyqmMZOR8nWwAAAIBjYm9ypWNhbGdmc2hhMjU2Y3BhZE4AAAAAAAAAAAAAAAAAAGRoYXNoWCDnrpnjqRccLIg8Dk/1xUSfZenkLmWUZzEMl7u1sJcpSmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBRmbGVuZ3RoGRaLAAACPmp1bWIAAAAnanVtZGMyY2wAEQAQgAAAqgA4m3EDYzJwYS5jbGFpbS52MgAAAAIPY2JvcqVjYWxnZnNoYTI1NmlzaWduYXR1cmV4TXNlbGYjanVtYmY9L2MycGEvdXJuOmMycGE6MjhkOGZkMDktMzdkNy00ZjE1LTk5MDYtYzhiMmJlNjcxMjliL2MycGEuc2lnbmF0dXJlamluc3RhbmNlSUR4LHhtcDppaWQ6YTUwMGZjOTUtZThmZi00N2E0LWFkNmEtNzU5ZDExZjg1MDI1cmNyZWF0ZWRfYXNzZXJ0aW9uc4OiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIAYZy/aTCzNyCXlwGelEShvgwXnJ1ftj9BA4jklfczyKomN1cmx4KnNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuYWN0aW9ucy52MmRoYXNoWCADBQPxGeSkC2dM3mLo6HIlvJr9Q/KDjMxVEB3rCfhkUKJjdXJseClzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmhhc2guZGF0YWRoYXNoWCAYLxeQcOZnlMB15IKJnP8BRnPzVNyEQYYYhP50wKYqJ3RjbGFpbV9nZW5lcmF0b3JfaW5mb6NkbmFtZW9BbnRocm9waWMgRmlsZXNndmVyc2lvbmUxLjAuMGtzcGVjVmVyc2lvbmUyLjQuMAAAEDhqdW1iAAAAKGp1bWRjMmNzABEAEIAAAKoAOJtxA2MycGEuc2lnbmF0dXJlAAAAEAhjYm9y0oRZAhKiASYYIVkCCjCCAgYwggGNoAMCAQICFEDloAruwjnQvriD+gZCBT1nVRMAMAoGCCqGSM49BAMDMEkxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMS4wLAYDVQQDEyVBbnRocm9waWMgQ29udGVudCBDcmVkZW50aWFscyBSb290IENBMB4XDTI2MDgwNzE4NDM1NloXDTI4MDgwNjE5NDM1NlowRDEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxKTAnBgNVBAMTIEFudGhyb3BpYyBDbGF1ZGUgQ29udGVudCBTaWduaW5nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmHoKa8tQGAUU1TS9QqU5W0Tp2N3XsvlK7BfQt6YWKwEzd2R3/dzKPEUDdCjlLjp9fT+KFjRVnuZ9v0oXvTe3k6NYMFYwDgYDVR0PAQH/BAQDAgeAMBUGA1UdJQQOMAwGCisGAQQBg+heAgEwDAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBTOUeIEgU5kWyP448TPmj6cwddcwjAKBggqhkjOPQQDAwNnADBkAjAxcx0UngF60stVjs5G4T2eiptsBk5mf9oCtfJPAUBl8qs/PEXa8+gk1/X5QJ2DVcYCMHBfXN31YapiSqYvlIWrDVDJKOvXMl+kkz37Wt0PBI8sw486Mq6JeOhT+lRR4b1HCaFjcGFkWQ2eAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="The Shame Paradox, book cover"></a>
     </div>
   </section>
 
@@ -540,7 +959,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     <div class="label">12:42 · Together</div>
     <div class="spacer"></div>
     <div class="big-q">Where is the <em>theory?</em></div>
-    <p>In Tina’s story, and in the stories you have heard today. What is happening that makes it Gestalt therapy?</p>
+    <p>In the stories that you have heard today, what new material have we discovered about Gestalt therapy?</p>
     <div class="spacer"></div>
   </section>
 
@@ -694,28 +1113,125 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
   </section>
 
   <!-- Schulthess: what the recordings show -->
-  <section class="slide tinted" data-name="schulthess" style="padding-top:80px;gap:22px">
+  <section class="slide tinted" data-name="schulthess" style="padding-block:64px 84px;gap:18px">
     <div class="label">What makes Gestalt therapy Gestalt?</div>
-    <h3 style="font-size:36px;max-width:32em">Independent raters coded the interventions in recorded sessions across ten modalities.</h3>
+    <h3 style="font-size:34px;max-width:34em">The Swiss PAP-S study: raters, blind to the therapist’s school, coded every intervention in audio-taped sessions across ten modalities.</h3>
     <div class="figs">
       <div><span class="num">51–73%</span><span class="cap">of interventions were nonspecific, in every school</span></div>
       <div><span class="num">5–33%</span><span class="cap">were specific to the therapist’s own approach</span></div>
     </div>
-    <p class="small" style="font-size:18px;max-width:none">Schulthess, Crameri, Koemeda-Lutz, Tschuschke &amp; von Wyl (2021). Developing a manual for identifying interventions in psychotherapy to measure treatment adherence in research. <em>British Gestalt Journal, 30</em>(1), 19–30.</p>
-    <p class="lead" style="font-size:42px;margin-top:10px">What did the research miss? <em>The right data.</em></p>
+    <div class="findings">
+      <p>No correlation was found between adherence to a school’s techniques and outcome.</p>
+      <p>The more experienced the therapist, the fewer school-specific interventions: over 30% for less experienced therapists, 10–30% for the more experienced.</p>
+    </div>
+    <p class="small" style="font-size:16px;max-width:none;line-height:1.45">Schulthess, P., Crameri, A., Koemeda-Lutz, M., Tschuschke, V., &amp; von Wyl, A. (2021). <em>British Gestalt Journal, 30</em>(1), 19–30. · Schulthess, P., Tschuschke, V., Koemeda-Lutz, M., von Wyl, A., &amp; Crameri, A. <em>Comparative naturalistic study on outpatient psychotherapeutic treatments including Gestalt therapy</em> [Conference presentation].</p>
+    <p class="lead" style="font-size:40px;margin-top:4px">What did the research miss? <em>The right data.</em></p>
   </section>
 
   <!-- 20 Provocation -->
   <section class="slide" data-name="provocation">
     <div class="label">A provocation</div>
-    <div class="spacer"></div>
-    <div class="big-q" style="font-size:56px">The encounter first. Write from <em>inside</em> it. Let the writing show what is there.</div>
-    <ul class="list">
-      <li>What theory emerges?</li>
-      <li>What theory is challenged?</li>
-      <li>What remains unexplained?</li>
-    </ul>
-    <div class="spacer"></div>
+    <div class="two" style="grid-template-columns:1fr 580px;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:30px">
+        <div class="big-q" style="font-size:50px">The encounter first. Write from <em>inside</em> it. Let the writing show what is there.</div>
+        <ul class="list">
+          <li>What theory emerges?</li>
+          <li>What theory is challenged?</li>
+          <li>What remains unexplained?</li>
+        </ul>
+      </div>
+      <div class="mulan" data-mulan><svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1080" fill="#F0E8DD"/>
+<rect x="0" y="900" width="1080" height="180" fill="#D8D0C4"/>
+<line x1="0" y1="900" x2="1080" y2="900" stroke="#C4BAA8" stroke-width="2"/>
+<rect x="0" y="0" width="1080" height="6" fill="#9e4a5a"/>
+<text x="72" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="500" letter-spacing="3.5" fill="#9e4a5a">MULAN'S CLINICAL QUOTES</text>
+
+<g transform="translate(100, 640) rotate(-2)">
+  <rect x="3" y="3" width="200" height="130" rx="2" fill="#2A1F18" opacity="0.06"/>
+  <rect x="0" y="0" width="200" height="130" rx="2" fill="#FFF9C4"/>
+  <path d="M0,0 L200,0 L200,8 Q100,12 0,8 Z" fill="#FFF176" opacity="0.4"/>
+  <rect x="75" y="-8" width="50" height="16" rx="1" fill="#E0D8C0" opacity="0.5"/>
+  <text x="100" y="55" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">Please ignore</text>
+  <text x="100" y="82" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">the dog</text>
+  <circle cx="150" cy="108" r="4" fill="#8D6E63" opacity="0.3"/><circle cx="145" cy="100" r="2" fill="#8D6E63" opacity="0.3"/><circle cx="150" cy="97" r="2" fill="#8D6E63" opacity="0.3"/><circle cx="156" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+</g>
+
+<g transform="translate(160, 830)">
+  <path d="M-16,20 L-12,62 Q0,67 12,62 L16,20 Z" fill="#C9A87C"/><ellipse cx="0" cy="20" rx="18" ry="5" fill="#B8956A"/><ellipse cx="0" cy="20" rx="14" ry="3.5" fill="#C9A87C"/><ellipse cx="0" cy="22" rx="12" ry="3" fill="#8B7355"/>
+  <ellipse cx="0" cy="2" rx="7" ry="16" fill="#5A8A3A" opacity="0.85"><animate attributeName="ry" values="16;17;16" dur="2.5s" repeatCount="indefinite"/></ellipse>
+  <ellipse cx="-8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(-20,-8,6)" opacity="0.7"/><ellipse cx="8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(20,8,6)" opacity="0.7"/>
+  <ellipse cx="-5" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(-35,-5,0)" opacity="0.5"/><ellipse cx="6" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(30,6,0)" opacity="0.5"/>
+</g>
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;1;1;0;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.24;0.28;0.32;0.36;0.42;0.55;0.6;0.65;0.68;0.72;0.76;1"/>
+  <text x="540" y="230" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" fill="#2a2420">She said</text>
+  <text x="540" y="295" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#7a3545" font-style="italic">'I'm overthinking this.'</text>
+  <text x="540" y="395" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#2a2420">Then she described</text>
+  <text x="540" y="455" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#2a2420">the overthinking.</text>
+  <text x="540" y="530" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#2a2420">Then she analysed</text>
+  <text x="540" y="590" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#2a2420">the description.</text>
+  <text x="540" y="680" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#9e4a5a" font-style="italic">I put my head down.</text>
+</g>
+
+<g>
+  <animateTransform attributeName="transform" type="translate" values="-300,0; -300,0; 470,0; 470,0; 470,0; 470,0; 470,0; 1400,0; 1400,0" keyTimes="0; 0.01; 0.28; 0.32; 0.5; 0.68; 0.72; 0.95; 1" dur="10s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 1 1; 0.1 0 0.3 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0.7 0 0.9 1; 0 0 1 1"/>
+  <ellipse cx="55" cy="898" rx="68" ry="5" fill="#2A1F18" opacity="0.07"/>
+  <path d="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" fill="#B8883E"><animate attributeName="d" values="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818; M-28,810 Q-52,780 -44,795 Q-40,812 -30,816; M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" dur="0.8s" repeatCount="indefinite"/></path>
+  <ellipse cx="28" cy="848" rx="62" ry="26" fill="#C4944E"><animate attributeName="ry" values="26;27;26" dur="3s" repeatCount="indefinite"/></ellipse>
+  <ellipse cx="28" cy="858" rx="45" ry="14" fill="#D4A86A" opacity="0.3"/>
+  <line x1="-16" y1="865" x2="-20" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round"><animate attributeName="x2" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/></line>
+  <ellipse cx="-20" cy="895" rx="8" ry="4" fill="#A07830"><animate attributeName="cx" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/></ellipse>
+  <line x1="0" y1="865" x2="6" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round"><animate attributeName="x2" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/></line>
+  <ellipse cx="6" cy="895" rx="8" ry="4" fill="#B8883E"><animate attributeName="cx" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/></ellipse>
+  <line x1="55" y1="865" x2="50" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round"><animate attributeName="x2" values="50;58;50" dur="0.5s" repeatCount="indefinite"/></line>
+  <ellipse cx="50" cy="895" rx="8" ry="4" fill="#A07830"><animate attributeName="cx" values="50;58;50" dur="0.5s" repeatCount="indefinite"/></ellipse>
+  <line x1="68" y1="865" x2="72" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round"><animate attributeName="x2" values="72;64;72" dur="0.5s" repeatCount="indefinite"/></line>
+  <ellipse cx="72" cy="895" rx="8" ry="4" fill="#B8883E"><animate attributeName="cx" values="72;64;72" dur="0.5s" repeatCount="indefinite"/></ellipse>
+  <path d="M72,838 L76,810 L92,808 L90,836" fill="#C4944E"/>
+  <g transform="translate(82, 788)">
+
+    <g>
+      <animate attributeName="opacity" values="1;1;1;0;0;0;0;0;1;1" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.29;0.33;0.4;0.6;0.67;0.69;0.73;1"/>
+      <ellipse cx="10" cy="0" rx="28" ry="30" fill="#C4944E"/><ellipse cx="36" cy="8" rx="16" ry="12" fill="#C4944E"/>
+      <path d="M25,0 Q36,-1 46,5" fill="none" stroke="#B08040" stroke-width="0.8" opacity="0.25"/><ellipse cx="46" cy="8" rx="9" ry="9" fill="#B08040" opacity="0.45"/>
+      <ellipse cx="50" cy="4" rx="6.5" ry="5" fill="#2A1F18"/><ellipse cx="49" cy="2.5" rx="2.5" ry="1.5" fill="#3E2F24" opacity="0.3"/>
+      <path d="M50,10 Q44,17 34,14" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <g><circle cx="16" cy="-6" r="6" fill="#1A1210"/><circle cx="14" cy="-8.5" r="2" fill="#fff" opacity="0.22"/><ellipse cx="16" cy="-6" rx="7.5" ry="0" fill="#C4944E"><animate attributeName="ry" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;7;7;0;0;0" dur="10s" repeatCount="indefinite"/></ellipse></g>
+      <path d="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" fill="#B8883E"><animate attributeName="d" values="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14; M-4,-18 Q-20,-40 -16,-46 Q-10,-50 -4,-34 Q0,-24 0,-14; M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" dur="0.5s" repeatCount="indefinite"/></path>
+      <path d="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" fill="#A07830" opacity="0.3"><animate attributeName="d" values="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30; M-2,-16 Q-16,-35 -13,-40 Q-9,-43 -4,-32; M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" dur="0.5s" repeatCount="indefinite"/></path>
+      <path d="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" fill="#A07830" opacity="0.7"><animate attributeName="d" values="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14; M8,-20 Q16,-42 24,-44 Q30,-42 24,-28 Q19,-18 12,-14; M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" dur="0.5s" repeatCount="indefinite"/></path>
+      <rect x="-8" y="20" width="32" height="8" rx="4" fill="#3A8A9A"/><circle cx="10" cy="32" r="3.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4"/>
+    </g>
+
+    <g>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.31;0.35;0.4;0.6;0.67;0.69;0.73;1"/>
+      <g transform="rotate(5, 10, 0)">
+      <ellipse cx="10" cy="0" rx="46" ry="42" fill="#C4944E"/><ellipse cx="10" cy="10" rx="26" ry="20" fill="#B08040" opacity="0.4"/><ellipse cx="10" cy="16" rx="18" ry="13" fill="#D4A86A" opacity="0.5"/>
+      <ellipse cx="10" cy="8" rx="8" ry="6" fill="#2A1F18"/><ellipse cx="9" cy="6" rx="3" ry="1.8" fill="#3E2F24" opacity="0.35"/>
+      <path d="M10,14 Q5,20 0,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/><path d="M10,14 Q15,20 20,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <circle cx="-6" cy="-10" r="7.5" fill="#1A1210"/><circle cx="26" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="-8" cy="-13" r="2.5" fill="#fff" opacity="0.22"/><circle cx="24" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <ellipse cx="-6" cy="-13" rx="9" ry="0" fill="#C4944E"><animate attributeName="ry" values="0;0;0;0;0;0;2;4;6;8;8;8;8;8;6;3;0;0;0;0" dur="10s" repeatCount="indefinite"/></ellipse>
+      <ellipse cx="26" cy="-13" rx="9" ry="0" fill="#C4944E"><animate attributeName="ry" values="0;0;0;0;0;0;2;4;6;8;8;8;8;8;6;3;0;0;0;0" dur="10s" repeatCount="indefinite"/></ellipse>
+      <path d="M-16,-22 Q-6,-24 2,-22" fill="none" stroke="#8A6830" stroke-width="1.2" opacity="0.15"/>
+      <path d="M18,-22 Q28,-24 36,-22" fill="none" stroke="#8A6830" stroke-width="1.2" opacity="0.15"/>
+      <path d="M-24,-24 Q-58,-34 -56,-16 Q-54,-4 -34,-4" fill="#B8883E"><animate attributeName="d" values="M-24,-24 Q-58,-34 -56,-16 Q-54,-4 -34,-4; M-24,-24 Q-59,-36 -57,-18 Q-55,-6 -34,-4; M-24,-24 Q-58,-34 -56,-16 Q-54,-4 -34,-4" dur="3s" repeatCount="indefinite"/></path>
+      <path d="M-22,-20 Q-48,-28 -46,-14 Q-44,-4 -32,-6" fill="#A07830" opacity="0.2"/>
+      <path d="M44,-24 Q78,-34 76,-16 Q74,-4 54,-4" fill="#B8883E"><animate attributeName="d" values="M44,-24 Q78,-34 76,-16 Q74,-4 54,-4; M44,-24 Q79,-36 77,-18 Q75,-6 54,-4; M44,-24 Q78,-34 76,-16 Q74,-4 54,-4" dur="3s" repeatCount="indefinite" begin="0.5s"/></path>
+      <path d="M42,-20 Q68,-28 66,-14 Q64,-4 52,-6" fill="#A07830" opacity="0.2"/>
+      <rect x="-16" y="32" width="52" height="10" rx="5" fill="#3A8A9A" stroke="#2E7282" stroke-width="0.5"/>
+      <rect x="22" y="33" width="6" height="8" rx="1.5" fill="#888" opacity="0.4"/>
+      <circle cx="10" cy="47" r="4.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4"><animate attributeName="cy" values="47;48;47" dur="3s" repeatCount="indefinite"/></circle>
+      </g>
+
+    </g>
+  </g>
+</g>
+<g transform="translate(820, 868)"><rect x="0" y="0" width="48" height="35" rx="3" fill="#F5EDE0" stroke="#D4CFC6" stroke-width="1"/><rect x="0" y="0" width="48" height="7" rx="3" fill="#E8E0D4"/><path d="M18,0 Q24,-10 30,0" fill="none" stroke="#D4CFC6" stroke-width="1.5"/><path d="M20,-2 Q24,-14 28,-2" fill="#fff" opacity="0.6" stroke="#E8E0D4" stroke-width="0.5"/></g>
+<text x="1008" y="1050" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#9a8e82" font-style="italic">psychotherapist.sg</text>
+</svg></div>
+    </div>
   </section>
 
   <!-- 21 Close -->
@@ -727,17 +1243,6 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     <div class="spacer"></div>
   </section>
 
-  <!-- 22 Poem -->
-  <section class="slide" data-name="poem">
-    <div class="label">Dubrovnik, the last morning</div>
-    <div class="spacer"></div>
-    <div class="poem">
-      <span class="de">Ich werde gestaltet.</span><span class="en">I am being shaped.</span>
-      <span class="de">Wir werden gestaltet.</span><span class="en">We are being shaped.</span>
-      <span class="de">Wir sind Gestalt.</span><span class="en">We are Gestalt.</span>
-    </div>
-    <div class="spacer"></div>
-  </section>
 
   <!-- 23 Last words -->
   <section class="slide tinted" data-name="end">
@@ -763,7 +1268,6 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
       <li>Chew-Helbig, N. [2019]. Dialogue analysis of a filmed Gestalt therapy session: An introduction to a method. <em>British Gestalt Journal</em>.</li>
       <li>Chew-Helbig, N. (2022). Writing evocative case studies: Applying autoethnography as a research methodology for the psychotherapist. <em>British Gestalt Journal</em>.</li>
       <li>Chew-Helbig, N. (2023). <em>Therapeutic autoethnography</em> [Doctoral dissertation]. Sigmund Freud University Vienna.</li>
-      <li>Chew-Helbig, N. (2026). <em>A Gestalt approach to couples therapy: The dance of difference</em>. Routledge.</li>
       <li>Chew-Helbig, N. (2026). <em>The shame paradox: Why we fear most the emotion that keeps us human</em>. No. 65 Press.</li>
       <li>Denzin, N. K. (2013). <em>Interpretive autoethnography</em> (2nd ed.). Sage.</li>
       <li>Francesetti, G. (2012). Pain and beauty: From the psychopathology to the aesthetics of contact. <em>British Gestalt Journal, 21</em>(2), 4–18.</li>
@@ -771,9 +1275,272 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
       <li>Perls, F., Hefferline, R., &amp; Goodman, P. (1951). <em>Gestalt therapy: Excitement and growth in the human personality</em>. Julian Press.</li>
       <li>Richardson, L., &amp; St. Pierre, E. A. (2018). Writing: A method of inquiry. In N. K. Denzin &amp; Y. S. Lincoln (Eds.), <em>The Sage handbook of qualitative research</em> (5th ed., pp. 1410–1444). Sage.</li>
       <li>Schulthess, P., Crameri, A., Koemeda-Lutz, M., Tschuschke, V., &amp; von Wyl, A. (2021). Developing a manual for identifying interventions in psychotherapy to measure treatment adherence in research. <em>British Gestalt Journal, 30</em>(1), 19–30.</li>
+      <li>Schulthess, P., Tschuschke, V., Koemeda-Lutz, M., von Wyl, A., &amp; Crameri, A. (n.d.). <em>Comparative naturalistic study on outpatient psychotherapeutic treatments including Gestalt therapy</em> [Conference presentation]. Swiss Charter for Psychotherapy, PAP-S study.</li>
       <li>Van Manen, M. (2016). <em>Phenomenology of practice: Meaning-giving methods in phenomenological research and writing</em>. Routledge.</li>
       <li>Wampold, B. E., &amp; Brown, G. S. (2005). Estimating variability in outcomes attributable to therapists: A naturalistic study of outcomes in managed care. <em>Journal of Consulting and Clinical Psychology, 73</em>(5), 914–923.</li>
     </ol>
+  </section>
+
+  <!-- Bonus: Mulan and the elephant -->
+  <section class="slide tinted" data-name="bonus-elephant" style="padding-block:64px 84px">
+    <div class="two" style="grid-template-columns:1fr 640px;gap:56px">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div class="label">Bonus material</div>
+        <h2 style="font-size:58px">The elephant in the <em>room</em></h2>
+        <p style="font-size:26px;color:var(--muted)">Presented at the end-of-conference reflection panel, EAGT Conference, Dubrovnik, 25 October 2026.</p>
+        <a class="web-link" href="#s29" data-goto="bonus-poem">Read and listen to the poem →</a>
+      </div>
+      <div class="mulan" data-mulan><svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+
+<rect width="1080" height="1080" fill="#F0E8DD"/>
+<rect x="0" y="900" width="1080" height="180" fill="#D8D0C4"/>
+<line x1="0" y1="900" x2="1080" y2="900" stroke="#C4BAA8" stroke-width="2"/>
+<rect x="0" y="0" width="1080" height="6" fill="#9e4a5a"/>
+<text x="72" y="60" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="500" letter-spacing="3.5" fill="#9e4a5a">MULAN'S CLINICAL QUOTES</text>
+
+<g transform="translate(100, 640) rotate(-2)">
+  <rect x="3" y="3" width="200" height="130" rx="2" fill="#2A1F18" opacity="0.06"/>
+  <rect x="0" y="0" width="200" height="130" rx="2" fill="#FFF9C4"/>
+  <path d="M0,0 L200,0 L200,8 Q100,12 0,8 Z" fill="#FFF176" opacity="0.4"/>
+  <rect x="75" y="-8" width="50" height="16" rx="1" fill="#E0D8C0" opacity="0.5"/>
+  <text x="100" y="55" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">Please ignore</text>
+  <text x="100" y="82" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive, sans-serif" font-size="18" fill="#5D4037">the dog</text>
+  <circle cx="150" cy="108" r="4" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="145" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="150" cy="97" r="2" fill="#8D6E63" opacity="0.3"/>
+  <circle cx="156" cy="100" r="2" fill="#8D6E63" opacity="0.3"/>
+</g>
+
+<g transform="translate(160, 830)">
+  <path d="M-16,20 L-12,62 Q0,67 12,62 L16,20 Z" fill="#C9A87C"/>
+  <ellipse cx="0" cy="20" rx="18" ry="5" fill="#B8956A"/>
+  <ellipse cx="0" cy="20" rx="14" ry="3.5" fill="#C9A87C"/>
+  <ellipse cx="0" cy="22" rx="12" ry="3" fill="#8B7355"/>
+  <ellipse cx="0" cy="2" rx="7" ry="16" fill="#5A8A3A" opacity="0.85">
+    <animate attributeName="ry" values="16;17;16" dur="2.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="-8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(-20,-8,6)" opacity="0.7"/>
+  <ellipse cx="8" cy="6" rx="5" ry="12" fill="#7AAA4A" transform="rotate(20,8,6)" opacity="0.7"/>
+  <ellipse cx="-5" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(-35,-5,0)" opacity="0.5"/>
+  <ellipse cx="6" cy="0" rx="4" ry="10" fill="#4A7A2A" transform="rotate(30,6,0)" opacity="0.5"/>
+</g>
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;1;1;0;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.24;0.28;0.32;0.36;0.42;0.55;0.6;0.65;0.68;0.72;0.76;1"/>
+  <text x="540" y="230" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#2a2420">Someone brought an elephant.</text>
+  <text x="540" y="295" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="46" fill="#2a2420">Everyone walked around it.</text>
+  <text x="540" y="410" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#9e4a5a" font-style="italic">I went over and sniffed it.</text>
+  <text x="540" y="474" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#9e4a5a" font-style="italic">It was lonely.</text>
+</g>
+
+<!-- ═══ EMPTY CHAIR ═══ -->
+<g>
+  <ellipse cx="722" cy="898" rx="90" ry="5" fill="#2A1F18" opacity="0.07"/>
+  <rect x="784" y="752" width="9" height="146" rx="3" fill="#8E6A46"/>
+  <rect x="738" y="752" width="9" height="60" rx="3" fill="#9A744E"/>
+  <rect x="738" y="756" width="55" height="9" rx="3" fill="#A9825A"/>
+  <rect x="738" y="782" width="55" height="7" rx="3" fill="#A9825A"/>
+  <rect x="648" y="824" width="9" height="74" rx="3" fill="#8E6A46"/>
+  <rect x="672" y="824" width="8" height="70" rx="3" fill="#7E5E3E" opacity="0.8"/>
+  <rect x="770" y="824" width="8" height="70" rx="3" fill="#7E5E3E" opacity="0.8"/>
+  <rect x="640" y="810" width="158" height="16" rx="4" fill="#B48C62"/>
+  <rect x="640" y="810" width="158" height="5" rx="2" fill="#C49C70"/>
+</g>
+
+<!-- ═══ BALLOON ELEPHANT ═══ -->
+<g transform="translate(712, 640) scale(1.15)">
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-7; 0,0" dur="4.5s" repeatCount="indefinite"/>
+    <!-- string to the seat -->
+    <path d="M18,50 Q34,78 14,104 Q4,128 20,148" fill="none" stroke="#8A7F78" stroke-width="2">
+      <animate attributeName="d" values="M18,50 Q34,78 14,104 Q4,128 20,148; M18,50 Q4,80 22,104 Q32,128 20,148; M18,50 Q34,78 14,104 Q4,128 20,148" dur="4.5s" repeatCount="indefinite"/>
+    </path>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="-3; 3; -3" dur="6s" repeatCount="indefinite"/>
+      <g>
+        <!-- slow loss of air: sags and droops, then refills as the loop restarts -->
+        <animateTransform attributeName="transform" type="scale" values="1,1; 1,1; 0.97,0.9; 0.97,0.9; 1,1" keyTimes="0; 0.35; 0.7; 0.95; 1" dur="10s" repeatCount="indefinite"/>
+        <!-- tail -->
+        <path d="M88,-6 Q104,-4 102,10" fill="none" stroke="#B9A4B3" stroke-width="5" stroke-linecap="round"/>
+        <!-- back legs -->
+        <rect x="48" y="26" width="22" height="42" rx="11" fill="#B9A4B3"/>
+        <rect x="-4" y="26" width="22" height="42" rx="11" fill="#B9A4B3"/>
+        <!-- body -->
+        <ellipse cx="22" cy="0" rx="72" ry="48" fill="#CDB9C6"/>
+        <!-- front legs -->
+        <rect x="64" y="30" width="22" height="42" rx="11" fill="#CDB9C6"/>
+        <rect x="10" y="30" width="22" height="42" rx="11" fill="#CDB9C6"/>
+        <!-- trunk -->
+        <path d="M-82,-10 Q-112,6 -104,40 Q-100,58 -88,56" fill="none" stroke="#CDB9C6" stroke-width="20" stroke-linecap="round"/>
+        <!-- head -->
+        <circle cx="-56" cy="-26" r="42" fill="#CDB9C6"/>
+        <!-- ear -->
+        <ellipse cx="-34" cy="-24" rx="24" ry="32" fill="#B9A4B3"/>
+        <!-- eye -->
+        <circle cx="-74" cy="-36" r="4.5" fill="#2A1F18"/>
+        <!-- shine -->
+        <ellipse cx="-70" cy="-50" rx="12" ry="7" fill="#fff" opacity="0.45" transform="rotate(-25,-70,-50)"/>
+        <ellipse cx="2" cy="-30" rx="30" ry="9" fill="#fff" opacity="0.4" transform="rotate(-10,2,-30)"/>
+        <!-- creases: the balloon is a little tired -->
+        <path d="M40,-20 Q48,-6 40,8" fill="none" stroke="#9F8A99" stroke-width="1.5" opacity="0.45"/>
+        <path d="M62,-12 Q66,0 58,12" fill="none" stroke="#9F8A99" stroke-width="1.2" opacity="0.4"/>
+        <path d="M-20,8 Q-10,16 -2,10" fill="none" stroke="#9F8A99" stroke-width="1.2" opacity="0.4"/>
+        <!-- knot -->
+        <path d="M14,44 L22,44 L18,52 Z" fill="#B9A4B3"/>
+      </g>
+    </g>
+  </g>
+</g>
+
+<!-- ═══ MULAN ═══ -->
+<g>
+  <animateTransform attributeName="transform" type="translate"
+    values="-300,0; -300,0; 330,0; 330,0; 330,0; 330,0; 330,0; 1400,0; 1400,0"
+    keyTimes="0; 0.01; 0.28; 0.32; 0.5; 0.68; 0.72; 0.95; 1"
+    dur="10s" repeatCount="indefinite"
+    calcMode="spline"
+    keySplines="0 0 1 1; 0.1 0 0.3 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0.7 0 0.9 1; 0 0 1 1"/>
+
+  <ellipse cx="55" cy="898" rx="68" ry="5" fill="#2A1F18" opacity="0.07"/>
+
+  <path d="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" fill="#B8883E">
+    <animate attributeName="d" values="M-28,810 Q-50,785 -42,800 Q-38,815 -28,818; M-28,810 Q-52,780 -44,795 Q-40,812 -30,816; M-28,810 Q-50,785 -42,800 Q-38,815 -28,818" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+
+  <ellipse cx="28" cy="848" rx="62" ry="26" fill="#C4944E">
+    <animate attributeName="ry" values="26;27;26" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="28" cy="858" rx="45" ry="14" fill="#D4A86A" opacity="0.3"/>
+
+  <line x1="-16" y1="865" x2="-20" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="-20" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="-20;-12;-20" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="0" y1="865" x2="6" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="6" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="6;-2;6" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <line x1="55" y1="865" x2="50" y2="892" stroke="#B8883E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="50" cy="895" rx="8" ry="4" fill="#A07830">
+    <animate attributeName="cx" values="50;58;50" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <line x1="68" y1="865" x2="72" y2="892" stroke="#C4944E" stroke-width="10" stroke-linecap="round">
+    <animate attributeName="x2" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <ellipse cx="72" cy="895" rx="8" ry="4" fill="#B8883E">
+    <animate attributeName="cx" values="72;64;72" dur="0.5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <path d="M72,838 L76,810 L92,808 L90,836" fill="#C4944E"/>
+
+  <g transform="translate(82, 788)">
+
+    <g>
+      <animate attributeName="opacity" values="1;1;1;0;0;0;0;0;1;1" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.29;0.33;0.4;0.6;0.67;0.69;0.73;1"/>
+      <ellipse cx="10" cy="0" rx="28" ry="30" fill="#C4944E"/>
+      <ellipse cx="36" cy="8" rx="16" ry="12" fill="#C4944E"/>
+      <path d="M25,0 Q36,-1 46,5" fill="none" stroke="#B08040" stroke-width="0.8" opacity="0.25"/>
+      <ellipse cx="46" cy="8" rx="9" ry="9" fill="#B08040" opacity="0.45"/>
+      <ellipse cx="50" cy="4" rx="6.5" ry="5" fill="#2A1F18"/>
+      <ellipse cx="49" cy="2.5" rx="2.5" ry="1.5" fill="#3E2F24" opacity="0.3"/>
+      <path d="M50,10 Q44,17 34,14" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <g>
+        <circle cx="16" cy="-6" r="6" fill="#1A1210"/>
+        <circle cx="14" cy="-8.5" r="2" fill="#fff" opacity="0.22"/>
+        <ellipse cx="16" cy="-6" rx="7.5" ry="0" fill="#C4944E">
+          <animate attributeName="ry" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;7;7;0;0;0" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+      <path d="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" fill="#B8883E">
+        <animate attributeName="d" values="M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14; M-4,-18 Q-20,-40 -16,-46 Q-10,-50 -4,-34 Q0,-24 0,-14; M-4,-18 Q-18,-38 -14,-44 Q-8,-48 -2,-32 Q2,-22 0,-14" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" fill="#A07830" opacity="0.3">
+        <animate attributeName="d" values="M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30; M-2,-16 Q-16,-35 -13,-40 Q-9,-43 -4,-32; M-2,-16 Q-14,-33 -11,-38 Q-7,-41 -2,-30" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <path d="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" fill="#A07830" opacity="0.7">
+        <animate attributeName="d" values="M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14; M8,-20 Q16,-42 24,-44 Q30,-42 24,-28 Q19,-18 12,-14; M8,-20 Q15,-40 22,-42 Q28,-40 22,-26 Q18,-18 12,-14" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+      <rect x="-8" y="20" width="32" height="8" rx="4" fill="#3A8A9A"/>
+      <circle cx="10" cy="32" r="3.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4"/>
+    </g>
+
+    <g>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;0;0" dur="10s" repeatCount="indefinite" keyTimes="0;0.25;0.31;0.35;0.4;0.6;0.67;0.69;0.73;1"/>
+      <g>
+      <ellipse cx="10" cy="0" rx="46" ry="42" fill="#C4944E"/>
+      <ellipse cx="10" cy="10" rx="26" ry="20" fill="#B08040" opacity="0.4"/>
+      <ellipse cx="10" cy="16" rx="18" ry="13" fill="#D4A86A" opacity="0.5"/>
+      <ellipse cx="10" cy="8" rx="8" ry="6" fill="#2A1F18"/>
+      <ellipse cx="9" cy="6" rx="3" ry="1.8" fill="#3E2F24" opacity="0.35"/>
+      <path d="M10,14 Q5,20 0,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <path d="M10,14 Q15,20 20,18" fill="none" stroke="#2A1F18" stroke-width="0.8" opacity="0.3"/>
+      <circle cx="-6" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="26" cy="-10" r="7.5" fill="#1A1210"/>
+      <circle cx="-8" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <circle cx="24" cy="-13" r="2.5" fill="#fff" opacity="0.22"/>
+      <path d="M-16,-22 Q-6,-26 2,-22" fill="none" stroke="#8A6830" stroke-width="1.5" opacity="0.2"/>
+      <path d="M18,-22 Q28,-29 36,-22" fill="none" stroke="#8A6830" stroke-width="1.8" opacity="0.3"/>
+      <path d="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" fill="#B8883E">
+        <animate attributeName="d" values="M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4; M-24,-24 Q-56,-42 -54,-24 Q-52,-10 -34,-4; M-24,-24 Q-55,-38 -52,-20 Q-50,-8 -34,-4" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M-22,-20 Q-46,-30 -44,-18 Q-42,-10 -32,-6" fill="#A07830" opacity="0.2"/>
+      <path d="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" fill="#B8883E">
+        <animate attributeName="d" values="M44,-24 Q75,-38 72,-20 Q70,-8 54,-4; M44,-24 Q76,-42 74,-24 Q72,-10 54,-4; M44,-24 Q75,-38 72,-20 Q70,-8 54,-4" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+      </path>
+      <path d="M42,-20 Q66,-30 64,-18 Q62,-10 52,-6" fill="#A07830" opacity="0.2"/>
+      <rect x="-16" y="32" width="52" height="10" rx="5" fill="#3A8A9A" stroke="#2E7282" stroke-width="0.5"/>
+      <rect x="22" y="33" width="6" height="8" rx="1.5" fill="#888" opacity="0.4"/>
+      <circle cx="10" cy="47" r="4.5" fill="#C0C0C0" stroke="#999" stroke-width="0.4">
+        <animate attributeName="cy" values="47;48;47" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      </g>
+
+      <g>
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0.7;0.3;0;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-15" cy="6" rx="5" ry="4" fill="#DDD5C8">
+          <animate attributeName="cx" values="-15;-38;-58" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="rx" values="5;12;18" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="ry" values="4;7;10" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+      <g>
+        <animate attributeName="opacity" values="0;0;0;0;0;0;0;0.5;0.15;0;0;0;0;0;0;0;0;0;0;0" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="-12" cy="12" rx="4" ry="3" fill="#DDD5C8">
+          <animate attributeName="cx" values="-12;-32;-50" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="rx" values="4;9;14" dur="10s" repeatCount="indefinite"/>
+        </ellipse>
+      </g>
+    </g>
+
+  </g>
+</g>
+
+<text x="1008" y="1050" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#9a8e82" font-style="italic">psychotherapist.sg</text>
+
+</svg></div>
+    </div>
+  </section>
+
+  <!-- Bonus: the poem -->
+  <section class="slide tinted" data-name="bonus-poem" style="padding-block:60px 84px;gap:16px">
+    <div class="label">Bonus material · Dubrovnik, 25 October 2026</div>
+    <div class="poem-head">
+      <h3 style="font-size:40px">The elephant in the <em style="color:var(--rose);font-weight:400">room</em></h3>
+      <p class="byline">By Nicole Chew-Helbig. Written in Dubrovnik on the last morning of the EAGT Conference, and presented at the end-of-conference reflection panel, 25 October 2026.</p>
+      <div class="listen"><span>Listen · 2 min 21 s</span><audio controls preload="none" src="ELEPHANT.mp3">Your browser cannot play this recording.</audio></div>
+    </div>
+    <div class="poem-full">
+      <div><p>I woke at three again this morning. I realise that my body is still in Singapore.</p><p>And for the last three days, all I wanted was to be here. I knew I would meet people who are special to me, people I only ever see at Gestalt events. If I hadn’t bumped into you this time, I might never have seen you again. I’m grateful I was encouraged to come. I met you, I’m still meeting you, and I’ve met many more of you who will make me want to come back, in the hope of bumping into you again.</p><p>So I asked myself: when I fly home this evening, what will be different? Who do I still need to talk to before I leave?</p><p>The elephant in the room.</p><p>This morning, before breakfast, I put the elephant on an empty chair.</p><p>And then I sat in it.</p><p>This is what came.</p></div>
+      <div><p>A felt reality. Despair. Darkness. Isolation. Fear. A lot of fear.</p><p>I asked: what is this fear about?</p><p>The fear of never being met. And the knowledge that being fully met is impossible.</p><p>A horrible thought.</p><p>I think this is our true suffering.</p><p>And the elephant said to me: I’m lonely.</p><p>Tell your friends to keep coming back together, and to keep doing this.</p><p>And thank those who chose not to come. Their absence was also a way of making contact.</p><p>The more we try to make contact, the clearer I become.</p><p>This is what makes Gestalt therapy what it is.</p><p>The courage to keep being shaped, and to suffer it.</p><p>And the elephant said:</p>
+        <div class="poem-end"><span class="de">Ich werde gestaltet.</span><span class="en">I am being shaped.</span><span class="de">Wir werden gestaltet.</span><span class="en">We are being shaped.</span><span class="de">Wir sind Gestalt.</span><span class="en">We are Gestalt.</span></div>
+      </div>
+    </div>
   </section>
 
   <div class="footer"><span>Theorizing Stories · NYIGT</span><span class="site">psychotherapist.sg</span></div>
@@ -827,6 +1594,12 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   function indexOf(name) { return Math.max(0, slides.findIndex(s => s.dataset.name === name)); }
 
+  // In-deck links: jump to a named slide.
+  document.querySelectorAll('[data-goto]').forEach(a => {
+    a.setAttribute('href', '#s' + (indexOf(a.dataset.goto) + 1));
+    a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); go(indexOf(a.dataset.goto)); });
+  });
+
   function fit() {
     const w = window.innerWidth, h = window.innerHeight;
     const s = Math.min(w / 1600, h / 900);
@@ -842,6 +1615,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
   function go(n) {
     n = Math.max(0, Math.min(slides.length - 1, n));
     slides[i].classList.remove('active');
+    slides[i].querySelectorAll('audio').forEach(au => { try { au.pause(); } catch (err) {} });
     i = n;
     slides[i].classList.add('active');
     count.textContent = (i + 1) + ' / ' + slides.length;
@@ -885,6 +1659,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   document.addEventListener('keydown', (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.target && e.target.tagName === 'AUDIO') return;
     const k = e.key;
     if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); go(i + 1); }
     else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); go(i - 1); }
@@ -896,7 +1671,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   // Click on the slide: right two thirds forward, left third back.
   stage.addEventListener('click', (e) => {
-    if (e.target.closest('button, a')) return;
+    if (e.target.closest('button, a, audio')) return;
     const r = stage.getBoundingClientRect();
     if (e.clientX - r.left < r.width / 3) go(i - 1); else go(i + 1);
   });
