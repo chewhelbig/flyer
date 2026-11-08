@@ -205,6 +205,15 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 .qr { width: 220px; height: 220px; display: block; }
 .qr-cap { font-size: 18px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
 
+
+/* Phone held upright: all slides stacked, scrolling */
+html:has(body.phone) { height: auto; }
+body.phone { overflow: visible; height: auto; background: var(--cream); }
+body.phone .viewport { position: relative; inset: auto; display: block; place-items: normal; justify-items: normal; overflow: hidden; }
+body.phone .stage { height: auto; box-shadow: none; overflow: visible; }
+body.phone .slide { position: relative; inset: auto; height: 900px; opacity: 1; visibility: visible; transition: none; border-bottom: 10px solid var(--rose-soft); }
+body.phone .band, body.phone .footer, body.phone .progress, body.phone .nav, body.phone .help { display: none; }
+
 /* Controls */
 .nav {
   position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); top: max(14px, env(safe-area-inset-top, 0px));
@@ -1036,7 +1045,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   <!-- 17 Where is the theory -->
   <section class="slide tinted" data-name="theory">
-    <div class="label">12:42 · Together</div>
+    <div class="label">12:44 · Together</div>
     <div class="spacer"></div>
     <div class="big-q">Where is the <em>theory?</em></div>
     <p>In the stories that you have heard today, what new material have we discovered about Gestalt therapy?</p>
@@ -1656,7 +1665,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     ['12:06', 'What came through', 'came-through', 'Together'],
     ['12:26', 'Readings', 'readings', ''],
     ['12:35', 'Tina at the doorbell', 'tina-facts', 'A story'],
-    ['12:42', 'Where is the theory?', 'theory', 'Together'],
+    ['12:44', 'Where is the theory?', 'theory', 'Together'],
     ['12:51', 'Closing words', 'method', ''],
     ['12:59', 'Close', 'close', 'One line each']
   ];
@@ -1681,10 +1690,24 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
     a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); go(indexOf(a.dataset.goto)); });
   });
 
+  // On a phone held upright the 16:9 stage would be a thin strip on a dark screen,
+  // so there every slide is stacked and scaled to the width, and the page scrolls.
+  const viewportEl = document.querySelector('.viewport');
+  function isPhone() { return window.innerWidth < 820 && window.innerHeight > window.innerWidth; }
   function fit() {
     const w = window.innerWidth, h = window.innerHeight;
-    const s = Math.min(w / 1600, h / 900);
-    stage.style.transform = 'scale(' + s + ')';
+    const phone = isPhone();
+    document.body.classList.toggle('phone', phone);
+    if (phone) {
+      const s = w / 1600;
+      stage.style.transformOrigin = 'top left';
+      stage.style.transform = 'scale(' + s + ')';
+      viewportEl.style.height = (stage.scrollHeight * s) + 'px';
+    } else {
+      stage.style.transformOrigin = 'center center';
+      stage.style.transform = 'scale(' + Math.min(w / 1600, h / 900) + ')';
+      viewportEl.style.height = '';
+    }
   }
 
   function replayMulan(slide) {
@@ -1752,6 +1775,7 @@ cite { display: block; margin-top: 14px; font-family: var(--body); font-style: n
 
   // Click on the slide: right two thirds forward, left third back.
   stage.addEventListener('click', (e) => {
+    if (document.body.classList.contains('phone')) return;
     if (e.target.closest('button, a, audio')) return;
     const r = stage.getBoundingClientRect();
     if (e.clientX - r.left < r.width / 3) go(i - 1); else go(i + 1);
